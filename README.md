@@ -1,45 +1,155 @@
-![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
+# Double Shamrock   
 
-Welcome crypticCaroline,
 
-This is the Code Institute student template for Gitpod. We have preinstalled all of the tools you need to get started. You can safely delete this README.md file, or change it for your own project. Please do read it at least once, though! It contains some important information about Gitpod and the extensions we use.
+*short description of the app goes here*
 
-## Gitpod Reminders
+---
 
-To run a frontend (HTML, CSS, Javascript only) application in Gitpod, in the terminal, type:
+## Table of Contents
+1. [UX](#ux)
+    - [User Stories](#user-stories)
+    - [Design](#design)
+    - [Wireframes](#wireframes)
 
-`python3 -m http.server`
+2. [Features](#features)
+    - [Existing Features](#existing-features)
+    - [Features Left to Implement](#features-left-to-implement)
 
-A blue button should appear to click: *Make Public*,
+3. [**Information Architecture**](#information-architecture)
+    - [**Database Choice**](#database-choice)
+    - [**Data Modelling**](#data-modelling)
 
-Another blue button should appear to click: *Open Browser*.
+4. [Technologies Used](#technologies-used)
+    - [**Languages**](#languages)
+    - [**Libraries and Frameworks**](#libraries-and-frameworks)
+    - [**Tools**](#tools)
+    - [**Databases**](#databases)
 
-To run a backend Python file, type `python3 app.py`, if your Python file is named `app.py` of course.
+5. [Testing](#testing)
+    - [Manual Testing](#manual-testing)
+    - [Validators](#validators)
+    - [Compatibility and Responsiveness](#compatibility-and-responsiveness)
 
-A blue button should appear to click: *Make Public*,
+6. [Deployment](#deployment)
+    - [Local Deployment](#local-deployment)
+    - [Heroku Deployment](#heroku-deployment)
 
-Another blue button should appear to click: *Open Browser*.
+7. [Credits](#credits)
+    - [Content](#content)
+    - [Media](#media)
+    - [Code](#code)
+    - [Acknowledgements](#acknowledgements)
 
-In Gitpod you have superuser security privileges by default. Therefore you do not need to use the `sudo` (superuser do) command in the bash terminal in any of the lessons.
+8. [**Disclaimer**](#disclaimer)
 
-## Updates Since The Instructional Video
+---
 
-We continually tweak and adjust this template to help give you the best experience. Here is the version history:
+## UX
 
-**October 21 2020:** Versions of the HTMLHint, Prettier, Bootstrap4 CDN and Auto Close extensions updated. The Python extension needs to stay the same version for now.
+### User Stories
+**As a user, I want/expect:**
 
-**October 08 2020:** Additional large Gitpod files (`core.mongo*` and `core.python*`) are now hidden in the Explorer, and have been added to the `.gitignore` by default.
+### Design
+#### Framework
 
-**September 22 2020:** Gitpod occasionally creates large `core.Microsoft` files. These are now hidden in the Explorer. A `.gitignore` file has been created to make sure these files will not be committed, along with other common files.
+#### Colour Scheme
 
-**April 16 2020:** The template now automatically installs MySQL instead of relying on the Gitpod MySQL image. The message about a Python linter not being installed has been dealt with, and the set-up files are now hidden in the Gitpod file explorer.
+#### Typography
 
-**April 13 2020:** Added the _Prettier_ code beautifier extension instead of the code formatter built-in to Gitpod.
+#### Icons
 
-**February 2020:** The initialisation files now _do not_ auto-delete. They will remain in your project. You can safely ignore them. They just make sure that your workspace is configured correctly each time you open it. It will also prevent the Gitpod configuration popup from appearing.
+#### Further styling decisions
 
-**December 2019:** Added Eventyret's Bootstrap 4 extension. Type `!bscdn` in a HTML file to add the Bootstrap boilerplate. Check out the <a href="https://github.com/Eventyret/vscode-bcdn" target="_blank">README.md file at the official repo</a> for more options.
 
---------
+### Wireframes
 
-Happy coding!
+<div align="right">
+    <b><a href="#table-of-contents">↥ Back To Top</a></b>
+</div>
+
+---
+
+## Features
+### Existing Features
+
+### Features Left to Implement
+
+<div align="right">
+    <b><a href="#table-of-contents">↥ Back To Top</a></b>
+</div>
+
+---
+
+## Technologies Used
+### Languages
+
+### Libraries and Frameworks
+
+### Tools
+
+### Databases
+
+
+<div align="right">
+    <b><a href="#table-of-contents">↥ Back To Top</a></b>
+</div>
+
+---
+
+## Testing
+### Manual Testing 
+
+#### Known bugs
+
+### Validators
+#### Html
+
+#### CSS
+
+#### JavaScript
+
+#### Python
+
+### Compatibility and Responsiveness
+
+
+<div align="right">
+    <b><a href="#table-of-contents">↥ Back To Top</a></b>
+</div>
+
+---
+
+## Deployment
+### Local Deployment
+
+
+### Heroku Deployment
+
+<div align="right">
+    <b><a href="#table-of-contents">↥ Back To Top</a></b>
+</div>
+
+---
+
+## Credits
+
+### Content
+
+### Code
+
+### Acknowledgements
+
+ 
+<div align="right">
+    <b><a href="#table-of-contents">↥ Back To Top</a></b>
+</div>
+
+---
+
+## Disclaimer
+This site is made for **educational purposes** only.        
+
+
+<div align="right">
+    <b><a href="#table-of-contents">↥ Back To Top</a></b>
+</div>
