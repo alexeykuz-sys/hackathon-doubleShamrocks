@@ -33,23 +33,34 @@ body {
     
 }
 
-.navbar-collapse {
-    list-style: none;
-    flex-grow: 0;
-}
-
-.navbar-nav li {
-    margin-right: 15px;
-    
+.navbar-nav  .nav li {
+    margin-right: 20px;
     color: orange;
+    display: inline;
+    align-items: center;
+    justify-content: space-between;
 }
 
 .navbar-nav li a{
      color: orange;
      list-style: none;
+     text-decoration: none;
+     font-size: 1.1rem;
+     letter-spacing: 1px;
+     font-weight: 500;
 }
 
-
+.navbar-nav .nav-item {
+    margin-top: 5px;
+}
 .navbar-nav li:hover {
   text-transform: uppercase;
+  font-weight: 600;
+}
+
+.navbar-toggler {
+    right: 15px;
+    margin: 0 auto;
+    position: fixed;
+    background-color: orange;
 }
