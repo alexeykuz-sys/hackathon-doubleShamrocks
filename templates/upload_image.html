@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block title %}Index{% endblock %}
+
+{% block content %}
+    <h1>Double Shamrock rules</h1>
+    <div class="row">
+    <form class="col s12 m8 offset-m2" method="POST" action="{{ url_for('homepage') }}">
+        <div class="card-panel">
+            <div class="row">
+                <div class="input-field col s12">
+                    <i class="fas fa-user-plus prefix light-blue-text text-darken-4"></i>
+                    <input type="text" id="dog_name" name="username" class="validate" min-length="2" maxlength="15"
+                        pattern="^[a-zA-Z0-9]{2,15}$"  required>
+                    <label for="dog_name">Puppy Name</label>
+                </div>
+            </div>
+            <button type="submit" class="co s12 btn-large light-blue darken-4 text-shadow">
+                    Register <i class="fas fa-sign-in-alt"></i>
+                </button>
+            </div>
+            </form>
+{% endblock %}
