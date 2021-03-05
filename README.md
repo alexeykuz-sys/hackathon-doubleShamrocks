@@ -47,8 +47,23 @@
 ## UX
 
 ### User Stories
-**As a user, I want/expect:**
-
+#### Common user stories (guests, new users and authenticated users)
+- As a user, I expect to access the website from any device, so that I can use the website anytime and anywhere.
+- As a user, I expect to easily navigate the website, so that I can quickly find what I'm looking for.
+- As a user, I want to easily access social media links of the company, so that I can read more information about it.
+- As a user, I want to read a summary info about the app and its features and functionality, so that I can quickly decide if it satisfies my needs.
+- As a user, I want to view all the joke and videos without having to register.
+#### New Users
+- As a user, I want to create my own account, so that I can save, view and edit my profile details and access it any time.
+#### Returning users
+- As a user, I want to easily login anytime, so that I can get access to my uploaded videos and jokes.
+- As a user, I want to  be able to change my password, so that I can create the stronger password (e.g.in case I published my old password somewhere) to protect my personal details.    
+- As a user, I want to  be able to change my email and username, so that I can have an easier access to the website's functionality and to gain more flexibility.
+- As a user, I want to add new jokes/upload new videos.
+- As a user, I want to edit my jokes/videos.
+- As a user, I want to delete my jokes/videos.
+- As a user, I want to view a list of my jokes and videos.
+- As a user, I want to delete my account and all the jokes and videos I've created.
 ### Design
 #### Framework
 
