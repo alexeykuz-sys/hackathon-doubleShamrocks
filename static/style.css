@@ -64,9 +64,13 @@ body {
     right: 15px;
     margin: 0 auto;
     position: fixed;
-    background-color: orange;
+   
 }
 
+.navbar-toggler .icon-bar{
+    background-color:red;
+    width: 10px;
+}
 
 .page-footer{
     background-color: #009e69;
