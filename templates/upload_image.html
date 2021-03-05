@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block title %}Upload Image{% endblock %}
+
+{% block content %}
+    <h1>Double Shamrock rules</h1>
+    <h3>Upload New Image</h3>
+<form action="{{ url_for('upload_image') }}" method="POST" enctype="multipart/form-data">
+    <input type="file" name="user_image" />
+    <label for="user_image"> Add an image</label>
+    
+    <button type="submit">Upload</button>
+</form>
+
+<hr>
+{% for user_image in user.user_image  %}
+  <img src="{{user_image}}" alt="Image of {{ user.username}}">
+  
+{% endfor %}
+{% endblock %}

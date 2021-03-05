@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block title %}Upload Video{% endblock %}
+
+{% block content %}
+    <h1>Double Shamrock rules</h1>
+   {% if session.user == username %}
+
+<h3>Upload New Video</h3>
+<form action="{{ url_for('upload_video') }}" method="POST" enctype="multipart/form-data">
+    <input type="file" name="user_videos" />
+    <label for="user_videos"> Add a New Prance</label>
+    
+    <button type="submit">Upload</button>
+</form>
+<hr>
+<div>
+
+{% for user_videos in user.user_videos  %}
+    <video width="320" height="240" controls>
+  <source src="{{user_videos}}" type="video/mp4">
+    </video>
+{% endfor %}
+
+</div>
+
+{% else %}
+<p>Leprecorn is not happy! You can't add a video here, go to your own profile!</p>
+<p><a href="{{url_for('profile', username=username)}}">Back to {{username}} Profile</a></p>
+{% endif %}
+{% endblock %}

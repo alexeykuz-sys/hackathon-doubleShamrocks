@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block title %}Upload Jokes{% endblock %}
+
+{% block content %}
+    <h1>Double Shamrock rules</h1>
+
+{% if session.user == username %}
+<h3>Upload New Joke</h3>
+<form action="{{ url_for('upload_jokes')}}" method="POST" >
+    <textarea id="user_jokes" type="text" name="user_jokes"
+                         min-length="5" maxlength="500"></textarea>
+    <label for="user_jokes">Add a new Joke</label>
+    
+    <button type="submit">Upload</button>
+</form>
+
+<hr>
+{% for user_jokes in user.user_jokes  %}
+    <p>{{user_jokes}}</p>
+{% endfor %}
+
+{% else %}
+<p>Leprecorn is not happy! You can't add a video here, go to your own profile!</p>
+<p><a href="{{url_for('profile', username=username)}}">Back to {{username}} Profile</a></p>
+{% endif %}
+{% endblock %}
