@@ -1,0 +1,55 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&family=Uncial+Antiqua&display=swap');
+
+* {
+  padding: 0;
+  border: 0;
+  box-sizing: border-box;
+}
+
+html,
+body{
+    margin: 0;
+    padding: 0;
+}
+
+body {
+  overflow-x: hidden;
+  font-family: "Open Sans", Arial, Helvetica, sans-serif;
+  height: 100vh;
+  width: 100vw;
+ 
+}
+.navbar {
+    background-color: #009e69;
+
+}
+
+.navbar-brand {
+    margin-left: 10px;
+    color: orange;
+    font-size: 1.5rem;
+    font-family: 'Uncial Antiqua', Arial, sans-serif;;
+    letter-spacing: 1.2px;
+    
+}
+
+.navbar-collapse {
+    list-style: none;
+    flex-grow: 0;
+}
+
+.navbar-nav li {
+    margin-right: 15px;
+    
+    color: orange;
+}
+
+.navbar-nav li a{
+     color: orange;
+     list-style: none;
+}
+
+
+.navbar-nav li:hover {
+  text-transform: uppercase;
+}
