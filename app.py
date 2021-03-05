@@ -29,41 +29,85 @@ mongo = PyMongo(app)
 @app.route("/")
 @app.route("/homepage", methods=["GET", "POST"])
 def homepage():
-    if request.method == "POST":
-        mongo.db.users.insert_one({"username": request.form.get("username")})
-    return render_template("index-test.html")
+
+    return render_template("base.html")
 
 
-@app.route("/profile/<username>/upload/", methods=["GET", "POST"])
-def upload_image(username):
-
+@app.route("/upload_video", methods=["GET", "POST"])
+def upload_video():
+    username = "testing"
+    user = mongo.db.users.find_one({"username": username})
     if request.method == 'POST':
-        for item in request.files.getlist("image_file"):
-            filename = secure_filename(item.filename)
+        for user_video in request.files.getlist("user_videos"):
+            print(user_video)
+            filename = secure_filename(user_video.filename)
             filename, file_extension = os.path.splitext(filename)
-            public_id_image = (username + '/' + filename)
             public_id_video = ("vidoes/" + username + "/" + filename)
-            cloudinary.uploader.unsigned_upload(
-                item, "puppy_image", cloud_name='puppyplaymates',
-                folder='/doubleshamrocks/', public_id=public_id_image)
             cloudinary.uploader.unsigned_upload(
                 user_video, "puppy_image",
                 cloud_name='puppyplaymates',
-                folder='/doubleshamrocks/', public_id=public_id_image,
+                folder='/doubleshamrocks/', public_id=public_id_video,
                 resource_type="video")
-            image_url = (
-                "https://res.cloudinary.com/puppyplaymates/image/upload/doubleshamrocks/"
-                + public_id_image + file_extension)
             video_url = (
-                "https://res.cloudinary.com/puppyplaymates/image/upload/doubleshamrocks/"
+                "https://res.cloudinary.com/puppyplaymates/video/upload/doubleshamrocks/"
                 + public_id_video + file_extension)
 
             mongo.db.users.update_one(
-                {"username": session["user"]},
-                {"$addToSet": {"user_images": image_url}})
+                {"username": username},
+                {"$addToSet": {"user_videos": video_url}})
 
-            return redirect(url_for('profile_image', username=username))
-            return render_template("profile_image.html", username=username)
+        return redirect(url_for('upload_video'))
+    return render_template("upload_video.html", user=user)
+
+
+@app.route("/upload_jokes", methods=["GET", "POST"])
+def upload_jokes():
+    username = "testing"
+    user = mongo.db.users.find_one({"username": username})
+
+    if request.method == 'POST':
+        mongo.db.users.update_one(
+            {"username": username},
+            {"$addToSet": {"user_jokes": request.form.get('user_jokes')}})
+
+        return redirect(url_for('upload_jokes'))
+    return render_template("upload_jokes.html", user=user)
+
+
+@app.route("/upload_image", methods=["GET", "POST"])
+def upload_image():
+
+    username = "testing"
+    user = mongo.db.users.find_one({"username": username})
+
+    if request.method == 'POST':
+        for item in request.files.getlist("user_image"):
+            filename = secure_filename(item.filename)
+            filename, file_extension = os.path.splitext(filename)
+            public_id_image = (username + '/' + filename)
+            cloudinary.uploader.unsigned_upload(
+                item, "puppy_image", cloud_name='puppyplaymates',
+                folder='/doubleshamrocks/', public_id=public_id_image)
+            image_url = (
+                "https://res.cloudinary.com/puppyplaymates/image/upload/doubleshamrocks/"
+                + public_id_image + file_extension)
+
+            mongo.db.users.update_one(
+                {"username": username},
+                {"$addToSet": {"user_image": image_url}})
+
+        return redirect(url_for('upload_image'))
+    return render_template("upload_image.html", user=user)
+
+
+@app.route("/login")
+def login():
+    return render_template("login.html")
+
+
+@app.route("/register")
+def register():
+    return render_template("register.html")
 
 
 if __name__ == "__main__":
