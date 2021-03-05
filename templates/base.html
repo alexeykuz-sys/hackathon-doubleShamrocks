@@ -12,33 +12,58 @@
 
 <body>
     <nav class="navbar navbar-expand-md fixed-top">
-        <div class="container-fluid">
-            <div class="nabar-header">
-                <a class="navbar-brand" href="/">The Double Shamrock</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
-                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-            </div>
-            <div class="collapse navbar-collapse" id="navbarResponsive">
-                <ul class="navbar-nav ml-auto float-left text-left pl-3">
-                    <li class="nav-item"><a href="{{url_for('homepage')}}">Home</a></li>
-                    {% if session.user %}
-                    <li class="nav-item"><a href="{{url_for('profile', username=session['user']) }}">Profile</a></li>
-                    <li class="nav-item"><a href="{{url_for('add_recipe')}}">New Joke</a></li>
-                    <li class="nav-item"><a href="{{url_for('logout')}}">Log Out</a></li>
-                    {% else %}
-                    <li class="nav-item"><a href="{{url_for('login')}}">Log In</a></li>
-                    <li class="nav-item"><a href="{{url_for('register')}}">Register</a></li>
-                    {% endif %}
-                </ul>
-            </div>
+        <div class="navbar-header">
+            <a class="navbar-brand" href="/">The Double Shamrock</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+        </div>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto float-left text-left pl-3">
+                <li class="nav-item"><a href="{{url_for('homepage')}}">Home</a></li>
+                {% if session.user %}
+                <li class="nav-item"><a href="{{url_for('profile', username=session['user']) }}">Profile</a></li>
+                <li class="nav-item"><a href="{{url_for('add_recipe')}}">New Joke</a></li>
+                <li class="nav-item"><a href="{{url_for('logout')}}">Log Out</a></li>
+                {% else %}
+                <li class="nav-item"><a href="{{url_for('login')}}">Log In</a></li>
+                <li class="nav-item"><a href="{{url_for('register')}}">Register</a></li>
+                {% endif %}
+            </ul>
         </div>
     </nav>
-    <div id="content">{% block content %}{% endblock %}</div>
+
+    <div class="container">
+        <div id="content">
+            {% block content %}
+
+            {% endblock %}
+        </div>
+    </div>
+    <footer>
+        <div class="container-fluid page-footer">
+            <div class="row">
+                <div class="col-12 ">
+                    <div class="footer-text">
+                        <h5 class="text">The Double Shamrock</h5>
+                        <p class=""></p>
+                    </div>
+                    <div class="social-icons">
+                        <a href="https://www.facebook.com" target="_blank"><img src="/static/images/facebook.png"
+                                alt="facebook icon"></a>
+                        <a href="https://www.instagram.com" target="_blank"><img src="/static/images/instagram.png"
+                                alt="instagram icon"></a>
+                        <a href="https://twitter.com/?lang=en-gb" target="_blank"><img src="/static/images/twitter.png"
+                                alt="twitter icon"></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
         integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
         crossorigin="anonymous"></script>

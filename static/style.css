@@ -21,6 +21,7 @@ body {
 }
 .navbar {
     background-color: #009e69;
+    position: relative;
 
 }
 
@@ -64,4 +65,33 @@ body {
     margin: 0 auto;
     position: fixed;
     background-color: orange;
+}
+
+
+.page-footer{
+    background-color: #009e69;
+    
+}
+
+.footer-text {
+    margin-left: 20px;
+   
+    flex-direction: column;
+    float: left;
+}
+
+.footer-text .text{
+    color: orange;
+    font-size: 1.5rem;
+    font-family: 'Uncial Antiqua', Arial, sans-serif;;
+    letter-spacing: 1.2px;
+}
+
+.social-icons {
+    float: right;
+}
+
+.social-icons a img{
+    width: 40px;
+    margin-right: 25px;
 }
