@@ -99,3 +99,31 @@ body {
     width: 40px;
     margin-right: 25px;
 }
+
+/*---- log in and register form ----*/
+
+h3 {
+    padding: 1.25rem;
+    margin-bottom: 0;
+    color: #009e69;
+    font-weight: bold;
+}
+.login-form,
+.register-form {
+    padding-top: 5px;
+    margin:0 auto;
+    max-width: 65%; 
+}
+
+.login-btn,
+.register-btn{
+    color: orange;
+    background-color: #009e69;
+}
+
+.login-icon,
+.register-icon {
+    color: orange;
+    background-color: #009e69;
+    font-size: 16px;  
+}
