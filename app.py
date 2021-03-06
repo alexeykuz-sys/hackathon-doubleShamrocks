@@ -4,7 +4,8 @@ from flask import (
     redirect, request, session, url_for)
 from flask_pymongo import PyMongo
 from werkzeug.security import generate_password_hash, check_password_hash
-from forms import RegisterForm, LoginForm, ChangeUsernameForm
+from forms import RegisterForm, LoginForm,\
+         ChangeUsernameForm, ChangePasswordForm
 from werkzeug.utils import secure_filename
 # from bson.objectid import ObjectId
 import cloudinary
@@ -43,7 +44,7 @@ def jokes():
 @app.route("/videos", methods=["GET", "POST"])
 def videos():
     return render_template("videos.html")
-    
+
 
 @app.route("/upload_video", methods=["GET", "POST"])
 def upload_video():
@@ -298,6 +299,50 @@ def delete_account(username):
     else:
         flash("Password is incorrect! Please try again")
         return redirect(url_for("profile", username=username))
+
+
+# Change password
+@app.route("/change_password/<username>", methods=['GET', 'POST'])
+def change_password(username):
+    '''
+    UPDATE.
+    Allows user to change the current password.
+    It calls the ChangePasswordForm class from forms.py.
+    Checks if the current password is correct, validate new password.
+    Then if new password matchs confirm password field,
+    insert it to the database.
+    '''
+    # prevents guest users from viewing the form
+    if 'username' not in session:
+        flash('You must be logged in to change password!')
+    users = mongo.db.users
+    form = ChangePasswordForm()
+    username = users.find_one({'username': session['username']})['username']
+    old_password = request.form.get('old_password')
+    new_password = request.form.get('new_password')
+    confirm_password = request.form.get("confirm_new_password")
+    if form.validate_on_submit():
+        # checks if current password matches existing password in database
+        if check_password_hash(users.find_one({'username': username})
+                               ['password'], old_password):
+            # checks if new passwords match
+            if new_password == confirm_password:
+                # update the password and redirect to the settings page
+                users.update_one({'username': username},
+                                 {'$set': {'password': generate_password_hash
+                                           (request.form['new_password'])}})
+                flash("Success! Your password was updated.")
+                return redirect(url_for('profile', username=username))
+            else:
+                flash("New passwords do not match! Please try again")
+                return redirect(url_for("change_password",
+                                        username=session["username"]))
+        else:
+            flash('Incorrect original password! Please try again')
+            return redirect(url_for('change_password',
+                            username=session["username"]))
+    return render_template('change_password.html', username=username,
+                           form=form)
 
 
 if __name__ == "__main__":

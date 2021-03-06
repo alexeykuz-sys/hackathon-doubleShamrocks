@@ -2,55 +2,57 @@
 {% block title %}Change username {% endblock %}
 {% block content %}
 <div class="change-username-container">
-    <section class="change-username-section">
-    <h1 class="change-username-heading">Change username</h1>
-    <div class="row mt-4">
-        <form method="POST" action="" autocomplete="off" class="col-12 my-3">
-            {{ form.hidden_tag() }}
-            <div class="form-group">
-                 <!--Old username-->
-                 <label for="current_username">Current Username</label>
-                 <div class="input-group mb-2">
-                    <div class="input-group-prepend">
-                        <div class="input-group-text"><i class="fas fa-user"></i></div>
+    <section class="change-username-section text-center">
+        <h1 class="change-username-heading">Change username</h1>
+        <img src="../static/images/clover.png" alt="Clover icon"
+            class="icon-shamrock-change mt-3">
+        <div class="row mt-3 text-left">
+            <form method="POST" action="" autocomplete="off" class="col-12 my-3">
+                {{ form.hidden_tag() }}
+                <div class="form-group">
+                    <!--Old username-->
+                    <label for="current_username">Current Username</label>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text"><i class="fas fa-user"></i></div>
+                        </div>
+                        <input
+                        value="{{username}}"
+                        id="current_username"
+                        class="form-control"
+                        name="current_username"
+                        type="text"
+                        disabled
+                        />
                     </div>
-                    <input
-                    value="{{username}}"
-                    id="current_username"
-                    class="form-control"
-                    name="current_username"
-                    type="text"
-                    disabled
-                    />
-                </div>
-                <!--New username-->
-                 <label for="current_username">New Username</label>
-                 <div class="input-group">
-                    <div class="input-group-prepend">
-                        <div class="input-group-text"><i class="fas fa-user-edit"></i></div>
-                    </div>
-                    {{ form.new_username (placeholder="Enter new username", id="new_username", class="form-control") }} 
-                    {% for error in form.new_username.errors %}
-                    <small class="text-red">{{ error }}</small>
-                    {% endfor %}
-                </div>
-            </div>
-                <div class="row d-flex justify-content-around mt-3">
-                    <div>
-                        <a
-                        href="{{ url_for('profile', username = session.username) }}"
-                        class="btn btn-secondary"
-                        name="action"
-                        >
-                        Cancel
-                        </a>
-                    </div>
-                    <div>
-                    {{ form.submit(class="btn btn-form") }}
+                    <!--New username-->
+                    <label for="new_username">New Username</label>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text"><i class="fas fa-user-edit"></i></div>
+                        </div>
+                        {{ form.new_username (placeholder="Enter new username", id="new_username", class="form-control") }} 
+                        {% for error in form.new_username.errors %}
+                        <small class="text-red">{{ error }}</small>
+                        {% endfor %}
                     </div>
                 </div>
-        </form>
-    </div>
+                    <div class="row d-flex justify-content-around mt-3">
+                        <div>
+                            <a
+                            href="{{ url_for('profile', username = session.username) }}"
+                            class="btn btn-secondary"
+                            name="action"
+                            >
+                            Cancel
+                            </a>
+                        </div>
+                        <div>
+                        {{ form.submit(class="btn btn-form") }}
+                        </div>
+                    </div>
+            </form>
+        </div>
     </section>
 </div>
 {% endblock %}
