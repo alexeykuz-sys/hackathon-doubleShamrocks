@@ -2,92 +2,93 @@
 {% block title %}My Profile {% endblock %}
 
 {% block content %}
-<div class="my-5 text-center">
-    <h1 class="profile-main-heading pb-3">{{ username }}'s profile</h1>
-    <img src="../static/images/clover.png" alt="Clover icon" class="icon-shamrock-profile">
-</div>
-
-<!--User profile avatar-->
-  <div class="row my-5">
-    <div class="col-12 col-lg-5 personal-info-container">
-        <div class="image-profile-container">
-            <h2 class="profile-subheading mb-4">
-                <i class="fas fa-user-cog mr-1"></i>&nbsp;My&nbsp;Settings
-            </h2>
-            <div class="d-flex justify-content-center flex-column">
-                {% if image %}
-                <img id="user_profile_image"
-                    src="{{ image }}"
-                    class="responsive-img profile_image" alt="Profile Image"/>
-                {% else %}
-                <img src="{{ url_for('static', filename='images/profile_image_placeholder.png') }}"
-                    class="responsive-img profile_image" alt="Profile Image" />
-                {% endif %}
-
-                <a href="#" class="edit-image-link mt-2">
-                    <i class="fas fa-edit mr-1"></i>&nbsp;Edit an image
-                </a>
-            </div>
-        </div>
-        <div class="username-container my-3">
-            <p>Username:<span class="username mx-2"> {{ username }}</span>
-                <a href="{{ url_for('change_username', username = session.username) }}"
-                    title="Edit username"><i class="fas fa-edit icon-green icon-small"></i>
-                </a>
-            </p>
-        </div>
-        <div class="d-flex justify-content-center">
-            <a href="{{ url_for('change_password', username = session.username) }}" 
-               class="btn btn-change-password mr-1">
-               <i class="fas fa-lock"></i> Change&nbsp;password
-            </a>
-            <button type="button"
-               class="btn btn-delete-account"
-               data-toggle="modal" 
-                data-target="#deleteModal">
-               <i class="fas fa-trash-alt"></i> Delete&nbsp;account
-            </button>
-        </div>
+<div class="container">
+    <div class="my-5 text-center">
+        <h1 class="profile-main-heading pb-3">{{ username }}'s profile</h1>
+        <img src="../static/images/clover.png" alt="Clover icon" class="icon-shamrock-profile">
     </div>
 
-    <div class="col-12 col-lg-7 pl-lg-5">
-        <ul class="nav nav-tabs profile-tabs text-center d-flex justify-content-center" id="myTab" role="tablist">
-            <li class="nav-item" role="presentation">
-                <a class="nav-link profile-subheading active" id="jokes-tab" data-toggle="tab"
-                    href="#jokes" role="tab" aria-controls="jokes" aria-selected="true">
-                    <i class="far fa-laugh-beam"></i> My jokes
+    <!--User profile avatar-->
+    <div class="row my-5">
+        <div class="col-12 col-lg-5 personal-info-container">
+            <div class="image-profile-container">
+                <h2 class="profile-subheading mb-4">
+                    <i class="fas fa-user-cog mr-1"></i>&nbsp;My&nbsp;Settings
+                </h2>
+                <div class="d-flex justify-content-center flex-column">
+                    {% if image %}
+                    <img id="user_profile_image"
+                        src="{{ image }}"
+                        class="responsive-img profile_image" alt="Profile Image"/>
+                    {% else %}
+                    <img src="{{ url_for('static', filename='images/profile_image_placeholder.png') }}"
+                        class="responsive-img profile_image" alt="Profile Image" />
+                    {% endif %}
+
+                    <a href="#" class="edit-image-link mt-2">
+                        <i class="fas fa-edit mr-1"></i>&nbsp;Edit an image
+                    </a>
+                </div>
+            </div>
+            <div class="username-container my-3">
+                <p>Username:<span class="username mx-2"> {{ username }}</span>
+                    <a href="{{ url_for('change_username', username = session.username) }}"
+                        title="Edit username"><i class="fas fa-edit icon-green icon-small"></i>
+                    </a>
+                </p>
+            </div>
+            <div class="d-flex justify-content-center">
+                <a href="{{ url_for('change_password', username = session.username) }}" 
+                class="btn btn-change-password mr-1">
+                <i class="fas fa-lock"></i> Change&nbsp;password
                 </a>
-            </li>
-            <li class="nav-item" role="presentation">
-                <a class="nav-link profile-subheading" id="videos-tab" data-toggle="tab"
-                    href="#videos" role="tab" aria-controls="videos" aria-selected="false">
-                    <i class="fas fa-video"></i> My videos
-                </a>
-            </li>
-        </ul>
-        <div class="tab-content jokes-videos-container" id="myTabContent">
-            <div class="tab-pane fade show active" id="jokes" role="tabpanel" aria-labelledby="jokes-tab">
-                {% for joke in my_jokes %} 
-                    <p><i class="fas fa-quote-left mr-1"></i>
-                        {{ joke.joke }}
-                        <i class="fas fa-quote-right ml-1"></i>
-                    </p>
-                    <div class="d-flex justify-content-end">
-                        <p class="mr-3"><i class="far fa-thumbs-up"></i> {{ joke.likes }} likes</p>
-                        <p><i class="far fa-thumbs-down"></i> {{ joke.dislikes }} dislikes </p>
+                <button type="button"
+                class="btn btn-delete-account"
+                data-toggle="modal" 
+                    data-target="#deleteModal">
+                <i class="fas fa-trash-alt"></i> Delete&nbsp;account
+                </button>
+            </div>
+        </div>
+
+        <div class="col-12 col-lg-7 pl-lg-5">
+            <ul class="nav nav-tabs profile-tabs text-center d-flex justify-content-center" id="myTab" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link profile-subheading active" id="jokes-tab" data-toggle="tab"
+                        href="#jokes" role="tab" aria-controls="jokes" aria-selected="true">
+                        <i class="far fa-laugh-beam"></i> My jokes
+                    </a>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link profile-subheading" id="videos-tab" data-toggle="tab"
+                        href="#videos" role="tab" aria-controls="videos" aria-selected="false">
+                        <i class="fas fa-video"></i> My videos
+                    </a>
+                </li>
+            </ul>
+            <div class="tab-content jokes-videos-container" id="myTabContent">
+                <div class="tab-pane fade show active" id="jokes" role="tabpanel" aria-labelledby="jokes-tab">
+                    {% for joke in my_jokes %} 
+                        <p><i class="fas fa-quote-left mr-1"></i>
+                            {{ joke.joke }}
+                            <i class="fas fa-quote-right ml-1"></i>
+                        </p>
+                        <div class="d-flex justify-content-end">
+                            <p class="mr-3"><i class="far fa-thumbs-up"></i> {{ joke.likes }} likes</p>
+                            <p><i class="far fa-thumbs-down"></i> {{ joke.dislikes }} dislikes </p>
+                        </div>
+                        <div class="text-right">
+                            <small class="text-muted"> {{ joke.date }}</small>
                     </div>
-                    <div class="text-right">
-                        <small class="text-muted"> {{ joke.date }}</small>
-                   </div>
-                {% endfor %}
-            </div>
-            <div class="tab-pane fade" id="videos" role="tabpanel" aria-labelledby="videos-tab">
-                videos goes here...
+                    {% endfor %}
+                </div>
+                <div class="tab-pane fade" id="videos" role="tabpanel" aria-labelledby="videos-tab">
+                    videos goes here...
+                </div>
             </div>
         </div>
     </div>
 </div>
-
 <!-- Delete account Modal -->
 <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" 
      aria-labelledby="deleteModalLabel" aria-hidden="true">
