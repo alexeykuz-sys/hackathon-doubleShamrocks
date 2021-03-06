@@ -17,6 +17,7 @@ html,
 body{
     margin: 0;
     padding: 0;
+    background-color: #FCFCFC;
 }
 
 body {
@@ -26,10 +27,10 @@ body {
   width: 100vw;
  
 }
+
 .navbar {
     background-color: var(--main-green);
     position: relative;
-
 }
 
 .navbar-brand {
@@ -62,6 +63,7 @@ body {
 .navbar-nav .nav-item {
     margin-top: 5px;
 }
+
 .navbar-nav li:hover {
   text-transform: uppercase;
   font-weight: 600;
@@ -81,12 +83,11 @@ body {
 
 .page-footer{
     background-color: var(--main-green);
-    
+    width: 100vw;
 }
 
 .footer-text {
     margin-left: 20px;
-   
     flex-direction: column;
     float: left;
 }
@@ -196,16 +197,129 @@ h1.uploads{
 }
 
 /* ---- Jokes Page ---- */
+#leprachaun {
+    width: 100%;
+}
 
 .score {
         padding-left: 15px;
         font-size: 30px;
         color: #000;
 }
+
 i.rating {
     color: var(--main-green);
     /*color: var(--main-orange);
     background-color: var(--main-green); */
     font-size: 24px;
     margin: 5%;
+}
+
+/* ---- Profile Page ---- */
+.profile_image {
+    width: 10rem;
+    border-radius: 30rem;
+    display: block;
+    box-shadow: 1px 3px 5px rgba(0, 0, 0, 0.8);
+}
+
+.image-profile-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.personal-info-container,
+.jokes-videos-container {
+    padding: 1.5rem 2rem;
+    background-color: #fff;
+    border-radius: .5rem;
+    border: 1px solid rgb(219, 219, 219);
+}
+
+.profile-main-heading {
+    text-transform: uppercase;
+    font-family: 'Uncial Antiqua', sans-serif;
+}
+
+.icon-large {
+    font-size: 2.5rem;
+}
+
+.icon-green {
+    color: var(--main-green);
+}
+
+.profile-subheading  {
+    font-size: 1.8rem;
+    letter-spacing: 1px;
+    color: rgb(34, 34, 34);
+    font-family: Open+Sans, sans-serif;
+}
+
+.edit-image-link:link,
+.edit-image-link:visited{
+    color: rgb(80, 79, 79);
+    font-size: .9rem;
+    text-align: center;
+}
+
+.edit-image-link:hover{
+    color: rgb(27, 27, 27);
+    text-decoration: none;
+}
+
+.username {
+    color: var(--main-orange);
+}
+
+.username-container {
+    font-size: 1.3rem;
+    letter-spacing: 1px;
+    text-align: center;
+}
+
+.icon-small {
+    font-size: 1.1rem;
+}
+
+.btn-change-password:link,
+.btn-delete-account:link,
+.btn-change-password:visited,
+.btn-delete-account:visited {
+    color: #fff;
+    text-shadow: 0 1px 1px #000;
+    transition: all .2s;
+}
+
+.btn-change-password:hover,
+.btn-delete-account:hover {
+    text-decoration: none;
+}
+
+.btn-change-password {
+   background-color: #048158; 
+}
+
+.btn-change-password:hover {
+    background-color:  var(--main-green); 
+}
+
+.btn-delete-account {
+    background-color: #b80808;
+}
+
+.btn-delete-account:hover {
+    background-color:  #d80808; 
+}
+
+#jokes-tab:link,
+#jokes-tab:visited,
+#videos-tab:link,
+#videos-tab:visited {
+    color: rgb(34, 34, 34);
+}
+
+.profile-tabs {
+    border-bottom: none;
 }

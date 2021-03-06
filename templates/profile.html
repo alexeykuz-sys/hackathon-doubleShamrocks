@@ -2,7 +2,68 @@
 {% block title %}My Profile {% endblock %}
 
 {% block content %}
-<div class="container my-4">
-    <h1>{{ username }}'s profile</h1>
+<div class="my-5 text-center">
+    <h1 class="profile-main-heading pb-3">{{ username }}'s profile</h1>
+    <i class="fab fa-pagelines icon-green icon-large"></i>
 </div>
+
+<!--User profile avatar-->
+  <div class="row my-5">
+    <div class="col-12 col-lg-4 personal-info-container">
+        <div class="image-profile-container">
+            <h2 class="profile-subheading mb-4">
+                <i class="fas fa-user-cog mr-2"></i>Personal&nbsp;Settings
+            </h2>
+            <div class="d-flex justify-content-center flex-column">
+                <img id="user_profile_image"
+                    src="{{ image }}"
+                    class="responsive-img profile_image" alt="Profile Image"/>
+                <a href="#" class="edit-image-link mt-2">
+                    <i class="fas fa-edit mr-1"></i>&nbsp;Edit an image
+                </a>
+            </div>
+        </div>
+        <div class="username-container my-3">
+            <p>Username:<span class="username mx-2"> {{ username }}</span>
+                <a href="#" title="Edit username"><i class="fas fa-edit icon-green icon-small"></i></a>
+            </p>
+        </div>
+        <div class="d-flex justify-content-center">
+            <a href="#" 
+               class="btn btn-change-password mr-1">
+               <i class="fas fa-lock"></i> Change&nbsp;password
+            </a>
+            <a href="#" 
+               class="btn btn-delete-account">
+               <i class="fas fa-trash-alt"></i> Delete&nbsp;account
+            </a>
+        </div>
+    </div>
+
+    <div class="col-12 col-lg-8 pl-lg-5">
+        <ul class="nav nav-tabs profile-tabs text-center d-flex justify-content-center" id="myTab" role="tablist">
+            <li class="nav-item" role="presentation">
+                <a class="nav-link profile-subheading active" id="jokes-tab" data-toggle="tab"
+                    href="#jokes" role="tab" aria-controls="jokes" aria-selected="true">
+                    <i class="far fa-laugh-beam"></i> My jokes
+                </a>
+            </li>
+            <li class="nav-item" role="presentation">
+                <a class="nav-link profile-subheading" id="videos-tab" data-toggle="tab"
+                    href="#videos" role="tab" aria-controls="videos" aria-selected="false">
+                    <i class="fas fa-video"></i> My videos
+                </a>
+            </li>
+        </ul>
+        <div class="tab-content jokes-videos-container" id="myTabContent">
+            <div class="tab-pane fade show active" id="jokes" role="tabpanel" aria-labelledby="jokes-tab">
+                ...jokes goes here
+            </div>
+            <div class="tab-pane fade" id="videos" role="tabpanel" aria-labelledby="videos-tab">
+                videos goes here...
+            </div>
+        </div>
+    </div>
+</div>
+
 {% endblock %}

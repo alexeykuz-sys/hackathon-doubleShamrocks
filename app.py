@@ -6,6 +6,7 @@ from flask_pymongo import PyMongo
 from werkzeug.security import generate_password_hash, check_password_hash
 from forms import RegisterForm, LoginForm
 from werkzeug.utils import secure_filename
+from bson.objectid import ObjectId
 import cloudinary
 import cloudinary.uploader
 import cloudinary.api
@@ -186,6 +187,10 @@ def register():
             new_user = {
                 "username": request.form['username'],
                 "password": hashed_password,
+                "jokes": [],
+                "videos": [],
+                "images": [],
+                "profile_image": "",
             }
             users.insert_one(new_user)
             # add new user to the session
@@ -193,6 +198,16 @@ def register():
             flash('Your account has been successfully created.')
             return redirect(url_for('homepage'))
     return render_template('register.html', form=form)
+
+
+# Logout
+@app.route("/logout")
+def logout():
+    '''
+    Logs user out and redirects to home
+    '''
+    session.pop("username",  None)
+    return redirect(url_for("homepage"))
 
 
 # Profile
@@ -204,10 +219,12 @@ def profile(username):
     # prevents guest users from viewing the page
     if 'username' not in session:
         flash('You must be logged in to view that page!')
-
     username = mongo.db.users.find_one({'username':
                                         session['username']})['username']
+    image = mongo.db.users.find_one({'username':
+                                     session['username']})['profile_image']
     return render_template('profile.html',
+                           image=image,
                            username=username)
 
 
