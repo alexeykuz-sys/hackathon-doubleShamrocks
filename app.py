@@ -30,7 +30,6 @@ mongo = PyMongo(app)
 @app.route("/")
 @app.route("/homepage", methods=["GET", "POST"])
 def homepage():
-
     return render_template("home.html")
 
 
