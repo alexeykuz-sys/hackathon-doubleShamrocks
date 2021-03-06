@@ -5,7 +5,8 @@
     <h1 class="text-center">Double Shamrock rules</h1>
     <h3 class="text-center">Log In</h3>
     <div class="row justify-content-center">
-        <form class="col col-sm-12 login-form" method="POST" action="{{ url_for('login') }}">
+        <form class="col col-sm-12 login-form" method="POST" action="">
+            {{ form.hidden_tag() }}
             <div class="card">
                 <div class="card-body">
                     <!-- username -->
@@ -13,8 +14,10 @@
                         <div class="col col-sm-12">
                             <div class="input-group mb-3">
                                 <span class="input-group-text login-icon"><i class="fas fa-user-cog"></i></span>
-                                <input type="text" minlength="5" maxlength="15" pattern="^[a-zA-Z0-9]{5,15}$" class="form-control"
-                                placeholder="username" aria-label="username" name="username" required>
+                                    {{ form.username(class="form-control", placeholder="Username") }} 
+                                    {% for error in form.username.errors %}
+                                        <small class="text-red">{{ error }}</small>
+                                    {% endfor %}
                             </div>
                         </div>
                     </div>
@@ -23,16 +26,15 @@
                         <div class="col col-sm-12">
                             <div class="input-group mb-3">
                                 <span class="input-group-text login-icon"><i class="fas fa-user-lock"></i></span>
-                                <input type="text" minlength="5" maxlength="15" pattern="^[a-zA-Z0-9]{5,15}$" class="form-control"
-                                placeholder="password" aria-label="password" name="password" required>
+                                {{ form.password (class="form-control", placeholder="Password") }} 
+                                {% for error in form.password.errors %}
+                                <small class="text-red">{{ error }}</small>
+                                {% endfor %}
                             </div>
                         </div>
-                    </div>
-                    <!-- register -->
-                    <div class="row">
-                        <button type="submit" class="col col-sm-12 btn login-btn">
-                            Log In<i class="fas fa-sign-in-alt"></i>
-                        </button>
+
+                        <!-- Login button -->
+                        {{ form.submit(class="col col-sm-12 btn login-btn") }}
                     </div>
                 </div>
             </div>
