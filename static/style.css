@@ -120,7 +120,7 @@ h3 {
 .register-form {
     padding-top: 5px;
     margin:0 auto;
-    max-width: 65%; 
+    max-width: 100%; 
 }
 
 .login-btn,
@@ -192,4 +192,9 @@ h1.uploads{
     color: var(--main-green);
     font-weight: bold;
     margin-top: 2%;
+}
+
+/* ---- Jokes Page ---- */
+#leprachaun {
+    width: 100%;
 }

@@ -38,9 +38,11 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto float-left text-left pl-3">
                 <li class="nav-item"><a href="{{url_for('homepage')}}">Home</a></li>
-                {% if session.user %}
-                <li class="nav-item"><a href="{{url_for('profile', username=session['user']) }}">Profile</a></li>
-                <li class="nav-item"><a href="{{url_for('add_recipe')}}">New Joke</a></li>
+                <li class="nav-item"><a href="{{url_for('homepage')}}">Jokes</a></li>
+                <li class="nav-item"><a href="{{url_for('homepage')}}">Videos</a></li>
+                {% if session.username %}
+                <li class="nav-item"><a href="{{url_for('profile', username=session['username']) }}">Profile</a></li>
+                <li class="nav-item"><a href="#">New Joke</a></li>
                 <li class="nav-item"><a href="{{url_for('logout')}}">Log Out</a></li>
                 {% else %}
                 <li class="nav-item"><a href="{{url_for('login')}}">Log In</a></li>
