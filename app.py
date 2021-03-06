@@ -119,7 +119,7 @@ def login():
     # Check if the user is already logged in
     if 'username' in session:
         flash('You are already logged in!')
-        return redirect(url_for('home'))
+        return redirect(url_for('homepage'))
     form = LoginForm()
     if form.validate_on_submit():
         users = mongo.db.users
