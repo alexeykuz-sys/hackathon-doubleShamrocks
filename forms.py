@@ -20,3 +20,11 @@ class LoginForm(FlaskForm):
                            validators=[DataRequired(), Length(min=3, max=15)])
     password = PasswordField('Password', validators=[DataRequired()])
     submit = SubmitField('Login')
+
+
+class ChangeUsernameForm(FlaskForm):
+    new_username = StringField('New Username',
+                               validators=[DataRequired(),
+                                           Length(min=3, max=15)])
+
+    submit = SubmitField('Change Username')

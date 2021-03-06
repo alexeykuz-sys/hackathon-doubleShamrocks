@@ -331,8 +331,9 @@ i.rating {
 
 .btn-change-password:link,
 .btn-delete-account:link,
+.btn-form,
 .btn-change-password:visited,
-.btn-delete-account:visited {
+.btn-delete-account:visited{
     color: #fff;
     text-shadow: 0 1px 1px #000;
     transition: all .2s;
@@ -343,11 +344,13 @@ i.rating {
     text-decoration: none;
 }
 
-.btn-change-password {
+.btn-change-password,
+.btn-form {
    background-color: #048158; 
 }
 
-.btn-change-password:hover {
+.btn-change-password:hover,
+.btn-form:hover {
     background-color:  var(--main-green); 
 }
 
@@ -371,6 +374,7 @@ i.rating {
 }
 
 
+
 @media (min-width: 426px) { 
     
 .page-footer{
@@ -378,6 +382,29 @@ i.rating {
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
+    }
 }
 
+/*  Change username page */
+
+.change-username-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 90vh;
+    background-image: url(../static/images/profile-forms-bg.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+.change-username-section {
+    padding: 1.5rem 2rem;
+    background-color: rgba(255, 253, 253, 0.904);
+    border-radius: .5rem;
+}
+
+.change-username-heading {
+    text-transform: uppercase;
+    font-size: 2.1rem;
 }
