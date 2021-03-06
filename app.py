@@ -77,7 +77,7 @@ def upload_jokes():
 
         return redirect(url_for('upload_jokes'))
     return render_template("upload_jokes.html", user=user)
- 
+
 
 @app.route("/upload_image", methods=["GET", "POST"])
 def upload_image():
@@ -119,7 +119,7 @@ def login():
     # Check if the user is already logged in
     if 'username' in session:
         flash('You are already logged in!')
-        return redirect(url_for('home'))
+        return redirect(url_for('homepage'))
     form = LoginForm()
     if form.validate_on_submit():
         users = mongo.db.users
