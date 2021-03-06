@@ -4,9 +4,9 @@ from flask import (
     redirect, request, session, url_for)
 from flask_pymongo import PyMongo
 from werkzeug.security import generate_password_hash, check_password_hash
-from forms import RegisterForm, LoginForm
+from forms import RegisterForm, LoginForm, ChangeUsernameForm
 from werkzeug.utils import secure_filename
-from bson.objectid import ObjectId
+# from bson.objectid import ObjectId
 import cloudinary
 import cloudinary.uploader
 import cloudinary.api
@@ -226,6 +226,44 @@ def profile(username):
     return render_template('profile.html',
                            image=image,
                            username=username)
+
+
+# Change username
+@app.route("/change_username/<username>", methods=['GET', 'POST'])
+def change_username(username):
+    '''
+    UPDATE.
+    Allows user to change the current username.
+    It calls the ChangeUsernameForm class from forms.py.
+    Checks if the new username is unique and not exist in database,
+    then clear the session and redirect user to login page.
+    '''
+    # prevents guest users from viewing the form
+    if 'username' not in session:
+        flash('You must be logged in to change username!')
+    users = mongo.db.users
+    form = ChangeUsernameForm()
+    if form.validate_on_submit():
+        # checks if the new username is unique
+        registered_user = users.find_one({'username':
+                                         request.form['new_username']})
+        if registered_user:
+            flash('Sorry, username is already taken. Try another one')
+            return redirect(url_for('change_username',
+                                    username=session["username"]))
+        else:
+            users.update_one(
+                {"username": username},
+                {"$set": {"username": request.form["new_username"]}})
+        # clear the session and redirect to login page
+        flash("Your username was updated successfully.\
+                    Please, login with your new username")
+        session.pop("username",  None)
+        return redirect(url_for("login"))
+
+    return render_template('change_username.html',
+                           username=session["username"],
+                           form=form)
 
 
 if __name__ == "__main__":

@@ -15,9 +15,15 @@
                 <i class="fas fa-user-cog mr-2"></i>Personal&nbsp;Settings
             </h2>
             <div class="d-flex justify-content-center flex-column">
+                {% if image %}
                 <img id="user_profile_image"
                     src="{{ image }}"
                     class="responsive-img profile_image" alt="Profile Image"/>
+                {% else %}
+                <img src="{{ url_for('static', filename='images/profile_image_placeholder.png') }}"
+                    class="responsive-img profile_image" alt="Profile Image" />
+                {% endif %}
+
                 <a href="#" class="edit-image-link mt-2">
                     <i class="fas fa-edit mr-1"></i>&nbsp;Edit an image
                 </a>
@@ -25,7 +31,9 @@
         </div>
         <div class="username-container my-3">
             <p>Username:<span class="username mx-2"> {{ username }}</span>
-                <a href="#" title="Edit username"><i class="fas fa-edit icon-green icon-small"></i></a>
+                <a href="{{ url_for('change_username', username = session.username) }}"
+                    title="Edit username"><i class="fas fa-edit icon-green icon-small"></i>
+                </a>
             </p>
         </div>
         <div class="d-flex justify-content-center">
@@ -65,5 +73,6 @@
         </div>
     </div>
 </div>
+
 
 {% endblock %}
