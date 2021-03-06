@@ -224,9 +224,12 @@ def profile(username):
                                         session['username']})['username']
     image = mongo.db.users.find_one({'username':
                                      session['username']})['profile_image']
+    user_id = mongo.db.users.find_one({'username': session['username']})['_id']
+    my_jokes = mongo.db.jokes.find({'user': user_id})
     return render_template('profile.html',
                            image=image,
-                           username=username)
+                           username=username,
+                           my_jokes=my_jokes)
 
 
 # Change username
