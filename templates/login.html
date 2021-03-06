@@ -2,10 +2,10 @@
 {% block title %}Log In{% endblock %}
 
 {% block content %}
-    <h1 class="text-center">Double Shamrock rules</h1>
+    <h1 class="text-center" style="display: none;">Double Shamrock rules</h1>
     <h3 class="text-center">Log In</h3>
     <div class="row justify-content-center">
-        <form class="col col-sm-12 login-form" method="POST" action="{{ url_for('login') }}">
+        <form class="col-md-8 col-md-offset-2 col-sm-12 login-form" method="POST" action="{{ url_for('login') }}">
             <div class="card">
                 <div class="card-body">
                     <!-- username -->
