@@ -265,3 +265,33 @@ h1.uploads{
 .icon-small {
     font-size: 1.1rem;
 }
+
+.btn-change-password:link,
+.btn-delete-account:link,
+.btn-change-password:visited,
+.btn-delete-account:visited {
+    color: #fff;
+    text-shadow: 0 1px 1px #000;
+    transition: all .2s;
+}
+
+.btn-change-password:hover,
+.btn-delete-account:hover {
+    text-decoration: none;
+}
+
+.btn-change-password {
+   background-color: #048158; 
+}
+
+.btn-change-password:hover {
+    background-color:  var(--main-green); 
+}
+
+.btn-delete-account {
+    background-color: #b80808;
+}
+
+.btn-delete-account:hover {
+    background-color:  #d80808; 
+}
