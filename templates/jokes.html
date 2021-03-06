@@ -3,31 +3,31 @@
 
 {% block content %}
 
-    <h1 class="text-center" style="display: none;">Double Shamrock Rules</h1>
-    <h3 class="text-center">Jokes</h3>
+    <!-- <h1 class="text-center" style="display: none;">Double Shamrock Rules</h1> -->
     <div class="container-fluid jokes-container">
         <div class="row">
-            <div class="col-md-4 col-sm-12">
-                <ul>
-                    {% for joke in jokes %}
-                    <li>
-                        <div class="col">
-                            <p>{{ jokes.joke_name }}</p>
-                        </div>
-                        <div class="col">
-                            <p>{{ jokes.likes }}</p>
-                        </div>
-                        <div class="col">
-                            <p>{{ jokes.dislikes }}</p>
-                        </div>
-                    </li>
-                    {% endfor %}
-                </ul>
+            <div class="col-md-6 col-sm-12">
+                <h3 class="text-center">Jokes</h3>
             </div>
-            <div class="col-md-6 col-md-offset-1 col-sm-12">
-                <img id="leprachaun" src="static/images/leprachaun.png" alt="leprachaun">
-                <p>{{ jokes.joke }}</p>
+        </div>
+        <div class="row">
+            <div class="col-md-8 col-sm-12">
+                {% for joke in jokes %}
+                <div class="card">
+                    <div class="card-body">
+                        <p>{{ joke.joke }}</p>
+                    </div>
+                </div>
             </div>
+            <div class="col-md-2 col-sm-6">
+                <a href=""><i class="rating fas fa-thumbs-up"></i>
+                    <span class="score">{{ joke.likes }}</span></a>
+            </div>
+            <div class="col-md-2 col-sm-6">
+                <a href=""><i class="rating fas fa-thumbs-down"></i>
+                    <span class="score">{{ joke.dislikes }}</span></a>
+            </div>
+            {% endfor %}
         </div>
     </div>
 
