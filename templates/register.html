@@ -6,7 +6,8 @@
     <h1 class="text-center">Double Shamrock rules</h1>
     <h3 class="text-center">Register</h3>
     <div class="row justify-content-center">
-        <form class="col col-sm-12 register-form" method="POST" action="{{ url_for('login') }}">
+        <form class="col col-sm-12 register-form" method="POST" action="">
+            {{ form.hidden_tag() }}
             <div class="card">
                 <div class="card-body">
                     <!-- username -->
@@ -14,8 +15,11 @@
                         <div class="col col-sm-12">
                             <div class="input-group mb-3">
                                 <span class="input-group-text register-icon"><i class="fas fa-user-cog"></i></span>
-                                <input type="text" minlength="5" maxlength="15" pattern="^[a-zA-Z0-9]{5,15}$" class="form-control"
-                                placeholder="username" aria-label="username" name="username" required>
+                                {{ form.username(placeholder="Username", class="form-control") }} 
+                                {% for error in form.username.errors %}
+                                <small class="text-red">{{ error }}</small>
+                                {% endfor %}
+
                             </div>
                         </div>
                     </div>
@@ -24,8 +28,10 @@
                         <div class="col col-sm-12">
                             <div class="input-group mb-3">
                                 <span class="input-group-text register-icon"><i class="fas fa-user-lock"></i></span>
-                                <input type="text" minlength="5" maxlength="15" pattern="^[a-zA-Z0-9]{5,15}$" class="form-control"
-                                placeholder="password" aria-label="password" name="password" required>
+                                {{ form.password (placeholder="Password", class="form-control") }}
+                                {% for error in form.password.errors %}
+                                <small class="text-red">{{ error }}</small>
+                                {% endfor %}
                             </div>
                         </div>
                     </div>
@@ -34,17 +40,16 @@
                         <div class="col col-sm-12">
                             <div class="input-group mb-3">
                                 <span class="input-group-text register-icon"><i class="fas fa-user-lock"></i></span>
-                                <input type="text" minlength="5" maxlength="15" pattern="^[a-zA-Z0-9]{5,15}$" class="form-control"
-                                placeholder="confirm-password" aria-label="confirm-password" name="confirm-password" required>
+                                {{ form.confirm_password(placeholder="Confirm password", class="form-control") }}
+                                {% for error in form.confirm_password.errors %}
+                                <small class="text-red">{{ error }}</small>
+                                {% endfor %}
                             </div>
                         </div>
                     </div>
-                    <!-- register -->
-                    <div class="row">
-                        <button type="submit" class="col col-sm-12 btn register-btn">
-                            Register<i class="fas fa-sign-in-alt"></i>
-                        </button>
-                    </div>
+                    <!-- register button-->
+                        {{ form.submit(class="col col-sm-12  btn register-btn") }}
+  
                 </div>
             </div>
         </form>

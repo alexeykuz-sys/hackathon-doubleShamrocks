@@ -115,6 +115,7 @@ h3 {
     color: var(--main-green);
     font-weight: bold;
 }
+
 .login-form,
 .register-form {
     padding-top: 5px;
@@ -133,6 +134,10 @@ h3 {
     color: var(--main-orange);
     background-color: var(--main-green);
     font-size: 16px;  
+}
+
+.text-red {
+    color: #d61313;
 }
 
 /* -- Upload pages -- */
