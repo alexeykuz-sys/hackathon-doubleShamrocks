@@ -53,9 +53,13 @@ def upload_video():
                 "https://res.cloudinary.com/puppyplaymates/video/upload/doubleshamrocks/"
                 + public_id_video + file_extension)
 
-            mongo.db.users.update_one(
+            mongo.db.users.update(
                 {"username": username},
-                {"$addToSet": {"user_videos": video_url}})
+                {"$addToSet": {"user_videos": {
+                    "video_url": video_url,
+                    "video_title": request.form.get('video_title'),
+                    "video_description": request.form.get('video_description')
+                }}})
 
         return redirect(url_for('upload_video'))
     return render_template("upload_video.html", user=user)
@@ -73,7 +77,7 @@ def upload_jokes():
 
         return redirect(url_for('upload_jokes'))
     return render_template("upload_jokes.html", user=user)
-
+ 
 
 @app.route("/upload_image", methods=["GET", "POST"])
 def upload_image():
@@ -93,9 +97,13 @@ def upload_image():
                 "https://res.cloudinary.com/puppyplaymates/image/upload/doubleshamrocks/"
                 + public_id_image + file_extension)
 
-            mongo.db.users.update_one(
+            mongo.db.users.update(
                 {"username": username},
-                {"$addToSet": {"user_image": image_url}})
+                {"$addToSet": {"user_image": {
+                    "image_url": image_url,
+                    "image_title": request.form.get('image_title'),
+                    "image_description": request.form.get('image_description')
+                }}})
 
         return redirect(url_for('upload_image'))
     return render_template("upload_image.html", user=user)
