@@ -36,7 +36,7 @@ body {
     margin-left: 10px;
     color: var(--main-orange);
     font-size: 1.5rem;
-    font-family: 'Uncial Antiqua', Arial, sans-serif;;
+    font-family: 'Uncial Antiqua', Arial, sans-serif;
     letter-spacing: 1.2px;
     
 }
@@ -114,6 +114,7 @@ h3 {
     margin-bottom: 0;
     color: var(--main-green);
     font-weight: bold;
+    font-family: 'Uncial Antiqua', Arial, sans-serif;
 }
 
 .login-form,
@@ -195,6 +196,16 @@ h1.uploads{
 }
 
 /* ---- Jokes Page ---- */
-#leprachaun {
-    width: 100%;
+
+.score {
+        padding-left: 15px;
+        font-size: 30px;
+        color: #000;
+}
+i.rating {
+    color: var(--main-green);
+    /*color: var(--main-orange);
+    background-color: var(--main-green); */
+    font-size: 24px;
+    margin: 5%;
 }
