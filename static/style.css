@@ -1,5 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&family=Uncial+Antiqua&display=swap');
 
+/* Added a root for colours so if we tweak or change the main colours later it will up date all of them */
+:root {
+    --main-green: #009e69;
+    --main-orange: orange;
+
+}
+
 * {
   padding: 0;
   border: 0;
@@ -20,13 +27,14 @@ body {
  
 }
 .navbar {
-    background-color: #009e69;
+    background-color: var(--main-green);
+    position: relative;
 
 }
 
 .navbar-brand {
     margin-left: 10px;
-    color: orange;
+    color: var(--main-orange);
     font-size: 1.5rem;
     font-family: 'Uncial Antiqua', Arial, sans-serif;;
     letter-spacing: 1.2px;
@@ -35,14 +43,14 @@ body {
 
 .navbar-nav  .nav li {
     margin-right: 20px;
-    color: orange;
+    color: var(--main-orange);
     display: inline;
     align-items: center;
     justify-content: space-between;
 }
 
 .navbar-nav li a{
-     color: orange;
+     color: var(--main-orange);
      list-style: none;
      text-decoration: none;
      font-size: 1.1rem;
@@ -63,7 +71,40 @@ body {
     right: 15px;
     margin: 0 auto;
     position: fixed;
-    background-color: orange;
+   
+}
+
+.navbar-toggler .icon-bar{
+    background-color:red;
+    width: 10px;
+}
+
+.page-footer{
+    background-color: var(--main-green);
+    
+}
+
+.footer-text {
+    margin-left: 20px;
+   
+    flex-direction: column;
+    float: left;
+}
+
+.footer-text .text{
+    color: var(--main-orange);
+    font-size: 1.5rem;
+    font-family: 'Uncial Antiqua', Arial, sans-serif;;
+    letter-spacing: 1.2px;
+}
+
+.social-icons {
+    float: right;
+}
+
+.social-icons a img{
+    width: 40px;
+    margin-right: 25px;
 }
 
 /*---- log in and register form ----*/
@@ -71,9 +112,10 @@ body {
 h3 {
     padding: 1.25rem;
     margin-bottom: 0;
-    color: #009e69;
+    color: var(--main-green);
     font-weight: bold;
 }
+
 .login-form,
 .register-form {
     padding-top: 5px;
@@ -83,13 +125,71 @@ h3 {
 
 .login-btn,
 .register-btn{
-    color: orange;
-    background-color: #009e69;
+    color: var(--main-orange);
+    background-color: var(--main-green);
 }
 
 .login-icon,
 .register-icon {
-    color: orange;
-    background-color: #009e69;
+    color: var(--main-orange);
+    background-color: var(--main-green);
     font-size: 16px;  
+}
+
+.text-red {
+    color: #d61313;
+}
+
+/* -- Upload pages -- */
+
+textarea.form-control {
+    width: 60%;
+    height: 60%;
+    border: var(--main-orange) solid 0.3px;
+    border-radius: 2%;
+    margin: 2%;
+    margin-left:0;
+    display: block;
+}
+
+div.card{
+    margin: 1%;
+    border: var(--main-orange) solid 0.5px;
+    border-radius: 3%;
+    padding: 0.5%;
+}
+
+div.card.jokes{
+    padding: 4%;
+}
+
+.col-md-3 {
+    padding:0;
+}
+
+img {
+    width: 100%;
+    border-radius: 3%;
+}
+
+video {
+    width: 100%;
+    border-radius: 3%
+}
+
+.upload-content {
+    padding: 1%;
+    margin: 2%;
+}
+
+h3.uploads {
+    padding: 0;
+    margin: 3%;
+    margin-left: 0;
+}
+
+h1.uploads{
+    color: var(--main-green);
+    font-weight: bold;
+    margin-top: 2%;
 }
