@@ -284,10 +284,9 @@ i.rating {
 }
 
 .btn-change-password:link,
-.btn-delete-account:link,
+.btn-delete-account,
 .btn-form,
-.btn-change-password:visited,
-.btn-delete-account:visited{
+.btn-change-password:visited{
     color: #fff;
     text-shadow: 0 1px 1px #000;
     transition: all .2s;

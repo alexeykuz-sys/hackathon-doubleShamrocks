@@ -266,6 +266,40 @@ def change_username(username):
                            form=form)
 
 
+# Delete Account
+@app.route("/delete_account/<username>", methods=['GET', 'POST'])
+def delete_account(username):
+    '''
+    DELETE.
+    Remove user's account from the database as well as all
+    uploaded jokes/videos created by this user.
+    Before deletion of the account, user is asked
+    to confirm it by entering password.
+    '''
+    # prevents guest users from viewing the form
+    if 'username' not in session:
+        flash('You must be logged in to delete an account!')
+    user = mongo.db.users.find_one({"username": username})
+    # checks if password matches existing password in database
+    if check_password_hash(user["password"],
+                           request.form.get("confirm_password_to_delete")):
+
+        user_jokes = user.get("jokes")
+        for joke in user_jokes:
+            mongo.db.jokes.remove({"_id": joke})
+        user_videos = user.get("videos")
+        for video in user_videos:
+            mongo.db.videos.remove({"_id": video})
+        # remove user from database,clear session and redirect to the home page
+        flash("Your account has been deleted.")
+        session.pop("username", None)
+        mongo.db.users.remove({"_id": user.get("_id")})
+        return redirect(url_for("homepage"))
+    else:
+        flash("Password is incorrect! Please try again")
+        return redirect(url_for("profile", username=username))
+
+
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
             port=int(os.environ.get("PORT")),
