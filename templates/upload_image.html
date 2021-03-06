@@ -2,18 +2,44 @@
 {% block title %}Upload Image{% endblock %}
 
 {% block content %}
-    <h1>Double Shamrock rules</h1>
-    <h3>Upload New Image</h3>
+<h1 class="uploads">Double Shamrock Images</h1>
+<p>Add a new image to show how you are spending St Patricks Day</p>
+<h3 class="uploads">Upload New Image</h3>
 <form action="{{ url_for('upload_image') }}" method="POST" enctype="multipart/form-data">
-    <input type="file" name="user_image" />
-    <label for="user_image"> Add an image</label>
-    
+    <div class="mb-3">
+        <label for="image_title" class="form-label"> Add a Title </label>
+        <input type="text" name="image_title" id="image_title" class="form-control" />
+    </div>
+    <div class="mb-3">
+        <label for="image_description" class="form-label"> Description </label>
+        <input type="text" name="image_description" id="image_description" class="form-control">
+    </div>
+    <div class="mb-3">
+        <label for="user_image" class="form-label"> Add an image</label>
+        <input type="file" name="user_image" class="form-control" />
+    </div>
     <button type="submit">Upload</button>
 </form>
 
 <hr>
-{% for user_image in user.user_image  %}
-  <img src="{{user_image}}" alt="Image of {{ user.username}}">
-  
-{% endfor %}
+<div class="upload-content">
+    <div class="row">
+        {% for user_image in user.user_image  %}
+        <div class="col-md-3">
+            <div class="card">
+                <img src="{{user_image.image_url}}" alt="Image of {{ user.username}}">
+                <div class="card-body">
+                    <h5 class="card-title">{{user_image.image_title}}</h5>
+                    <p class="card-text">{{user_image.image_description}}</p>
+                    <div class="card-body">
+                        <a href="#" class="card-link">LIKE</a>
+                        <a href="#" class="card-link">Comment?</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
 {% endblock %}
