@@ -30,7 +30,6 @@ mongo = PyMongo(app)
 @app.route("/")
 @app.route("/homepage", methods=["GET", "POST"])
 def homepage():
-
     return render_template("home.html")
 
 
@@ -176,6 +175,10 @@ def register():
             new_user = {
                 "username": request.form['username'],
                 "password": hashed_password,
+                "jokes": [],
+                "videos": [],
+                "images": [],
+                "profile_image": "",
             }
             users.insert_one(new_user)
             # add new user to the session
@@ -183,6 +186,16 @@ def register():
             flash('Your account has been successfully created.')
             return redirect(url_for('homepage'))
     return render_template('register.html', form=form)
+
+
+# Logout
+@app.route("/logout")
+def logout():
+    '''
+    Logs user out and redirects to home
+    '''
+    session.pop("username",  None)
+    return redirect(url_for("homepage"))
 
 
 # Profile
