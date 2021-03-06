@@ -108,6 +108,7 @@ h3 {
     color: #009e69;
     font-weight: bold;
 }
+
 .login-form,
 .register-form {
     padding-top: 5px;
@@ -126,4 +127,8 @@ h3 {
     color: orange;
     background-color: #009e69;
     font-size: 16px;  
+}
+
+.text-red {
+    color: #d61313;
 }
