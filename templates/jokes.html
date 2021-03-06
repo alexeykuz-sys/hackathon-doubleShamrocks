@@ -19,12 +19,12 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-2 col-sm-6">
-                <a href=""><i class="rating fas fa-thumbs-up"></i>
+            <div class="col-md-2 col-sm-6 like-score">
+                <a href="{{ url_for('joke_like', joke_id=joke_id) }}"><i class="rating fas fa-thumbs-up"></i>
                     <span class="score">{{ joke.likes }}</span></a>
             </div>
-            <div class="col-md-2 col-sm-6">
-                <a href=""><i class="rating fas fa-thumbs-down"></i>
+            <div class="col-md-2 col-sm-6 dislike-score">
+                <a href="{{ url_for('joke_dislike', joke_id=joke_id) }}"><i class="rating fas fa-thumbs-down"></i>
                     <span class="score">{{ joke.dislikes }}</span></a>
             </div>
             {% endfor %}
