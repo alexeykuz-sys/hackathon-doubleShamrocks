@@ -21,15 +21,18 @@
                         <img id="user_profile_image"
                             src="{{ image }}"
                             class="responsive-img profile_image" alt="Profile Image"/>
-                        {% else %}
-                        <img src="{{ url_for('static', filename='images/profile_image_placeholder.png') }}"
-                            class="responsive-img profile_image" alt="Profile Image" />
-                        {% endif %}
-
                         <button type="button" data-toggle="modal" 
                             data-target="#uploadImageModal" class="edit-image-link mt-2">
                             <i class="fas fa-edit mr-1"></i>&nbsp;Edit an image
                         </button>
+                        {% else %}
+                        <img src="{{ url_for('static', filename='images/profile_image_placeholder.png') }}"
+                            class="responsive-img profile_image" alt="Profile Image" />
+                        <button type="button" data-toggle="modal" 
+                            data-target="#uploadImageModal" class="edit-image-link mt-2">
+                            <i class="fas fa-edit mr-1"></i>&nbsp;Upload an image
+                        </button>
+                        {% endif %}
                     </div>
                 </div>
                 <div class="username-container my-3">
