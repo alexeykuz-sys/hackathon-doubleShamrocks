@@ -61,13 +61,14 @@ def videos():
     return render_template("videos.html")
 
 
-@app.route("/upload_video", methods=["GET", "POST"])
-def upload_video():
-    username = "testing"
-    user = mongo.db.users.find_one({"username": username})
+@app.route("/profile/<username>/upload_video", methods=["GET", "POST"])
+def upload_video(username):
+    user_id = mongo.db.users.find_one({'username': session['username']})['_id']
+    user = mongo.db.users.find_one({"username": session['username']})['username']
+
     if request.method == 'POST':
         for user_video in request.files.getlist("user_videos"):
-            print(user_video)
+
             filename = secure_filename(user_video.filename)
             filename, file_extension = os.path.splitext(filename)
             public_id_video = ("vidoes/" + username + "/" + filename)
@@ -76,26 +77,34 @@ def upload_video():
                 cloud_name='puppyplaymates',
                 folder='/doubleshamrocks/', public_id=public_id_video,
                 resource_type="video")
+
             video_url = (
                 "https://res.cloudinary.com/puppyplaymates/video/upload/doubleshamrocks/"
                 + public_id_video + file_extension)
 
-            mongo.db.users.update(
-                {"username": username},
-                {"$addToSet": {"user_videos": {
-                    "video_url": video_url,
-                    "video_title": request.form.get('video_title'),
-                    "video_description": request.form.get('video_description')
-                }}})
+            new_video = {
+                "user": user_id,
+                "video_url": video_url,
+                "video_title": request.form.get('video_title'),
+                "video_description": request.form.get('video_description'),
+            }
 
-        return redirect(url_for('upload_video'))
-    return render_template("upload_video.html", user=user)
+            mongo.db.videos.insert_one(new_video)
+
+            video_id = mongo.db.videos.find_one({'video_url': video_url})['_id']
+
+            mongo.db.users.update_one(
+                {"username": username},
+                {"$addToSet": {"video": video_id}})
+
+        return redirect(url_for('upload_video', username=username))
+    return render_template("upload_video.html", user=user, username=username)
 
 
 @app.route("/upload_jokes", methods=["GET", "POST"])
 def upload_jokes():
-    username = "testing"
-    user = mongo.db.users.find_one({"username": username})
+    username = mongo.db.users.find_one({"username": username})
+    user = mongo.db.users.find_one({"username": session['username']})
 
     if request.method == 'POST':
         mongo.db.users.update_one(
@@ -104,7 +113,6 @@ def upload_jokes():
 
         return redirect(url_for('upload_jokes'))
     return render_template("upload_jokes.html", user=user)
-
 
     return redirect(url_for('upload_jokes'))
     return render_template("upload_jokes.html", user=user)
