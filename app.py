@@ -353,7 +353,9 @@ def profile(username):
     # prevents guest users from viewing the page
     if 'username' not in session:
         flash('You must be logged in to view that page!')
-    username = mongo.db.users.find_one({'username':
+    username = user = mongo.db.users.find_one({'username':
+                                        username })['username']    
+    user = mongo.db.users.find_one({'username':
                                         session['username']})['username']
     image = mongo.db.users.find_one({'username':
                                      session['username']})['profile_image']
@@ -362,6 +364,7 @@ def profile(username):
     return render_template('profile.html',
                            image=image,
                            username=username,
+                           user=user,
                            my_jokes=my_jokes)
 
 

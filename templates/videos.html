@@ -3,26 +3,26 @@
 
 {% block content %}
 
-<div class="container-fluid">
+<div class="container">
     <h3 class="videos-header text-center">Videos</h3>
 
-    <div class="row justify-content-center">
+    <div class="row  upload_content">
         {% for video in videos %}
-        <div class="col-md-6 col-sm-12">
+        <div class="col-md-4">
             <div class="card">
                 <video controls>
                     <source src="{{ video.video_url }}" type="video/mp4">
                 </video>
+                <div class="likes-wrapper cardbody">
+                    <a href="{{ url_for('video_like', video_id=video._id) }}" class="like-score">
+                        <i class="rating fas fa-thumbs-up"></i><span class="score-likes">
+                            {{ video.likes }}</span></a>
+                    <a href="{{ url_for('video_dislike', video_id=video._id) }}" class="dislike-score">
+                        <i class="rating fas fa-thumbs-down"></i><span class="score-dislikes">
+                            {{ video.dislikes }}</span></a>
+                </div>
             </div>
-        </div>
-        <div class="col-xs-6 col-sm-3 col-md-4 likes-wrapper">
-            <a href="{{ url_for('video_like', video_id=video._id) }}" class="like-score">
-                <i class="rating fas fa-thumbs-up"></i><span class="score-likes">
-                    {{ video.likes }}</span></a>
-            <a href="{{ url_for('video_dislike', video_id=video._id) }}" class="dislike-score">
-                <i class="rating fas fa-thumbs-down"></i><span class="score-dislikes">
-                    {{ video.dislikes }}</span></a>
-        </div>
+        </div>    
 
         {% endfor %}
     </div>

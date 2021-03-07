@@ -50,6 +50,10 @@
                                         class="dropdown-item dropdown-item-profile">
                                         <i class="far fa-file-video mr-1 d-inline d-md-none d-lg-inline"></i>New Video
                                     </a>
+                                    <a href="{{url_for('profile', username=session['username'])}}"
+                                        class="dropdown-item dropdown-item-profile">
+                                        <i class="far fa-file-video mr-1 d-inline d-md-none d-lg-inline"></i>Profile
+                                    </a>
                                     <div class="dropdown-divider"></div>
                                     <a class="dropdown-item dropdown-item-profile" href="{{ url_for('logout') }}">
                                         <i class="fas fa-sign-out-alt mr-1 d-inline d-md-none d-lg-inline"></i>Log Out

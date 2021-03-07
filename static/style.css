@@ -13,20 +13,20 @@
 *::after{
     margin: 0;
     padding: 0;
-    box-sizing: inherit;
+    /* box-sizing: inherit; - Becca */
 }
 
-body, html {
+/* body, html {
     min-height: 100vh;
     width:100vw;
     box-sizing: border-box;
-    overflow-x: hidden;
-}
+    overflow-x: hidden; this is causing a styling bug for the rest of the website - Becca
+} */
 
 body{ 
     background-color: #FCFCFC;
     font-family: "Open Sans", Arial, Helvetica, sans-serif;
-    display: flex;
+    /* display: flex;  this was causing a bug - Becca*/
     flex-direction: column;
      /* height: calc(100vh - 58px); */
 }
@@ -120,9 +120,7 @@ main {
 
 /* FOOTER */
 .page-footer{
-    background-color: var(--main-green);
-    width: 100vw;
-    
+    background-color: var(--main-green); 
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -146,9 +144,13 @@ main {
     margin-bottom: 10px;
 }
 
+.social-icons a {
+    margin-right: 25px;
+}
+
 .social-icons a img{
     width: 40px;
-    margin-right: 25px;
+
 }
 
 /*-----Home PAge -------------*/
@@ -313,14 +315,15 @@ textarea.form-control {
     display: block;
 }
 
-div.card{
+.card{
     margin: 1%;
     border: var(--main-orange) solid 0.5px;
     border-radius: 3%;
     padding: 0.5%;
+    height: min-content;
 }
 
-div.card.jokes{
+.card.jokes{
     padding: 4%;
 }
 
@@ -335,7 +338,8 @@ img {
 
 video {
     width: 100%;
-    border-radius: 3%
+    height:60vh;
+    border-radius: 3%;
 }
 
 .upload-content {
@@ -343,23 +347,30 @@ video {
     margin: 2%;
 }
 
-h3.uploads {
-    margin: 40px;
-    
-  
+.upload_page {
+    margin: 5%;
 }
 
 .uploads-text{
-     font-family: "Open Sans", Arial, Helvetica, sans-serif;
+    font-family: "Open Sans", Arial, Helvetica, sans-serif;
     font-size: 20px;
     letter-spacing: 1.2px;
 }
-h1.uploads{
+
+.upload_heading{
+    font-family: 'Uncial Antiqua', Arial, sans-serif;
+}
+
+.upload_head{
+    margin-bottom: 2%;
+}
+
+.uploads{
     color: var(--main-green);
     font-weight: bold;
-    margin: 40px;
-    font-family: 'Uncial Antiqua', Arial, sans-serif;
     letter-spacing: 1.2px;
+    padding-top: 1%;
+    padding-bottom: 3%;
 }
 
 .upload-form {
@@ -389,10 +400,6 @@ textarea.form-control {
     margin: 20px;
     font-family: 'Uncial Antiqua', Arial, sans-serif;
     color: var(--main-green);
-}
-div.card {
-    width: 100%;
-    margin: 20px;
 }
 
 .likes-wrapper {
