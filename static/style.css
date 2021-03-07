@@ -28,20 +28,25 @@ body{
  
 }
 
+
 .navbar {
     background-color: var(--main-green);
-    position: relative;
+    
 }
 
 .navbar-brand {
     margin-left: 10px;
     color: var(--main-orange);
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     font-family: 'Uncial Antiqua', Arial, sans-serif;
-    letter-spacing: 1.2px;
+    letter-spacing: 1px;
+   
     
 }
 
+.logo {
+    margin-right: 10px;
+}
 .navbar-nav  .nav li {
     margin-right: 20px;
     color: var(--main-orange);
@@ -76,14 +81,16 @@ body{
    
 }
 
-.navbar-toggler .icon-bar{
-    background-color:red;
-    width: 10px;
+.fas{
+    /* background-color:red; */
+   margin-top:6px;
+    color: orange;
 }
 
 .page-footer{
     background-color: var(--main-green);
     width: 100vw;
+    height: 70px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -91,6 +98,7 @@ body{
 
 
 .footer-text {
+    margin-top: 10px;
     margin-left: 20px;
     flex-direction: column;
     float: left;
@@ -105,6 +113,7 @@ body{
 
 .social-icons {
     float: right;
+    
 }
 
 .social-icons a img{
@@ -578,6 +587,14 @@ i.rating {
 
 /* Media query for medium devices (tablets, 768px and up)*/
 @media (min-width: 768px) {
+
+    .navbar-brand {
+        
+        display: flex;
+        flex-direction: row;
+
+    }
+
     .log-reg-section {
         padding: 1.5rem 2rem;
         width: 50%;
