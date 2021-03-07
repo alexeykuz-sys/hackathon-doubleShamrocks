@@ -2,8 +2,46 @@
 {% block title %}Index{% endblock %}
 
 {% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-5">
+            <div class="bg-img">
+                <img src="/static/images/bgimg.jpg" alt="" srcset="">
+            </div>
+        </div>
+        <div class="col-md-7 text-wrapper text-center">
 
-    <h1>Double Shamrock rules</h1>
-    <p>we are building website</p>
+            <!-- <h1 class="hero-text text-center">Happy St. Patrick's Day</h1> -->
+            <div class="buttons">
+                <a href="{{url_for('jokes') }}" class="btn btn-lg btn-joke active" role="button"
+                    aria-pressed="true">Jokes</a>
+                <a href="{{url_for('videos') }}" class="btn btn-lg btn-video active" role="button"
+                    aria-pressed="true">Videos</a>
+            </div>
+            <div class="carousel-wrapper">
+                <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+                    <div class="carousel-inner">
 
-{% endblock %} 
+                        <div class="carousel-item active">
+                            <p class="joke-slide text-center">
+                                Mika: What did the baby leprechaun find at the end of the rainbow?
+                                Will: A pot of gold?
+                                Mika: No, a Potty Gold!</p>
+                        </div>
+
+                    </div>
+                    <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+{% endblock %}

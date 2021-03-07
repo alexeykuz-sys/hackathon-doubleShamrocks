@@ -4,12 +4,14 @@ from flask import (
     redirect, request, session, url_for)
 from flask_pymongo import PyMongo
 from werkzeug.security import generate_password_hash, check_password_hash
-from forms import RegisterForm, LoginForm
+from forms import RegisterForm, LoginForm,\
+         ChangeUsernameForm, ChangePasswordForm
 from werkzeug.utils import secure_filename
 from bson.objectid import ObjectId
 import cloudinary
 import cloudinary.uploader
 import cloudinary.api
+from datetime import date
 if os.path.exists("env.py"):
     import env
 
@@ -42,36 +44,62 @@ def jokes():
 
 @app.route('/joke_like/<joke_id>', methods=["GET", "POST"])
 def joke_like(joke_id):
-    joke = mongo.db.jokes.find_one_and_update(
+    joke = mongo.db.jokes.update_one(
         {"_id": ObjectId(joke_id)},
         {'$inc': {'likes': 1}},
         upsert=True
         )
-    # jokes.update({'$inc': {'likes': 1}})
+    jokes = list(mongo.db.jokes.find())
     return render_template("jokes.html", jokes=jokes)
 
 
 @app.route('/joke_dislike/<joke_id>', methods=["GET", "POST"])
 def joke_dislike(joke_id):
-    print(joke_id)
-    jokes = mongo.db.jokes.find_one({"_id": ObjectId(joke_id)})
-    jokes.update({'$inc': {'dislikes': 1}})
-    # jokes.update({'_id': joke_id}, {'$inc': {'dislikes': 1}})
+    joke = mongo.db.jokes.update_one(
+        {"_id": ObjectId(joke_id)},
+        {'$inc': {'dislikes': 1}},
+        upsert=True
+    )
+    jokes = list(mongo.db.jokes.find())
     return render_template("jokes.html", jokes=jokes)
 
 
 @app.route("/videos", methods=["GET", "POST"])
 def videos():
-    return render_template("videos.html")
+    videos = list(mongo.db.videos.find())
+    return render_template("videos.html", videos=videos)
 
 
-@app.route("/upload_video", methods=["GET", "POST"])
-def upload_video():
-    username = "testing"
-    user = mongo.db.users.find_one({"username": username})
+@app.route('/video_like/<video_id>', methods=["GET", "POST"])
+def video_like(video_id):
+    video = mongo.db.videos.update_one(
+        {"_id": ObjectId(video_id)},
+        {'$inc': {'likes': 1}},
+        upsert=True
+        )
+    videos = list(mongo.db.videos.find())
+    return render_template("videos.html", videos=videos)
+
+
+@app.route('/video_dislike/<video_id>', methods=["GET", "POST"])
+def video_dislike(video_id):
+    video = mongo.db.videos.update_one(
+        {"_id": ObjectId(video_id)},
+        {'$inc': {'dislikes': 1}},
+        upsert=True
+    )
+    videos = list(mongo.db.videos.find())
+    return render_template("videos.html", videos=videos)
+
+
+@app.route("/profile/<username>/upload_video", methods=["GET", "POST"])
+def upload_video(username):
+    user_id = mongo.db.users.find_one({'username': session['username']})['_id']
+    user = mongo.db.users.find_one({"username": session['username']})['username']
+
     if request.method == 'POST':
         for user_video in request.files.getlist("user_videos"):
-            print(user_video)
+
             filename = secure_filename(user_video.filename)
             filename, file_extension = os.path.splitext(filename)
             public_id_video = ("vidoes/" + username + "/" + filename)
@@ -80,34 +108,55 @@ def upload_video():
                 cloud_name='puppyplaymates',
                 folder='/doubleshamrocks/', public_id=public_id_video,
                 resource_type="video")
+
             video_url = (
                 "https://res.cloudinary.com/puppyplaymates/video/upload/doubleshamrocks/"
                 + public_id_video + file_extension)
 
-            mongo.db.users.update(
+            new_video = {
+                "user": user_id,
+                "video_url": video_url,
+                "video_title": request.form.get('video_title'),
+                "video_description": request.form.get('video_description'),
+            }
+
+            mongo.db.videos.insert_one(new_video)
+
+            video_id = mongo.db.videos.find_one({'video_url': video_url})['_id']
+
+            mongo.db.users.update_one(
                 {"username": username},
-                {"$addToSet": {"user_videos": {
-                    "video_url": video_url,
-                    "video_title": request.form.get('video_title'),
-                    "video_description": request.form.get('video_description')
-                }}})
+                {"$addToSet": {"video": video_id}})
 
-        return redirect(url_for('upload_video'))
-    return render_template("upload_video.html", user=user)
+        return redirect(url_for('upload_video', username=username))
+    return render_template("upload_video.html", user=user, username=username)
 
 
-@app.route("/upload_jokes", methods=["GET", "POST"])
-def upload_jokes():
-    username = "testing"
-    user = mongo.db.users.find_one({"username": username})
+@app.route("/profile/<username>/upload_jokes", methods=["GET", "POST"])
+def upload_jokes(username):
+
+    user_id = mongo.db.users.find_one({'username': session['username']})['_id']
+    user = mongo.db.users.find_one({"username": session['username']})
 
     if request.method == 'POST':
-        mongo.db.users.update_one(
-            {"username": username},
-            {"$addToSet": {"user_jokes": request.form.get('user_jokes')}})
+        today = date.today()
 
-        return redirect(url_for('upload_jokes'))
-    return render_template("upload_jokes.html", user=user)
+        new_joke = {
+            "user": user_id,
+            "joke": request.form.get('user_jokes'),
+            "date": today.strftime("%d/%m/%Y"),
+                    }
+
+
+        mongo.db.jokes.insert_one(new_joke)
+        joke_id = mongo.db.jokes.find_one({'joke': request.form.get('user_jokes')})['_id']
+
+        mongo.db.users.update_one(
+                {"username": username},
+                {"$addToSet": {"joke": joke_id}})
+
+        return redirect(url_for('upload_jokes', username=username))
+    return render_template("upload_jokes.html", user=user, username=username)
 
 
 @app.route("/upload_image", methods=["GET", "POST"])
@@ -138,6 +187,37 @@ def upload_image():
 
         return redirect(url_for('upload_image'))
     return render_template("upload_image.html", user=user)
+
+
+# Delete Joke
+@app.route("/delete_joke/<joke_id>")
+def delete_joke(joke_id):
+    '''
+    DELETE.
+    Removes a joke from the database.
+    Only the author of the joke can delete the joke.
+    '''
+    # prevents guest users from viewing the modal
+    if 'username' not in session:
+        flash('You must be logged in to delete a joke!')
+        return redirect(url_for('homepage'))
+    user_in_session = mongo.db.users.find_one({'username': session['username']})
+    # get the selected joke for filling the fields
+    selected_joke = mongo.db.jokes.find_one({"_id": ObjectId(joke_id)})
+    # allows only author of the joke to delete it;
+    # protects againts brute-forcing
+    if selected_joke['author'] == user_in_session['_id']:
+        mongo.db.jokes.remove({"_id": ObjectId(joke_id)})
+        # find the author of the  joke
+        author = mongo.db.users.find_one({'username': session['username']})['_id']
+
+        mongo.db.users.update_one({"_id": ObjectId(author)},
+                              {"$pull": {"user_jokes": ObjectId(joke_id)}})
+        flash('Your joke has been deleted.')
+        return redirect(url_for("homepage"))
+    else:
+        flash("You can only delete your own jokes!")
+        return redirect(url_for('homepage'))
 
 
 @app.route("/login",  methods=['GET', 'POST'])
@@ -243,9 +323,128 @@ def profile(username):
                                         session['username']})['username']
     image = mongo.db.users.find_one({'username':
                                      session['username']})['profile_image']
+    user_id = mongo.db.users.find_one({'username': session['username']})['_id']
+    my_jokes = mongo.db.jokes.find({'user': user_id})
     return render_template('profile.html',
                            image=image,
-                           username=username)
+                           username=username,
+                           my_jokes=my_jokes)
+
+
+# Change username
+@app.route("/change_username/<username>", methods=['GET', 'POST'])
+def change_username(username):
+    '''
+    UPDATE.
+    Allows user to change the current username.
+    It calls the ChangeUsernameForm class from forms.py.
+    Checks if the new username is unique and not exist in database,
+    then clear the session and redirect user to login page.
+    '''
+    # prevents guest users from viewing the form
+    if 'username' not in session:
+        flash('You must be logged in to change username!')
+    users = mongo.db.users
+    form = ChangeUsernameForm()
+    if form.validate_on_submit():
+        # checks if the new username is unique
+        registered_user = users.find_one({'username':
+                                         request.form['new_username']})
+        if registered_user:
+            flash('Sorry, username is already taken. Try another one')
+            return redirect(url_for('change_username',
+                                    username=session["username"]))
+        else:
+            users.update_one(
+                {"username": username},
+                {"$set": {"username": request.form["new_username"]}})
+        # clear the session and redirect to login page
+        flash("Your username was updated successfully.\
+                    Please, login with your new username")
+        session.pop("username",  None)
+        return redirect(url_for("login"))
+
+    return render_template('change_username.html',
+                           username=session["username"],
+                           form=form)
+
+
+# Delete Account
+@app.route("/delete_account/<username>", methods=['GET', 'POST'])
+def delete_account(username):
+    '''
+    DELETE.
+    Remove user's account from the database as well as all
+    uploaded jokes/videos created by this user.
+    Before deletion of the account, user is asked
+    to confirm it by entering password.
+    '''
+    # prevents guest users from viewing the form
+    if 'username' not in session:
+        flash('You must be logged in to delete an account!')
+    user = mongo.db.users.find_one({"username": username})
+    # checks if password matches existing password in database
+    if check_password_hash(user["password"],
+                           request.form.get("confirm_password_to_delete")):
+
+        user_jokes = user.get("jokes")
+        for joke in user_jokes:
+            mongo.db.jokes.remove({"_id": joke})
+        user_videos = user.get("videos")
+        for video in user_videos:
+            mongo.db.videos.remove({"_id": video})
+        # remove user from database,clear session and redirect to the home page
+        flash("Your account has been deleted.")
+        session.pop("username", None)
+        mongo.db.users.remove({"_id": user.get("_id")})
+        return redirect(url_for("homepage"))
+    else:
+        flash("Password is incorrect! Please try again")
+        return redirect(url_for("profile", username=username))
+
+
+# Change password
+@app.route("/change_password/<username>", methods=['GET', 'POST'])
+def change_password(username):
+    '''
+    UPDATE.
+    Allows user to change the current password.
+    It calls the ChangePasswordForm class from forms.py.
+    Checks if the current password is correct, validate new password.
+    Then if new password matchs confirm password field,
+    insert it to the database.
+    '''
+    # prevents guest users from viewing the form
+    if 'username' not in session:
+        flash('You must be logged in to change password!')
+    users = mongo.db.users
+    form = ChangePasswordForm()
+    username = users.find_one({'username': session['username']})['username']
+    old_password = request.form.get('old_password')
+    new_password = request.form.get('new_password')
+    confirm_password = request.form.get("confirm_new_password")
+    if form.validate_on_submit():
+        # checks if current password matches existing password in database
+        if check_password_hash(users.find_one({'username': username})
+                               ['password'], old_password):
+            # checks if new passwords match
+            if new_password == confirm_password:
+                # update the password and redirect to the settings page
+                users.update_one({'username': username},
+                                 {'$set': {'password': generate_password_hash
+                                           (request.form['new_password'])}})
+                flash("Success! Your password was updated.")
+                return redirect(url_for('profile', username=username))
+            else:
+                flash("New passwords do not match! Please try again")
+                return redirect(url_for("change_password",
+                                        username=session["username"]))
+        else:
+            flash('Incorrect original password! Please try again')
+            return redirect(url_for('change_password',
+                            username=session["username"]))
+    return render_template('change_password.html', username=username,
+                           form=form)
 
 
 if __name__ == "__main__":

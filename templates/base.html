@@ -7,76 +7,89 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css"
-        integrity="sha512-xA6Hp6oezhjd6LiLZynuukm80f8BoZ3OpcEYaqKoCV3HKQDrYjDE1Gu8ocxgxoXmwmSzM4iqPvCsOkQNiu41GA==" crossorigin="anonymous" type="text/css">
+        integrity="sha512-xA6Hp6oezhjd6LiLZynuukm80f8BoZ3OpcEYaqKoCV3HKQDrYjDE1Gu8ocxgxoXmwmSzM4iqPvCsOkQNiu41GA=="
+        crossorigin="anonymous" type="text/css">
     <link rel="stylesheet" href="/static/style.css">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='images/clover.png') }}" type="image/x-icon" />
     <title>{% block title %}{% endblock %}</title>
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-md fixed-top">
-        <div class="navbar-header">
-            <a class="navbar-brand" href="/">The Double Shamrock</a>
-            <!-- <button onclick="this.classList.toggle('opened');this.setAttribute('aria-expanded', this.classList.contains('opened'))" class="menu" navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
-                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <svg width="100" height="100" viewBox="0 0 100 100">
-                    <path class="line line1"
-                        d="M 20,29.000046 H 80.000231 C 80.000231,29.000046 94.498839,28.817352 94.532987,66.711331 94.543142,77.980673 90.966081,81.670246 85.259173,81.668997 79.552261,81.667751 75.000211,74.999942 75.000211,74.999942 L 25.000021,25.000058" />
-                    <path class="line line2" d="M 20,50 H 80" />
-                    <path class="line line3"
-                        d="M 20,70.999954 H 80.000231 C 80.000231,70.999954 94.498839,71.182648 94.532987,33.288669 94.543142,22.019327 90.966081,18.329754 85.259173,18.331003 79.552261,18.332249 75.000211,25.000058 75.000211,25.000058 L 25.000021,74.999942" />
-                </svg>
-            </button> -->
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
-                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <svg viewBox="0 0 100 80" width="40" height="40">
-                    <rect width="100" height="10"></rect>
-                    <rect y="30" width="100" height="10"></rect>
-                    <rect y="60" width="100" height="10"></rect>
-                </svg>
-            </button>
-        </div>
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-            <ul class="navbar-nav ml-auto float-left text-left pl-3">
-                <li class="nav-item"><a href="{{url_for('homepage')}}">Home</a></li>
-                <li class="nav-item"><a href="{{url_for('jokes')}}">Jokes</a></li>
-                <li class="nav-item"><a href="{{url_for('videos')}}">Videos</a></li>
-                {% if session.username %}
-                <li class="nav-item"><a href="{{url_for('profile', username=session['username']) }}">Profile</a></li>
-                <li class="nav-item"><a href="#">New Joke</a></li>
-                <li class="nav-item"><a href="#">Log Out</a></li>
-                {% else %}
-                <li class="nav-item"><a href="{{url_for('login')}}">Log In</a></li>
-                <li class="nav-item"><a href="{{url_for('register')}}">Register</a></li>
-                {% endif %}
-            </ul>
-        </div>
-    </nav>
+    <header>
+        <div class="fixed-top top-nav">
+            <nav class="navbar navbar-expand-md navbar-fixed-top">
+                <div class="navbar-header">
+                    <a class="navbar-brand logo-link" href="{{url_for('homepage')}}">
+                        <div class="logo"> Double&nbsp;Shamrock</div> 
+                    </a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+                        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <i class="fas fa-bars bar-icon"></i>
+                    </button>
+                </div>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ml-auto float-left text-left pl-3">
+                        <li class="nav-item"><a href="{{url_for('homepage')}}"><i class="fas fa-home mr-1 d-inline d-md-none d-lg-inline"></i>Home</a></li>
+                        <li class="nav-item"><a href="{{url_for('jokes')}}"><i class="far fa-laugh-beam mr-1 d-inline d-md-none d-lg-inline"></i>Jokes</a></li>
+                        <li class="nav-item"><a href="{{url_for('videos')}}"><i class="fas fa-film mr-1 d-inline d-md-none d-lg-inline"></i>Videos</a></li>
+                        {% if session.username %}
+                        <li class="nav-item  dropdown">
+                                <a href="{{url_for('profile', username=session['username']) }}"
+                                    class="dropdown-toggle pr-4" role="button"
+                                    id="dropdownMenuLink" data-toggle="dropdown"
+                                     aria-haspopup="true" aria-expanded="false">
+                                    <i class="fas fa-user mr-1 d-inline d-md-none d-lg-inline"></i>Profile
+                                </a>
 
-    <div class="container">
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                    <a href="{{url_for('upload_jokes', username=session['username'])}}" 
+                                        class="dropdown-item dropdown-item-profile">
+                                         <i class="fas fa-plus mr-1 d-inline d-md-none d-lg-inline"></i>New Joke
+                                     </a>
+                                    <a href="{{url_for('upload_video', username=session['username'])}}"
+                                        class="dropdown-item dropdown-item-profile">
+                                        <i class="far fa-file-video mr-1 d-inline d-md-none d-lg-inline"></i>New Video
+                                    </a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item dropdown-item-profile" href="{{ url_for('logout') }}">
+                                        <i class="fas fa-sign-out-alt mr-1 d-inline d-md-none d-lg-inline"></i>Log Out
+                                    </a>
+                                </div>
+                        </li>
+                        {% else %}
+                        <li class="nav-item"><a href="{{url_for('login')}}"><i class="fas fa-sign-in-alt mr-1 d-inline d-md-none d-lg-inline"></i>Log In</a></li>
+                        <li class="nav-item"><a href="{{url_for('register')}}"><i class="fas fa-user-plus mr-1 d-inline d-md-none d-lg-inline"></i>Register</a></li>
+                        {% endif %}
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </header>
+    
+    <main>
         {% block content %}
-
         {% endblock %}
-    </div>
+    </main>
+  
     <footer>
-        <div class="container-fluid page-footer">
-            <div class="row">
-                <div class="col-12 ">
-                    <div class="footer-text">
-                        <h5 class="text">The Double Shamrock</h5>
-                        <p class=""></p>
-                    </div>
-                    <div class="social-icons">
-                        <a href="https://www.facebook.com" target="_blank"><img src="/static/images/facebook.png"
-                                alt="facebook icon"></a>
-                        <a href="https://www.instagram.com" target="_blank"><img src="/static/images/instagram.png"
-                                alt="instagram icon"></a>
-                        <a href="https://twitter.com/?lang=en-gb" target="_blank"><img src="/static/images/twitter.png"
-                                alt="twitter icon"></a>
-                    </div>
+        <div class="row">
+            <div class="col-12 page-footer">
+                <div class="footer-text">
+                    <h5 class="text">The Double Shamrock</h5>
+                    <p class=""></p>
+                </div>
+                <div class="social-icons">
+                    <a href="https://www.facebook.com" target="_blank"><img src="/static/images/facebook.png"
+                            alt="facebook icon"></a>
+                    <a href="https://www.instagram.com" target="_blank"><img src="/static/images/instagram.png"
+                            alt="instagram icon"></a>
+                    <a href="https://twitter.com/?lang=en-gb" target="_blank"><img src="/static/images/twitter.png"
+                            alt="twitter icon"></a>
                 </div>
             </div>
         </div>
     </footer>
+
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
         integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
         crossorigin="anonymous"></script>
@@ -86,7 +99,8 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
         integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
         crossorigin="anonymous"></script>
-        <script src="{{ url_for('static', filename='script.js') }}"></script>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+    
 </body>
 
 </html>

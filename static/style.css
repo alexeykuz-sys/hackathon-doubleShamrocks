@@ -3,43 +3,65 @@
 /* Added a root for colours so if we tweak or change the main colours later it will up date all of them */
 :root {
     --main-green: #009e69;
-    --main-orange: orange;
+    --main-green-dark: #048158;
+    --main-orange: #ffa500;
 
 }
 
-* {
-  padding: 0;
-  border: 0;
-  box-sizing: border-box;
-}
-
-html,
-body{
+*,
+*::before,
+*::after{
     margin: 0;
     padding: 0;
-    background-color: #FCFCFC;
+    box-sizing: inherit;
 }
 
-body {
-  overflow-x: hidden;
-  font-family: "Open Sans", Arial, Helvetica, sans-serif;
-  height: 100vh;
-  width: 100vw;
- 
+body, html {
+    min-height: 100vh;
+    width:100vw;
+    box-sizing: border-box;
+    overflow-x: hidden;
 }
+
+body{ 
+    background-color: #FCFCFC;
+    font-family: "Open Sans", Arial, Helvetica, sans-serif;
+    display: flex;
+    flex-direction: column;
+     /* height: calc(100vh - 58px); */
+}
+
+main {
+    flex: 1 0 auto;
+    margin-top: 5.7rem;
+}
+
+/* NAVBAR */
 
 .navbar {
     background-color: var(--main-green);
-    position: relative;
+}
+
+.top-nav{
+    border-bottom: 1px solid rgba(39, 38, 38, 0.438);
 }
 
 .navbar-brand {
     margin-left: 10px;
     color: var(--main-orange);
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     font-family: 'Uncial Antiqua', Arial, sans-serif;
-    letter-spacing: 1.2px;
-    
+    letter-spacing: 1px;
+}
+
+.logo {
+    margin-right: 10px;
+}
+
+.logo-link:link,
+.logo-link:visited,
+.logo-link:hover {
+    color: var(--main-orange);
 }
 
 .navbar-nav  .nav li {
@@ -50,23 +72,37 @@ body {
     justify-content: space-between;
 }
 
+
 .navbar-nav li a{
      color: var(--main-orange);
      list-style: none;
      text-decoration: none;
+     text-shadow: 1px 1px 4px #3130305e;
      font-size: 1.1rem;
+     font-family: "Open Sans", sans-serif;;
      letter-spacing: 1px;
      font-weight: 500;
      margin-right: 25px;
+     text-transform: uppercase;
+     transition: all .3s;
+
+}
+
+.dropdown-menu{
+    background-color: var(--main-green);
+}
+
+.dropdown-menu:hover,
+.dropdown-item-profile:hover {
+    background-color: var(--main-green-dark) !important;
+}
+
+.navbar-nav li a:hover {
+    color: #fff;
 }
 
 .navbar-nav .nav-item {
     margin-top: 5px;
-}
-
-.navbar-nav li:hover {
-  text-transform: uppercase;
-  font-weight: 600;
 }
 
 .navbar-toggler {
@@ -76,18 +112,24 @@ body {
    
 }
 
-.navbar-toggler .icon-bar{
-    background-color:red;
-    width: 10px;
+.bar-icon{
+   margin-top:6px;
+    color: var(--main-orange);
 }
 
+
+/* FOOTER */
 .page-footer{
     background-color: var(--main-green);
     width: 100vw;
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .footer-text {
-    margin-left: 20px;
+    margin-top: 10px;
     flex-direction: column;
     float: left;
 }
@@ -95,12 +137,18 @@ body {
 .footer-text .text{
     color: var(--main-orange);
     font-size: 1.5rem;
-    font-family: 'Uncial Antiqua', Arial, sans-serif;;
+    font-family: 'Uncial Antiqua', Arial, sans-serif;
     letter-spacing: 1.2px;
 }
 
 .social-icons {
+<<<<<<< HEAD
+    float: right;   
+=======
     float: right;
+    margin-bottom: 10px;
+    
+>>>>>>> 29684c8ebaf2b2a84e7fde5148c99271ad254493
 }
 
 .social-icons a img{
@@ -108,11 +156,101 @@ body {
     margin-right: 25px;
 }
 
-/*---- log in and register form ----*/
+/*-----Home PAge -------------*/
+.text-wrapper{
+        display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-around;
+}
 
-h3 {
+.buttons{
+    margin: 20px;
+    display: flex;
+    flex-direction: row;
+}
+
+.btn-joke,
+.btn-video{
+    background-color: var(--main-green);
+    color: var(--main-orange);
+    margin: 50px;
+    box-shadow: -2px -2px 10px rgba(255, 255, 255, 0.5),
+    5px 5px 10px rgba(48, 47, 47, 0.5);
+}
+
+.btn-joke:hover,
+.btn-video:hover {
+    text-transform: uppercase;
+    color: var(--main-orange);
+}
+/* carousel */ 
+ .carousel-wrapper{
+   
+    max-width: 600px;
+
+}
+.carousel {
+    
+    line-height: 2rem;
+    letter-spacing: 2px;
+    font-size: 16px;
+    font-weight: 600;
+    background-color: var(--main-green);
+    color:var(--main-orange) ;
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 10px;
+}
+
+.carousel-item{
+   width: 100%;
+    height: 100%;
+    margin: 5px auto;
+}
+
+.joke-slide {
+    margin: 40px;
+}
+
+/*---- log in and register form ----*/
+.login-reg-container {
+    /* position: relative; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 90vh;
+    background-image: url(../static/images/login-reg-bg.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    
+}
+
+.log-reg-section {
+    padding: 1.5rem 2rem;
+    background-color: rgba(255, 253, 253, 0.904);
+    border-radius: .5rem;
+    border: 1px solid var(--main-orange);
+    width: 90%;
+    box-shadow: .1rem .3rem .5rem rgba(44, 44, 44, 0.356);
+    margin: 0 auto;
+}
+
+.log-reg-leprechaun-with-beer-mobile {
+    width: 10rem;
+    margin: 0 auto;
+}
+
+ .log-reg-leprechaun-with-beer,
+.leprachaun-login-reg,
+.log-reg-leprechaun-with-beer-register {
+    display: none;
+}
+
+.log-reg-heading {
     padding: 1.25rem;
-    margin-bottom: 0;
+    text-align: center;
     color: var(--main-green);
     font-weight: bold;
     font-family: 'Uncial Antiqua', Arial, sans-serif;
@@ -126,16 +264,42 @@ h3 {
 }
 
 .login-btn,
-.register-btn{
-    color: var(--main-orange);
+.register-btn,
+.login-btn:focus,
+.register-btn:focus {
+    color: #fff;
+    text-shadow: 4px 2px 10px var(--main-orange);
     background-color: var(--main-green);
+    text-transform: uppercase;
+    font-size: 1.3rem;
+    outline: none;
+    box-shadow: none;
+    transition: all .2s;
+}
+
+.login-btn:hover,
+.register-btn:hover{
+    color: var(--main-orange);
+    background-color: var(--main-green-dark);
+}
+
+.log-reg-small-link:link,
+.log-reg-small-link:visited {
+    color: rgb(41, 41, 41);
+    transition: all .2s;
+}
+
+.log-reg-small-link:hover {
+    text-decoration: none;
+    color: var(--main-green);
 }
 
 .login-icon,
-.register-icon {
+.register-icon,
+.input-group-text {
     color: var(--main-orange);
     background-color: var(--main-green);
-    font-size: 16px;  
+    text-shadow: 0 1px 1px rgba(2, 2, 2, 0.308);
 }
 
 .text-red {
@@ -185,20 +349,63 @@ video {
 }
 
 h3.uploads {
-    padding: 0;
-    margin: 3%;
-    margin-left: 0;
+    margin: 40px;
+    
+  
 }
 
+.uploads-text{
+     font-family: "Open Sans", Arial, Helvetica, sans-serif;
+    font-size: 20px;
+    letter-spacing: 1.2px;
+}
 h1.uploads{
     color: var(--main-green);
     font-weight: bold;
-    margin-top: 2%;
+    margin: 40px;
+    font-family: 'Uncial Antiqua', Arial, sans-serif;
+    letter-spacing: 1.2px;
 }
 
-/* ---- Jokes Page ---- */
-.card {
+.upload-form {
+    margin: 40px;
+}
+
+textarea.form-control {
     width: 100%;
+}
+
+.form-label {
+    font-family: "Open Sans", Arial, Helvetica, sans-serif;
+    font-size: 20px;
+    letter-spacing: 1.2px;
+}
+
+.btn-uploads{
+    background-color: var(--main-green);
+    color: var(--main-orange);
+    box-shadow: -2px -2px 10px rgb(255 255 255 / 50%), 5px 5px 10px rgb(48 47 47 / 50%);
+
+}
+/* ---- Jokes Page ---- */
+
+.jokes-header,
+.videos-header{ 
+    margin: 20px;
+    font-family: 'Uncial Antiqua', Arial, sans-serif;
+    color: var(--main-green);
+}
+div.card {
+    width: 100%;
+    margin: 20px;
+}
+
+.likes-wrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    margin: 20px;
 }
 
 .score {
@@ -232,7 +439,12 @@ i.rating {
     padding: 1.5rem 2rem;
     background-color: #fff;
     border-radius: .5rem;
-    border: 1px solid rgb(219, 219, 219);
+    border: 1px solid var(--main-orange);
+}
+
+.link-tab-profile {
+    border: 1px solid var(--main-orange) !important;
+    border-bottom: none !important;
 }
 
 .profile-main-heading {
@@ -249,17 +461,22 @@ i.rating {
 }
 
 .profile-subheading  {
-    font-size: 1.8rem;
+    font-size: 1.4rem;
     letter-spacing: 1px;
     color: rgb(34, 34, 34);
     font-family: Open+Sans, sans-serif;
 }
 
-.edit-image-link:link,
-.edit-image-link:visited{
+.edit-image-link,
+.edit-image-link:focus,
+.edit-image-link:active{
     color: rgb(80, 79, 79);
     font-size: .9rem;
     text-align: center;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    outline: none;
 }
 
 .edit-image-link:hover{
@@ -267,8 +484,13 @@ i.rating {
     text-decoration: none;
 }
 
-.username {
+.username,
+.icon-joke-and-video {
     color: var(--main-orange);
+}
+
+.icon-joke-and-video {
+    text-shadow: 0 1px 1px rgba(2, 2, 2, 0.308);
 }
 
 .username-container {
@@ -281,13 +503,23 @@ i.rating {
     font-size: 1.1rem;
 }
 
-.btn-change-password:link,
-.btn-delete-account:link,
+.btn-change-password,
+.btn-change-password:focus,
+.btn-change-password:active,
+.btn-delete-account,
+.btn-form,
 .btn-change-password:visited,
-.btn-delete-account:visited {
+.add-joke:link,
+.add-joke:visited,
+.add-joke:focus,
+.add-video:link,
+.add-video:visited,
+.add-video:focus{
     color: #fff;
-    text-shadow: 0 1px 1px #000;
+    text-shadow: 0 1px 1px rgba(34, 34, 34, 0.521);
     transition: all .2s;
+    outline: none;
+    box-shadow: none;
 }
 
 .btn-change-password:hover,
@@ -295,20 +527,36 @@ i.rating {
     text-decoration: none;
 }
 
-.btn-change-password {
-   background-color: #048158; 
+.btn-change-password,
+.btn-form,
+.add-video {
+   background-color: var(--main-green-dark); 
 }
 
-.btn-change-password:hover {
+.btn-change-password:hover,
+.btn-form:hover,
+.add-video:hover {
     background-color:  var(--main-green); 
 }
 
-.btn-delete-account {
+.btn-delete-account,
+.btn-delete-account:active,
+ .btn-delete-account:focus{
     background-color: #b80808;
+    outline: none;
+    box-shadow: none;
 }
 
 .btn-delete-account:hover {
     background-color:  #d80808; 
+}
+
+.add-joke {
+    background-color:  var(--main-orange);
+}
+
+.add-joke:hover {
+    background-color:  #e49400;  
 }
 
 #jokes-tab:link,
@@ -320,4 +568,143 @@ i.rating {
 
 .profile-tabs {
     border-bottom: none;
+}
+
+@media (min-width: 426px) { 
+    
+.page-footer{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    }
+}
+
+/*  Change username page */
+
+.change-username-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 90vh;
+    background-image: url(../static/images/profile-forms-bg.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+.change-username-section {
+    padding: 1.5rem 2rem;
+    background-color: rgba(255, 253, 253, 0.904);
+    border-radius: .5rem;
+    border: 1px solid var(--main-orange);
+}
+
+.change-username-heading {
+    text-transform: uppercase;
+    font-size: 2.1rem;
+}
+
+.icon-shamrock-profile {
+    width: 2.8rem;
+}
+
+.icon-shamrock-change {
+    width: 2.2rem;
+}
+
+
+@media (min-width: 426px) { 
+    .page-footer{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .profile-subheading  {
+        font-size: 1.7rem;
+
+    }
+}
+
+/* Media query for medium devices (tablets, 768px and up)*/
+@media (min-width: 768px) {
+
+    .navbar-brand {
+        
+        display: flex;
+        flex-direction: row;
+
+    }
+
+    .log-reg-section {
+        padding: 1.5rem 2rem;
+        width: 50%;
+        left: 25%;
+        margin: 0;
+    }
+
+    .leprachaun-login-reg {
+        display: block;
+        position: absolute;
+        bottom: 1rem;
+        left: 2rem;
+        width: 10rem;
+    }
+
+    .log-reg-leprechaun-with-beer {
+        display: none;
+    }
+
+    .log-reg-section {
+        position: absolute;
+    }
+}
+
+/*Media query for large devices (desktops, 992px and up)*/
+@media (min-width: 992px) {
+    .log-reg-section {
+        padding: 1.5rem 2rem;
+        width: 40%;
+        left: 30%;
+    }
+    
+    .carousel-item{
+    width: 80%;
+        
+        }
+    textarea.form-control {
+    width: 85%;
+}
+}
+
+/*Media query for largest devices (desktops, 1900px and up)*/
+@media (min-width: 1900px) {
+    .container {
+        max-width: 90rem !important;
+        font-size: 1.1rem;
+    }
+
+    .log-reg-section {
+        padding: 1.5rem 2rem;
+        width: 30%;
+        left: 35%;
+    }
+
+    .log-reg-leprechaun-with-beer {
+        display: block;
+        position: absolute;
+        top: 6.1rem;
+        left: 38rem;
+        width: 20rem;
+    }
+
+    .log-reg-leprechaun-with-beer-register {
+        display: block;
+        position: absolute;
+        top: 4.7rem;
+        left: 38rem;
+        width: 20rem;
+    }
 }
