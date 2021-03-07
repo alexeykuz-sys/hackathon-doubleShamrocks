@@ -91,6 +91,10 @@ def upload_jokes():
     return render_template("upload_jokes.html", user=user)
 
 
+    return redirect(url_for('upload_jokes'))
+    return render_template("upload_jokes.html", user=user)
+
+
 @app.route("/upload_image", methods=["GET", "POST"])
 def upload_image():
 

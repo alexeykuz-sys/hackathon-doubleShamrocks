@@ -113,24 +113,12 @@ body {
 }
 
 /*-----Home PAge -------------*/
-
-.hero-text{
-    position:absolute;
-    top: 45%;
-    left: 50%;
-    transform: translate(-50%,-50%);
-    font-size: 35px;
-    letter-spacing: .5px;
-    color: var(--main-orange);
-    font-family: 'Uncial Antiqua', Arial, sans-serif;;
-
+.text-wrapper{
+    
 }
 
 .buttons{
-     position:absolute;
-    top: 65%;
-    left: 50%;
-    transform: translate(-50%,-50%);
+    margin: 20px;
 }
 
 .btn-joke,
