@@ -15,64 +15,82 @@
 </head>
 
 <body>
-    <div class="fixed-top">
-        <nav class="navbar navbar-expand-md navbar-fixed-top">
-            <div class="navbar-header ">
-                <a class="navbar-brand" href="/">
-                    <div class="logo"> Double</div>
-                    <div class="logo">Shamrock</div> 
-                </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
-                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <i class="fas fa-bars"></i>
-                </button>
-            </div>
-            <div class="collapse navbar-collapse" id="navbarResponsive">
-                <ul class="navbar-nav ml-auto float-left text-left pl-3">
-                    <li class="nav-item"><a href="{{url_for('homepage')}}">Home</a></li>
-                    <li class="nav-item"><a href="{{url_for('jokes')}}">Jokes</a></li>
-                    <li class="nav-item"><a href="{{url_for('videos')}}">Videos</a></li>
-                    {% if session.username %}
-                    <li class="nav-item"><a href="{{url_for('profile', username=session['username']) }}">Profile</a>
-                    </li>
-                    <li class="nav-item"><a href="{{url_for('upload_jokes', username=session['username'])}}">New
-                            Joke</a>
-                    </li>
-                    <li class="nav-item"><a href="{{url_for('upload_video')}}">New Video</a></li>
-                    <li class="nav-item"><a href="{{ url_for('logout') }}">Log Out</a></li>
-                    {% else %}
-                    <li class="nav-item"><a href="{{url_for('login')}}">Log In</a></li>
-                    <li class="nav-item"><a href="{{url_for('register')}}">Register</a></li>
-                    {% endif %}
-                </ul>
+    <header>
+        <div class="fixed-top top-nav">
+            <nav class="navbar navbar-expand-md navbar-fixed-top">
+                <div class="navbar-header">
+                    <a class="navbar-brand logo-link" href="{{url_for('homepage')}}">
+                        <div class="logo"> Double&nbsp;Shamrock</div> 
+                    </a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+                        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <i class="fas fa-bars bar-icon"></i>
+                    </button>
+                </div>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ml-auto float-left text-left pl-3">
+                        <li class="nav-item"><a href="{{url_for('homepage')}}"><i class="fas fa-home mr-1 d-inline d-md-none d-lg-inline"></i>Home</a></li>
+                        <li class="nav-item"><a href="{{url_for('jokes')}}"><i class="far fa-laugh-beam mr-1 d-inline d-md-none d-lg-inline"></i>Jokes</a></li>
+                        <li class="nav-item"><a href="{{url_for('videos')}}"><i class="fas fa-film mr-1 d-inline d-md-none d-lg-inline"></i>Videos</a></li>
+                        {% if session.username %}
+                        <li class="nav-item  dropdown">
+                                <a href="{{url_for('profile', username=session['username']) }}"
+                                    class="dropdown-toggle pr-4" role="button"
+                                    id="dropdownMenuLink" data-toggle="dropdown"
+                                     aria-haspopup="true" aria-expanded="false">
+                                    <i class="fas fa-user mr-1 d-inline d-md-none d-lg-inline"></i>Profile
+                                </a>
 
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                    <a href="{{url_for('upload_jokes', username=session['username'])}}" 
+                                        class="dropdown-item dropdown-item-profile">
+                                         <i class="fas fa-plus mr-1 d-inline d-md-none d-lg-inline"></i>New Joke
+                                     </a>
+                                    <a href="{{url_for('upload_video', username=session['username'])}}"
+                                        class="dropdown-item dropdown-item-profile">
+                                        <i class="far fa-file-video mr-1 d-inline d-md-none d-lg-inline"></i>New Video
+                                    </a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item dropdown-item-profile" href="{{ url_for('logout') }}">
+                                        <i class="fas fa-sign-out-alt mr-1 d-inline d-md-none d-lg-inline"></i>Log Out
+                                    </a>
+                                </div>
+                        </li>
+                        {% else %}
+                        <li class="nav-item"><a href="{{url_for('login')}}"><i class="fas fa-sign-in-alt mr-1 d-inline d-md-none d-lg-inline"></i>Log In</a></li>
+                        <li class="nav-item"><a href="{{url_for('register')}}"><i class="fas fa-user-plus mr-1 d-inline d-md-none d-lg-inline"></i>Register</a></li>
+                        {% endif %}
+                    </ul>
+                    
 
-            </div>
-        </nav>
-    </div>
-    {% block content %}
-
-    {% endblock %}
-    <div class="fixed-bottom">
-        <footer>
-            <div class="row">
-                <div class="col-12 page-footer">
-                    <div class="footer-text">
-                        <h5 class="text">The Double Shamrock</h5>
-                        <p class=""></p>
-                    </div>
-                    <div class="social-icons">
-                        <a href="https://www.facebook.com" target="_blank"><img src="/static/images/facebook.png"
-                                alt="facebook icon"></a>
-                        <a href="https://www.instagram.com" target="_blank"><img src="/static/images/instagram.png"
-                                alt="instagram icon"></a>
-                        <a href="https://twitter.com/?lang=en-gb" target="_blank"><img src="/static/images/twitter.png"
-                                alt="twitter icon"></a>
-                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+    
+    <main>
+{% block content %}
+  {% endblock %}
+    </main>
+  
+    <footer>
+        <div class="row">
+            <div class="col-12 page-footer">
+                <div class="footer-text">
+                    <h5 class="text">The Double Shamrock</h5>
+                    <p class=""></p>
+                </div>
+                <div class="social-icons">
+                    <a href="https://www.facebook.com" target="_blank"><img src="/static/images/facebook.png"
+                            alt="facebook icon"></a>
+                    <a href="https://www.instagram.com" target="_blank"><img src="/static/images/instagram.png"
+                            alt="instagram icon"></a>
+                    <a href="https://twitter.com/?lang=en-gb" target="_blank"><img src="/static/images/twitter.png"
+                            alt="twitter icon"></a>
                 </div>
             </div>
-        </footer>
-    </div>
+        </div>
+    </footer>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
         integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
         crossorigin="anonymous"></script>
