@@ -3,6 +3,7 @@
 /* Added a root for colours so if we tweak or change the main colours later it will up date all of them */
 :root {
     --main-green: #009e69;
+    --main-green-dark: #048158;
     --main-orange: #ffa500;
 
 }
@@ -200,19 +201,23 @@ body {
 }
 
 .login-btn,
-.register-btn{
+.register-btn,
+.login-btn:focus,
+.register-btn:focus {
     color: #fff;
     text-shadow: 4px 2px 10px var(--main-orange);
     background-color: var(--main-green);
     text-transform: uppercase;
     font-size: 1.3rem;
+    outline: none;
+    box-shadow: none;
     transition: all .2s;
 }
 
 .login-btn:hover,
 .register-btn:hover{
     color: var(--main-orange);
-    background-color:  #048158;
+    background-color: var(--main-green-dark);
 }
 
 .log-reg-small-link:link,
@@ -344,7 +349,7 @@ i.rating {
 }
 
 .profile-subheading  {
-    font-size: 1.8rem;
+    font-size: 1.4rem;
     letter-spacing: 1px;
     color: rgb(34, 34, 34);
     font-family: Open+Sans, sans-serif;
@@ -362,8 +367,13 @@ i.rating {
     text-decoration: none;
 }
 
-.username {
+.username,
+.icon-joke-and-video {
     color: var(--main-orange);
+}
+
+.icon-joke-and-video {
+    text-shadow: 0 1px 1px rgba(2, 2, 2, 0.308);
 }
 
 .username-container {
@@ -376,13 +386,17 @@ i.rating {
     font-size: 1.1rem;
 }
 
-.btn-change-password:link,
+.btn-change-password,
+.btn-change-password:focus,
+.btn-change-password:active,
 .btn-delete-account,
 .btn-form,
-.btn-change-password:visited{
+.btn-change-password:visited {
     color: #fff;
     text-shadow: 0 1px 1px #000;
     transition: all .2s;
+    outline: none;
+    box-shadow: none;
 }
 
 .btn-change-password:hover,
@@ -392,7 +406,7 @@ i.rating {
 
 .btn-change-password,
 .btn-form {
-   background-color: #048158; 
+   background-color: var(--main-green-dark); 
 }
 
 .btn-change-password:hover,
@@ -400,8 +414,12 @@ i.rating {
     background-color:  var(--main-green); 
 }
 
-.btn-delete-account {
+.btn-delete-account,
+.btn-delete-account:active,
+ .btn-delete-account:focus{
     background-color: #b80808;
+    outline: none;
+    box-shadow: none;
 }
 
 .btn-delete-account:hover {
@@ -418,8 +436,6 @@ i.rating {
 .profile-tabs {
     border-bottom: none;
 }
-
-
 
 @media (min-width: 426px) { 
     
@@ -470,6 +486,11 @@ i.rating {
         flex-direction: row;
         align-items: center;
         justify-content: space-between;
+    }
+
+    .profile-subheading  {
+        font-size: 1.7rem;
+
     }
 }
 
