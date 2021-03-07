@@ -6,25 +6,22 @@
     --main-orange: #ffa500;
 
 }
-
 * {
   padding: 0;
   border: 0;
+}
+
+html {
   box-sizing: border-box;
+
 }
 
-html,
-body{
-    margin: 0;
-    padding: 0;
+
+
+body{ 
+
     background-color: #FCFCFC;
-}
-
-body {
-  overflow-x: hidden;
-  font-family: "Open Sans", Arial, Helvetica, sans-serif;
-  height: 100vh;
-  width: 100vw;
+    font-family: "Open Sans", Arial, Helvetica, sans-serif;
  
 }
 
@@ -143,10 +140,11 @@ body {
 
 .carousel {
     height:200px;
-    width: 300px;
+    width: auto;
     background-color: lightgrey;
     display: flex;
     flex-direction: row;
+    margin-bottom: 10px;
 }
 
 .carousel-item{
@@ -155,6 +153,9 @@ body {
     height: 100px;
 }
 
+.joke-slide {
+    margin: 53px;
+}
 /*---- log in and register form ----*/
 .login-reg-container {
     position: relative;
