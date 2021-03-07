@@ -169,7 +169,7 @@ body{
 
 /*---- log in and register form ----*/
 .login-reg-container {
-    position: relative;
+    /* position: relative; */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -178,6 +178,7 @@ body{
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
+    
 }
 
 .log-reg-section {
@@ -186,8 +187,9 @@ body{
     border-radius: .5rem;
     border: 1px solid var(--main-orange);
     width: 90%;
-    position: absolute;
+    /* position: absolute; */
     box-shadow: .1rem .3rem .5rem rgba(44, 44, 44, 0.356);
+    margin: 0 auto;
 }
 
  .log-reg-leprechaun-with-beer,
@@ -303,8 +305,13 @@ h1.uploads{
 }
 
 /* ---- Jokes Page ---- */
-.card {
+
+.jokes-header{ 
+    margin: 20px;
+}
+div.card {
     width: 100%;
+    margin: 20px;
 }
 
 .likes-wrapper {
@@ -498,6 +505,7 @@ i.rating {
         padding: 1.5rem 2rem;
         width: 50%;
         left: 25%;
+        margin: 0;
     }
 
     .leprachaun-login-reg {

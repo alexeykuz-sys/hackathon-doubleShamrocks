@@ -3,49 +3,51 @@
 
 {% block content %}
 <div class="login-reg-container">
-    <img src="../static/images/leprachaun-login-reg.png" 
-        alt="leprachaun" 
-        class="leprachaun-login-reg">
-    <img src="../static/images/leprechaun-with-beer.jpg" alt="leprechaun-with-beer" 
-        class="log-reg-leprechaun-with-beer-register">
+    <!-- <img src="../static/images/leprachaun-login-reg.png"  -->
+    <!-- alt="leprachaun" 
+        class="leprachaun-login-reg"> -->
 
-    <div class="log-reg-section">
-        <h1 class="log-reg-heading">Register</h1>
-        <div class="row ">
-            <form class="register-form" method="POST" action="">
-                {{ form.hidden_tag() }}
-                <!-- username -->
-                <div class="input-group mb-3">
-                    <span class="input-group-text register-icon"><i class="fas fa-user-cog"></i></span>
-                    {{ form.username(placeholder="Username", class="form-control") }} 
-                    {% for error in form.username.errors %}
-                    <small class="text-red">{{ error }}</small>
-                    {% endfor %}
-                </div>
-                <!-- password -->
-                <div class="input-group mb-3">
-                    <span class="input-group-text register-icon"><i class="fas fa-user-lock"></i></span>
-                    {{ form.password (placeholder="Password", class="form-control") }}
-                    {% for error in form.password.errors %}
-                    <small class="text-red">{{ error }}</small>
-                    {% endfor %}
-                </div>
-                <!-- confirm password -->
-                <div class="input-group mb-3">
-                    <span class="input-group-text register-icon"><i class="fas fa-user-lock"></i></span>
-                    {{ form.confirm_password(placeholder="Confirm password", class="form-control") }}
-                    {% for error in form.confirm_password.errors %}
-                    <small class="text-red">{{ error }}</small>
-                    {% endfor %}
-                    <!-- register button-->
-                    {{ form.submit(class="col-12 mt-4 btn register-btn") }}
-                </div>
-                <div class="text-center mt-2">
-                    <small>Already a user?
-                        <a href="{{url_for('login')}}" class="log-reg-small-link">Login here!</a>
-                    </small>
-                </div>
-            </form>
+    <div class="row">
+        <div class="log-reg-section">
+            <img src="../static/images/leprechaun-with-beer.jpg" alt="leprechaun-with-beer"
+                class="log-reg-leprechaun-with-beer-register">
+            <h1 class="log-reg-heading">Register</h1>
+            <div class="row ">
+                <form class="register-form" method="POST" action="">
+                    {{ form.hidden_tag() }}
+                    <!-- username -->
+                    <div class="input-group mb-3">
+                        <span class="input-group-text register-icon"><i class="fas fa-user-cog"></i></span>
+                        {{ form.username(placeholder="Username", class="form-control") }}
+                        {% for error in form.username.errors %}
+                        <small class="text-red">{{ error }}</small>
+                        {% endfor %}
+                    </div>
+                    <!-- password -->
+                    <div class="input-group mb-3">
+                        <span class="input-group-text register-icon"><i class="fas fa-user-lock"></i></span>
+                        {{ form.password (placeholder="Password", class="form-control") }}
+                        {% for error in form.password.errors %}
+                        <small class="text-red">{{ error }}</small>
+                        {% endfor %}
+                    </div>
+                    <!-- confirm password -->
+                    <div class="input-group mb-3">
+                        <span class="input-group-text register-icon"><i class="fas fa-user-lock"></i></span>
+                        {{ form.confirm_password(placeholder="Confirm password", class="form-control") }}
+                        {% for error in form.confirm_password.errors %}
+                        <small class="text-red">{{ error }}</small>
+                        {% endfor %}
+                        <!-- register button-->
+                        {{ form.submit(class="col-12 mt-4 btn register-btn") }}
+                    </div>
+                    <div class="text-center mt-2">
+                        <small>Already a user?
+                            <a href="{{url_for('login')}}" class="log-reg-small-link">Login here!</a>
+                        </small>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
 </div>
