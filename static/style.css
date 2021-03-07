@@ -179,7 +179,8 @@ body {
 }
 
  .log-reg-leprechaun-with-beer,
-.leprachaun-login-reg {
+.leprachaun-login-reg,
+.log-reg-leprechaun-with-beer-register {
     display: none;
 }
 
