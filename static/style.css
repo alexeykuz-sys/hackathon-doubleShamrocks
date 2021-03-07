@@ -251,10 +251,11 @@ body{
 }
 
 .login-icon,
-.register-icon {
+.register-icon,
+.input-group-text {
     color: var(--main-orange);
     background-color: var(--main-green);
-    font-size: 16px;  
+    text-shadow: 0 1px 1px rgba(2, 2, 2, 0.308);
 }
 
 .text-red {
@@ -455,9 +456,15 @@ i.rating {
 .btn-change-password:active,
 .btn-delete-account,
 .btn-form,
-.btn-change-password:visited {
+.btn-change-password:visited,
+.add-joke:link,
+.add-joke:visited,
+.add-joke:focus,
+.add-video:link,
+.add-video:visited,
+.add-video:focus{
     color: #fff;
-    text-shadow: 0 1px 1px #000;
+    text-shadow: 0 1px 1px rgba(34, 34, 34, 0.521);
     transition: all .2s;
     outline: none;
     box-shadow: none;
@@ -469,12 +476,14 @@ i.rating {
 }
 
 .btn-change-password,
-.btn-form {
+.btn-form,
+.add-video {
    background-color: var(--main-green-dark); 
 }
 
 .btn-change-password:hover,
-.btn-form:hover {
+.btn-form:hover,
+.add-video:hover {
     background-color:  var(--main-green); 
 }
 
@@ -488,6 +497,14 @@ i.rating {
 
 .btn-delete-account:hover {
     background-color:  #d80808; 
+}
+
+.add-joke {
+    background-color:  var(--main-orange);
+}
+
+.add-joke:hover {
+    background-color:  #e49400;  
 }
 
 #jokes-tab:link,
@@ -528,6 +545,7 @@ i.rating {
     padding: 1.5rem 2rem;
     background-color: rgba(255, 253, 253, 0.904);
     border-radius: .5rem;
+    border: 1px solid var(--main-orange);
 }
 
 .change-username-heading {
@@ -617,7 +635,7 @@ i.rating {
     .log-reg-leprechaun-with-beer {
         display: block;
         position: absolute;
-        top: 2.5rem;
+        top: 6.1rem;
         left: 38rem;
         width: 20rem;
     }
@@ -625,7 +643,7 @@ i.rating {
     .log-reg-leprechaun-with-beer-register {
         display: block;
         position: absolute;
-        top: .8rem;
+        top: 4.7rem;
         left: 38rem;
         width: 20rem;
     }
