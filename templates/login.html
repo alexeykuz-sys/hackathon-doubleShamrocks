@@ -30,7 +30,12 @@
                     {% endfor %}
                     
                     <!-- Login button -->
-                    {{ form.submit(class="col-12 mt-3 btn login-btn") }}
+                    {{ form.submit(class="col-12 mt-4 btn login-btn") }}
+                </div>
+                <div class="text-center mt-2">
+                    <small>Don't have an acoount?
+                        <a href="{{url_for('register')}}" class="log-reg-small-link">Create one!</a>
+                    </small>
                 </div>
             </form>
         </div>

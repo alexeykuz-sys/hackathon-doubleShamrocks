@@ -213,6 +213,17 @@ body {
     background-color:  #048158;
 }
 
+.log-reg-small-link:link,
+.log-reg-small-link:visited {
+    color: rgb(41, 41, 41);
+    transition: all .2s;
+}
+
+.log-reg-small-link:hover {
+    text-decoration: none;
+    color: var(--main-green);
+}
+
 .login-icon,
 .register-icon {
     color: var(--main-orange);
@@ -497,7 +508,15 @@ i.rating {
     .log-reg-leprechaun-with-beer {
         display: block;
         position: absolute;
-        top: 4rem;
+        top: 2.5rem;
+        left: 38rem;
+        width: 20rem;
+    }
+
+    .log-reg-leprechaun-with-beer-register {
+        display: block;
+        position: absolute;
+        top: .8rem;
         left: 38rem;
         width: 20rem;
     }
