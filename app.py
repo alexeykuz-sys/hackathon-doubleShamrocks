@@ -11,6 +11,7 @@ from bson.objectid import ObjectId
 import cloudinary
 import cloudinary.uploader
 import cloudinary.api
+from datetime import date
 if os.path.exists("env.py"):
     import env
 
@@ -101,21 +102,30 @@ def upload_video(username):
     return render_template("upload_video.html", user=user, username=username)
 
 
-@app.route("/upload_jokes", methods=["GET", "POST"])
-def upload_jokes():
-    username = mongo.db.users.find_one({"username": username})
+@app.route("/profile/<username>/upload_jokes", methods=["GET", "POST"])
+def upload_jokes(username):
+
+    user_id = mongo.db.users.find_one({'username': session['username']})['_id']
     user = mongo.db.users.find_one({"username": session['username']})
 
     if request.method == 'POST':
+        today = date.today()
+
+        new_joke = {
+            "user": user_id,
+            "joke": request.form.get('user_jokes'),
+            "date": today.strftime("%d/%m/%Y"),
+                    }
+
+        mongo.db.jokes.insert_one(new_joke)
+        joke_id = mongo.db.jokes.find_one({'joke': request.form.get('user_jokes')})['_id']
+
         mongo.db.users.update_one(
-            {"username": username},
-            {"$addToSet": {"user_jokes": request.form.get('user_jokes')}})
+                {"username": username},
+                {"$addToSet": {"joke": joke_id}})
 
-        return redirect(url_for('upload_jokes'))
-    return render_template("upload_jokes.html", user=user)
-
-    return redirect(url_for('upload_jokes'))
-    return render_template("upload_jokes.html", user=user)
+        return redirect(url_for('upload_jokes', username=username))
+    return render_template("upload_jokes.html", user=user, username=username)
 
 
 @app.route("/upload_image", methods=["GET", "POST"])

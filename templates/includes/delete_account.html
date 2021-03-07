@@ -1,0 +1,65 @@
+<!-- Delete account Modal -->
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" 
+    aria-labelledby="deleteModalLabel" aria-hidden="true">
+<div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+    <div class="modal-header">
+        <h5 class="modal-title text-danger font-weight-bold" id="deleteModalLabel">
+            Delete {{ username }}'s Account
+        </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body  text-center">
+        <p class="text-red">
+            <i class="fas fa-exclamation-circle text-danger"></i>
+            Are you sure you want to delete your account?
+        </p>
+        <p class="text-muted mt-2 mb-0"><span class="font-weight-bold">Note:</span>
+            Deleting account will remove all your uploaded jokes and videos from the website.
+        </p>
+    </div>
+    <form action="{{ url_for('delete_account', username = session.username) }}"
+        method="POST">
+        <div class="mt-2 px-4">
+            <label for="confirm_password_to_delete">Confirm password</label>
+            <div class="input-group">
+                <div class="input-group-prepend">
+                        <div class="input-group-text"><i class="fas fa-user"></i></div>
+                </div>
+                <input placeholder="Enter password"
+                    id="confirm_password_to_delete"
+                    name="confirm_password_to_delete"
+                    type="password"
+                    class="validate form-control"
+                    required/>
+            </div>
+        </div>
+
+        <!-- Flash messages
+        <div class="row text-center">
+        {% with messages = get_flashed_messages() %} 
+            {% if messages %} 
+                {% for message in messages %}
+                    <p class="text-red">
+                    {{ message }}
+                    </p>
+                {% endfor %} 
+            {% endif %} 
+        {% endwith %}
+        </div> -->
+        <div class="modal-footer my-2">
+            <a href="{{ url_for('profile', username = session.username) }}"
+                class="btn btn-secondary"
+                name="action" >
+                Cancel
+            </a>
+            <button type="submit" class="btn btn-danger">
+            Delete Account
+            </button>
+        </div>
+    </form>
+    </div>
+</div>
+</div>
