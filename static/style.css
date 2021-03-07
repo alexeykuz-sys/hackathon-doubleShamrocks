@@ -13,13 +13,15 @@
 
 html {
   box-sizing: border-box;
-
+width: auto;
+height: auto;
 }
 
 
 
 body{ 
-
+    min-height: 100vh;
+  min-width: 100vw;
     background-color: #FCFCFC;
     font-family: "Open Sans", Arial, Helvetica, sans-serif;
  
@@ -136,26 +138,35 @@ body{
     text-transform: uppercase;
     color: var(--main-orange);
 }
-/* carousel */
+/* carousel */ 
+ .carousel-wrapper{
+   
+    max-width: 600px;
 
+}
 .carousel {
-    height:200px;
-    width: auto;
-    background-color: lightgrey;
+    
+    line-height: 2rem;
+    letter-spacing: 2px;
+    font-size: 16px;
+    font-weight: 600;
+    background-color: var(--main-green);
+    color:var(--main-orange) ;
     display: flex;
     flex-direction: row;
     margin-bottom: 10px;
 }
 
 .carousel-item{
-    display: block;
-    width: 100%;
-    height: 100px;
+   width: 100%;
+    height: 100%;
+    margin: 5px auto;
 }
 
 .joke-slide {
-    margin: 53px;
+    margin: 40px;
 }
+
 /*---- log in and register form ----*/
 .login-reg-container {
     position: relative;
@@ -501,7 +512,11 @@ i.rating {
         width: 40%;
         left: 30%;
     }
-
+    
+.carousel-item{
+   width: 80%;
+    
+    }
 }
 
 /*Media query for largest devices (desktops, 1900px and up)*/
