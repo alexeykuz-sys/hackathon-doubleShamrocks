@@ -197,7 +197,7 @@ h1.uploads{
 }
 
 /* ---- Jokes Page ---- */
-#leprachaun {
+.card {
     width: 100%;
 }
 
@@ -209,8 +209,6 @@ h1.uploads{
 
 i.rating {
     color: var(--main-green);
-    /*color: var(--main-orange);
-    background-color: var(--main-green); */
     font-size: 24px;
     margin: 5%;
 }

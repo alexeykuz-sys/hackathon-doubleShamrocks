@@ -3,32 +3,36 @@
 
 {% block content %}
 
-    <!-- <h1 class="text-center" style="display: none;">Double Shamrock Rules</h1> -->
-    <div class="container-fluid jokes-container">
-        <div class="row">
-            <div class="col-md-6 col-sm-12">
-                <h3 class="text-center">Jokes</h3>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-8 col-sm-12">
-                {% for joke in jokes %}
-                <div class="card">
-                    <div class="card-body">
-                        <p>{{ joke.joke }}</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-2 col-sm-6 like-score">
-                <a href="{{ url_for('joke_like', joke_id=joke_id) }}"><i class="rating fas fa-thumbs-up"></i>
-                    <span class="score">{{ joke.likes }}</span></a>
-            </div>
-            <div class="col-md-2 col-sm-6 dislike-score">
-                <a href="{{ url_for('joke_dislike', joke_id=joke_id) }}"><i class="rating fas fa-thumbs-down"></i>
-                    <span class="score">{{ joke.dislikes }}</span></a>
-            </div>
-            {% endfor %}
+<!-- <h1 class="text-center" style="display: none;">Double Shamrock Rules</h1> -->
+<div class="container-fluid jokes-container">
+    <div class="row">
+        <div class="col-md-6 col-sm-12">
+            <h3 class="text-center">Jokes</h3>
         </div>
     </div>
+    <div class="row">
+        {% for joke in jokes %}
+        <div class="col-md-8 col-sm-12">
+            <div class="card">
+                <div class="card-body">
+                    <p>{{ joke.joke }}</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-6 col-sm-3 col-md-2">
+            <form class="like-score" method="POST" onclick="joke_like(joke._id)">
+                <a href=""><i class="rating fas fa-thumbs-up"></i>
+                    <span class="score">{{ joke.likes }}</span></a>
+            </form>
+        </div>
+        <div class="col-xs-6 col-sm-3 col-md-2">
+            <form class="dislike-score" method="POST" action="{{ url_for('joke_dislike', joke_id=joke._id) }}">
+                <a href=""><i class="rating fas fa-thumbs-down"></i>
+                    <span class="score">{{ joke.dislikes }}</span></a>
+            </form>
+        </div>
+        {% endfor %}
+    </div>
+</div>
 
 {% endblock %}
