@@ -3,30 +3,40 @@
 
 {% block content %}
 <div class="container-fluid">
-    <div class="bg-img">
-        <img src="/static/images/bgimg1.png" alt="" srcset="">
-        <h1 class="hero-text text-center">Happy St. Patrick's Day</h1>
-        <div class="buttons">
-            <a href="{{url_for('jokes') }}" class="btn btn-lg btn-joke active" role="button" aria-pressed="true">Jokes</a>
-            <a href="{{url_for('videos') }}" class="btn btn-lg btn-video active" role="button" aria-pressed="true">Videos</a>
+<div class="row">
+    <div class="col-md-5">
+        <div class="bg-img">
+            <img src="/static/images/bgimg.PNG" alt="" srcset="">
         </div>
-        <div class="carousel-wrapper">
-            <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
-                <div class="carousel-inner">
-                    {% for joke in jokes %}
-                    <div class="carousel-item active">
-                        <p>{{ joke.joke }}</p>
+    </div>
+    <div class="col-md-7">
+        <div class="text-wrapper text-center">
+            <!-- <h1 class="hero-text text-center">Happy St. Patrick's Day</h1> -->
+            <div class="buttons">
+                <a href="{{url_for('jokes') }}" class="btn btn-lg btn-joke active" role="button"
+                    aria-pressed="true">Jokes</a>
+                <a href="{{url_for('videos') }}" class="btn btn-lg btn-video active" role="button"
+                    aria-pressed="true">Videos</a>
+            </div>
+            <div class="carousel-wrapper">
+                <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+                    <div class="carousel-inner">
+                        {% for joke in jokes %}
+                        <div class="carousel-item active">
+                            <p>{{ joke.joke }}</p>
+                        </div>
+                        <div class="carousel-item">
+                            <p>{{ joke.joke }}</p>
+                        </div>
+                        <div class="carousel-item">
+                            <p>{{ joke.joke }}</p>
+                        </div>
+                        {% endfor %}
                     </div>
-                    <div class="carousel-item">
-                        <p>{{ joke.joke }}</p>
-                    </div>
-                    <div class="carousel-item">
-                        <p>{{ joke.joke }}</p>
-                    </div>
-                    {% endfor %}
                 </div>
             </div>
         </div>
     </div>
+</div>
 </div>
 {% endblock %}

@@ -41,6 +41,21 @@ def jokes():
     return render_template("jokes.html", jokes=jokes)
 
 
+def joke_like(joke_id):
+    print(joke_id)
+    print(joke_like)
+    jokes = mongo.db.jokes.find_one({"_id": ObjectId(joke_id)})
+    jokes.update({'_id': ObjectId(joke_id)}, {'$inc': {'likes': 1}})
+    return render_template("jokes.html", jokes=jokes)
+
+
+@app.route('/joke_dislike/<joke_id>', methods=["GET", "POST"])
+def joke_dislike(joke_id):
+    jokes = mongo.db.jokes.find_one({"_id": ObjectId(joke_id)})
+    jokes.update({'_id': ObjectId(joke_id)}, {'$inc': {'dislikes': 1}})
+    return render_template("jokes.html", jokes=jokes)
+
+
 @app.route("/videos", methods=["GET", "POST"])
 def videos():
     return render_template("videos.html")
@@ -88,6 +103,10 @@ def upload_jokes():
             {"$addToSet": {"user_jokes": request.form.get('user_jokes')}})
 
         return redirect(url_for('upload_jokes'))
+    return render_template("upload_jokes.html", user=user)
+
+
+    return redirect(url_for('upload_jokes'))
     return render_template("upload_jokes.html", user=user)
 
 

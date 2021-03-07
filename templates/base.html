@@ -33,7 +33,8 @@
                 <li class="nav-item"><a href="{{url_for('videos')}}">Videos</a></li>
                 {% if session.username %}
                 <li class="nav-item"><a href="{{url_for('profile', username=session['username']) }}">Profile</a></li>
-                <li class="nav-item"><a href="#">New Joke</a></li>
+                <li class="nav-item"><a href="{{url_for('upload_jokes')}}">New Joke</a></li>
+                 <li class="nav-item"><a href="{{url_for('upload_video')}}">New Video</a></li>
                 <li class="nav-item"><a href="{{ url_for('logout') }}">Log Out</a></li>
                 {% else %}
                 <li class="nav-item"><a href="{{url_for('login')}}">Log In</a></li>
@@ -47,7 +48,6 @@
 
         {% endblock %}
     <footer>
-        <div class="container-fluid ">
             <div class="row">
                 <div class="col-12 page-footer">
                     <div class="footer-text">
@@ -75,6 +75,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
         integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
         crossorigin="anonymous"></script>
+        <script src="{{ url_for('static', filename='script.js') }}"></script>
 </body>
 
 </html>
