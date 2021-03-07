@@ -117,6 +117,7 @@ def upload_jokes(username):
             "date": today.strftime("%d/%m/%Y"),
                     }
 
+
         mongo.db.jokes.insert_one(new_joke)
         joke_id = mongo.db.jokes.find_one({'joke': request.form.get('user_jokes')})['_id']
 
