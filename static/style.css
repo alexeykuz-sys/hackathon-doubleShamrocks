@@ -600,6 +600,11 @@ i.rating {
     border-bottom: none;
 }
 
+.video-heading {
+    text-transform: uppercase;
+    text-align: center;
+}
+
 @media (min-width: 426px) { 
     
 .page-footer{
