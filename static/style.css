@@ -3,7 +3,7 @@
 /* Added a root for colours so if we tweak or change the main colours later it will up date all of them */
 :root {
     --main-green: #009e69;
-    --main-orange: orange;
+    --main-orange: #ffa500;
 
 }
 
@@ -155,10 +155,36 @@ body {
     height: 41%;
 }
 /*---- log in and register form ----*/
+.login-reg-container {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 90vh;
+    background-image: url(../static/images/login-reg-bg.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
 
-h3 {
+.log-reg-section {
+    padding: 1.5rem 2rem;
+    background-color: rgba(255, 253, 253, 0.904);
+    border-radius: .5rem;
+    border: 1px solid var(--main-orange);
+    width: 90%;
+    position: absolute;
+    box-shadow: .1rem .3rem .5rem rgba(44, 44, 44, 0.356);
+}
+
+ .log-reg-leprechaun-with-beer,
+.leprachaun-login-reg {
+    display: none;
+}
+
+.log-reg-heading {
     padding: 1.25rem;
-    margin-bottom: 0;
+    text-align: center;
     color: var(--main-green);
     font-weight: bold;
     font-family: 'Uncial Antiqua', Arial, sans-serif;
@@ -173,8 +199,18 @@ h3 {
 
 .login-btn,
 .register-btn{
-    color: var(--main-orange);
+    color: #fff;
+    text-shadow: 4px 2px 10px var(--main-orange);
     background-color: var(--main-green);
+    text-transform: uppercase;
+    font-size: 1.3rem;
+    transition: all .2s;
+}
+
+.login-btn:hover,
+.register-btn:hover{
+    color: var(--main-orange);
+    background-color:  #048158;
 }
 
 .login-icon,
@@ -372,18 +408,6 @@ i.rating {
     border-bottom: none;
 }
 
-
-
-@media (min-width: 426px) { 
-    
-.page-footer{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    }
-}
-
 /*  Change username page */
 
 .change-username-container {
@@ -414,4 +438,67 @@ i.rating {
 
 .icon-shamrock-change {
     width: 2.2rem;
+}
+
+
+@media (min-width: 426px) { 
+    .page-footer{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+    }
+}
+
+/* Media query for medium devices (tablets, 768px and up)*/
+@media (min-width: 768px) {
+    .log-reg-section {
+        padding: 1.5rem 2rem;
+        width: 50%;
+        left: 25%;
+    }
+
+    .leprachaun-login-reg {
+        display: block;
+        position: absolute;
+        bottom: 1rem;
+        left: 2rem;
+        width: 10rem;
+    }
+
+    .log-reg-leprechaun-with-beer {
+        display: none;
+    }
+}
+
+/*Media query for large devices (desktops, 992px and up)*/
+@media (min-width: 992px) {
+    .log-reg-section {
+        padding: 1.5rem 2rem;
+        width: 40%;
+        left: 30%;
+    }
+
+}
+
+/*Media query for largest devices (desktops, 1900px and up)*/
+@media (min-width: 1900px) {
+    .container {
+        max-width: 90rem !important;
+        font-size: 1.1rem;
+    }
+
+    .log-reg-section {
+        padding: 1.5rem 2rem;
+        width: 30%;
+        left: 35%;
+    }
+
+    .log-reg-leprechaun-with-beer {
+        display: block;
+        position: absolute;
+        top: 4rem;
+        left: 38rem;
+        width: 20rem;
+    }
 }
