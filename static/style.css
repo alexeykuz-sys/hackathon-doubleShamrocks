@@ -90,7 +90,7 @@ body{
 .page-footer{
     background-color: var(--main-green);
     width: 100vw;
-    height: 70px;
+    
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -99,7 +99,6 @@ body{
 
 .footer-text {
     margin-top: 10px;
-    margin-left: 20px;
     flex-direction: column;
     float: left;
 }
@@ -113,6 +112,7 @@ body{
 
 .social-icons {
     float: right;
+    margin-bottom: 10px;
     
 }
 
