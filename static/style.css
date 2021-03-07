@@ -429,11 +429,16 @@ i.rating {
     font-family: Open+Sans, sans-serif;
 }
 
-.edit-image-link:link,
-.edit-image-link:visited{
+.edit-image-link,
+.edit-image-link:focus,
+.edit-image-link:active{
     color: rgb(80, 79, 79);
     font-size: .9rem;
     text-align: center;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    outline: none;
 }
 
 .edit-image-link:hover{
