@@ -7,31 +7,43 @@
     --main-orange: #ffa500;
 
 }
-* {
-  padding: 0;
-  border: 0;
+
+*,
+*::before,
+*::after{
+    margin: 0;
+    padding: 0;
+    box-sizing: inherit;
 }
 
-html {
-  box-sizing: border-box;
-width: auto;
-height: auto;
+body, html {
+    min-height: 100vh;
+    width:100vw;
+    box-sizing: border-box;
+    overflow-x: hidden;
 }
-
-
 
 body{ 
-    min-height: 100vh;
-  min-width: 100vw;
     background-color: #FCFCFC;
     font-family: "Open Sans", Arial, Helvetica, sans-serif;
- 
+    display: flex;
+    flex-direction: column;
+     /* height: calc(100vh - 58px); */
 }
 
+main {
+    flex: 1 0 auto;
+    margin-top: 5.7rem;
+}
+
+/* NAVBAR */
 
 .navbar {
     background-color: var(--main-green);
-    
+}
+
+.top-nav{
+    border-bottom: 1px solid rgba(39, 38, 38, 0.438);
 }
 
 .navbar-brand {
@@ -40,13 +52,18 @@ body{
     font-size: 1.2rem;
     font-family: 'Uncial Antiqua', Arial, sans-serif;
     letter-spacing: 1px;
-   
-    
 }
 
 .logo {
     margin-right: 10px;
 }
+
+.logo-link:link,
+.logo-link:visited,
+.logo-link:hover {
+    color: var(--main-orange);
+}
+
 .navbar-nav  .nav li {
     margin-right: 20px;
     color: var(--main-orange);
@@ -55,23 +72,37 @@ body{
     justify-content: space-between;
 }
 
+
 .navbar-nav li a{
      color: var(--main-orange);
      list-style: none;
      text-decoration: none;
+     text-shadow: 1px 1px 4px #3130305e;
      font-size: 1.1rem;
+     font-family: "Open Sans", sans-serif;;
      letter-spacing: 1px;
      font-weight: 500;
      margin-right: 25px;
+     text-transform: uppercase;
+     transition: all .3s;
+
+}
+
+.dropdown-menu{
+    background-color: var(--main-green);
+}
+
+.dropdown-menu:hover,
+.dropdown-item-profile:hover {
+    background-color: var(--main-green-dark) !important;
+}
+
+.navbar-nav li a:hover {
+    color: #fff;
 }
 
 .navbar-nav .nav-item {
     margin-top: 5px;
-}
-
-.navbar-nav li:hover {
-  text-transform: uppercase;
-  font-weight: 600;
 }
 
 .navbar-toggler {
@@ -81,12 +112,13 @@ body{
    
 }
 
-.fas{
-    /* background-color:red; */
+.bar-icon{
    margin-top:6px;
-    color: orange;
+    color: var(--main-orange);
 }
 
+
+/* FOOTER */
 .page-footer{
     background-color: var(--main-green);
     width: 100vw;
@@ -95,7 +127,6 @@ body{
     flex-direction: column;
     align-items: center;
 }
-
 
 .footer-text {
     margin-top: 10px;
@@ -111,9 +142,13 @@ body{
 }
 
 .social-icons {
+<<<<<<< HEAD
+    float: right;   
+=======
     float: right;
     margin-bottom: 10px;
     
+>>>>>>> 29684c8ebaf2b2a84e7fde5148c99271ad254493
 }
 
 .social-icons a img{
