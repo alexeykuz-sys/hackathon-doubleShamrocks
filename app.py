@@ -7,6 +7,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from forms import RegisterForm, LoginForm,\
     ChangeUsernameForm, ChangePasswordForm
 from werkzeug.utils import secure_filename
+from werkzeug.exceptions import RequestEntityTooLarge
 from bson.objectid import ObjectId
 import cloudinary
 import cloudinary.uploader
@@ -21,6 +22,7 @@ app = Flask(__name__)
 app.config["MONGO_DBNAME"] = os.environ.get("MONGO_DBNAME")
 app.config["MONGO_URI"] = os.environ.get("MONGO_URI")
 app.secret_key = os.environ.get("SECRET_KEY")
+app.config['MAX_CONTENT_LENGTH'] = 100 * 1024 * 1024
 cloudinary.config(
     cloud_name=os.environ.get("CLOUDINARY_CLOUD_NAME"),
     api_key=os.environ.get("CLOUDINARY_API_KEY"),
@@ -99,7 +101,7 @@ def upload_video(username):
     user_id = mongo.db.users.find_one({'username': session['username']})['_id']
     user = mongo.db.users.find_one(
           {"username": session['username']})['username']
-      # returns a list of videos asigned to that user
+    # returns a list of videos asigned to that user
     my_video = list(mongo.db.videos.find({'user': user_id}))
 
     if request.method == 'POST':
@@ -109,7 +111,7 @@ def upload_video(username):
             filename = secure_filename(user_video.filename)
             filename, file_extension = os.path.splitext(filename)
             public_id_video = ("vidoes/" + username + "/" + filename)
-
+            
             # uploads video to cloudinary
             cloudinary.uploader.unsigned_upload(
                 user_video, "puppy_image",
@@ -131,6 +133,8 @@ def upload_video(username):
                 "video_description": request.form.get('video_description'),
                 "author": username,
                 "date": today.strftime("%d/%m/%Y"),
+                'likes': 0,
+                'dislikes': 0
             }
 
             # uploads to database
@@ -145,7 +149,8 @@ def upload_video(username):
                 {"$addToSet": {"video": video_id}})
 
         return redirect(url_for('upload_video', username=username))
-    return render_template("upload_video.html", user=user, username=username, my_video=my_video)
+    return render_template(
+        "upload_video.html", user=user, username=username, my_video=my_video)
 
 
 # ADD JOKES
@@ -166,6 +171,8 @@ def upload_jokes(username):
             "joke": request.form.get('user_jokes'),
             "date": today.strftime("%d/%m/%Y"),
             "author": username,
+            'likes': 0,
+            'dislikes': 0,
         }
 
         # adds joke to both databases parameters
@@ -180,7 +187,8 @@ def upload_jokes(username):
             {"$addToSet": {"joke": joke_id}})
 
         return redirect(url_for('upload_jokes', username=username))
-    return render_template("upload_jokes.html", user=user, username=username, my_jokes=my_jokes)
+    return render_template(
+        "upload_jokes.html", user=user, username=username, my_jokes=my_jokes)
 
 
 @app.route("/upload_image", methods=["GET", "POST"])
@@ -471,6 +479,12 @@ def change_password(username):
                                     username=session["username"]))
     return render_template('change_password.html', username=username,
                            form=form)
+
+
+@app.errorhandler(413)
+def fileLarge(e):
+    flash("Your file is too big"), 413
+    return redirect(url_for('uploads_video'))
 
 
 if __name__ == "__main__":
