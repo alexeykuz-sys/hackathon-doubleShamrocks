@@ -21,13 +21,13 @@
         </div>
         <div class="col-xs-6 col-sm-3 col-md-4">
             <div class="likes-wrapper">
-                <form class="like-score" method="POST" onclick="joke_like(joke._id)">
-                    <a href=""><i class="rating fas fa-thumbs-up"></i>
-                        <span class="score">{{ joke.likes }}</span></a>
+                <form  class="like-score" method="POST" onclick="joke_like(joke._id)">
+                    <a  href=""><i class="rating fas fa-thumbs-up"></i>
+                        <span class="score-likes">{{ joke.likes }}</span></a>
                 </form>
-                <form class="dislike-score" method="POST" action="{{ url_for('joke_dislike', joke_id=joke._id) }}">
+                <form id="dislike-score" class="dislike-score" method="POST" action="{{ url_for('joke_dislike', joke_id=joke._id) }}">
                     <a href=""><i class="rating fas fa-thumbs-down"></i>
-                        <span class="score">{{ joke.dislikes }}</span></a>
+                        <span class="score-dislikes">{{ joke.dislikes }}</span></a>
                 </form>
             </div>
         </div>
