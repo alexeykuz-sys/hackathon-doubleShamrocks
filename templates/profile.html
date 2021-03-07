@@ -70,23 +70,25 @@
             <div class="tab-content jokes-videos-container" id="myTabContent">
                 <div class="tab-pane fade show active" id="jokes" role="tabpanel" aria-labelledby="jokes-tab">
                     {% for joke in my_jokes %} 
-                    <div class="d-flex mt-2">
+                    <div class="d-flex justify-content-around mt-2">
                         <p>
                             <i class="fas fa-quote-left icon-green pr-1"></i>
                             {{ joke.joke }}
                             <i class="fas fa-quote-right  icon-green pl-1"></i>
                         </p>
-                                {% if session.username == username %}
+                            {% if session.username == username %}
+                            <div class="d-flex">
                                 <!--Edit joke button-->
                                 <a href="#" title="Edit" class="mr-2"> 
                                     <i class="fas fa-edit text-info"></i>
                                 </a> 
                                 <!--Delete joke button-->
                                 <a class="delete-resource-button"
-                                    data-toggle="modal" data-target="#deleteJokeModal" title="Delete">
+                                    data-toggle="modal" href="#deleteJokeModal" title="Delete">
                                         <i class="fas fa-trash-alt text-danger"></i>
                                 </a>
-                                {% endif %}
+                            </div>
+                            {% endif %}
                     </div>
                         <!--Likes and dislikes-->
                         <div class="d-flex justify-content-end">
@@ -194,4 +196,6 @@
         </div>
     </div>
     </div>
+
+    
 {% endblock %}

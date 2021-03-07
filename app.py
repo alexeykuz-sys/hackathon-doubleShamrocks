@@ -140,6 +140,37 @@ def upload_image():
     return render_template("upload_image.html", user=user)
 
 
+# Delete Joke
+@app.route("/delete_joke/<joke_id>")
+def delete_joke(joke_id):
+    '''
+    DELETE.
+    Removes a joke from the database.
+    Only the author of the joke can delete the joke.
+    '''
+    # prevents guest users from viewing the modal
+    if 'username' not in session:
+        flash('You must be logged in to delete a joke!')
+        return redirect(url_for('homepage'))
+    user_in_session = mongo.db.users.find_one({'username': session['username']})
+    # get the selected joke for filling the fields
+    selected_joke = mongo.db.jokes.find_one({"_id": ObjectId(joke_id)})
+    # allows only author of the joke to delete it;
+    # protects againts brute-forcing
+    if selected_joke['author'] == user_in_session['_id']:
+        mongo.db.jokes.remove({"_id": ObjectId(joke_id)})
+        # find the author of the  joke
+        author = mongo.db.users.find_one({'username': session['username']})['_id']
+
+        mongo.db.users.update_one({"_id": ObjectId(author)},
+                              {"$pull": {"user_jokes": ObjectId(joke_id)}})
+        flash('Your joke has been deleted.')
+        return redirect(url_for("homepage"))
+    else:
+        flash("You can only delete your own jokes!")
+        return redirect(url_for('homepage'))
+
+
 @app.route("/login",  methods=['GET', 'POST'])
 def login():
     '''
