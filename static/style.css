@@ -175,8 +175,13 @@ body {
     border-radius: .5rem;
     border: 1px solid var(--main-orange);
     width: 90%;
-    position: absolute;
     box-shadow: .1rem .3rem .5rem rgba(44, 44, 44, 0.356);
+    margin: 0 auto;
+}
+
+.log-reg-leprechaun-with-beer-mobile {
+    width: 10rem;
+    margin: 0 auto;
 }
 
  .log-reg-leprechaun-with-beer,
@@ -332,7 +337,12 @@ i.rating {
     padding: 1.5rem 2rem;
     background-color: #fff;
     border-radius: .5rem;
-    border: 1px solid rgb(219, 219, 219);
+    border: 1px solid var(--main-orange);
+}
+
+.link-tab-profile {
+    border: 1px solid var(--main-orange) !important;
+    border-bottom: none !important;
 }
 
 .profile-main-heading {
@@ -512,6 +522,10 @@ i.rating {
 
     .log-reg-leprechaun-with-beer {
         display: none;
+    }
+
+    .log-reg-section {
+        position: absolute;
     }
 }
 
