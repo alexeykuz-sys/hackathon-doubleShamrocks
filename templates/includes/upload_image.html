@@ -1,0 +1,22 @@
+<div class="modal fade" id="uploadImageModal" tabindex="-1" role="dialog" aria-labelledby="uploadImageModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="uploadImageModalLabel">Upload Image</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <form action="{{ url_for('upload_image', username=session['username']) }}" method="POST" enctype="multipart/form-data">
+            <div class="modal-body mb-3">
+                    <label for="user_image" class="form-label"> Add an image</label>
+                    <input type="file" name="user_image" class="form-control" />
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary">Upload</button>
+            </div>
+        </form>
+        </div>
+    </div>
+</div>

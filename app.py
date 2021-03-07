@@ -110,12 +110,9 @@ def upload_jokes():
     return render_template("upload_jokes.html", user=user)
 
 
-@app.route("/upload_image", methods=["GET", "POST"])
-def upload_image():
-
-    username = "testing"
-    user = mongo.db.users.find_one({"username": username})
-
+@app.route("/upload_image/<username>", methods=["GET", "POST"])
+def upload_image(username):
+    username = mongo.db.users.find_one({'username': session['username']})['username']
     if request.method == 'POST':
         for item in request.files.getlist("user_image"):
             filename = secure_filename(item.filename)
@@ -127,17 +124,12 @@ def upload_image():
             image_url = (
                 "https://res.cloudinary.com/puppyplaymates/image/upload/doubleshamrocks/"
                 + public_id_image + file_extension)
+            user = mongo.db.users.find_one({'username': session['username']})['_id']
+            mongo.db.users.update_one(
+                {"_id": ObjectId(user)},
+                {"$set": {"profile_image": image_url}})
 
-            mongo.db.users.update(
-                {"username": username},
-                {"$addToSet": {"user_image": {
-                    "image_url": image_url,
-                    "image_title": request.form.get('image_title'),
-                    "image_description": request.form.get('image_description')
-                }}})
-
-        return redirect(url_for('upload_image'))
-    return render_template("upload_image.html", user=user)
+        return redirect(url_for('profile', username=session["username"]))
 
 
 # Delete Joke
@@ -240,7 +232,6 @@ def register():
                 "password": hashed_password,
                 "jokes": [],
                 "videos": [],
-                "images": [],
                 "profile_image": "",
             }
             users.insert_one(new_user)

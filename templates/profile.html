@@ -10,47 +10,49 @@
 
     <!--User profile avatar-->
     <div class="row my-5 px-1">
-        <div class="col-12 col-lg-5 personal-info-container mb-4">
-            <div class="image-profile-container">
-                <h2 class="profile-subheading mb-4">
-                    <i class="fas fa-user-cog mr-1"></i>&nbsp;My&nbsp;Settings
-                </h2>
-                <div class="d-flex justify-content-center flex-column">
-                    {% if image %}
-                    <img id="user_profile_image"
-                        src="{{ image }}"
-                        class="responsive-img profile_image" alt="Profile Image"/>
-                    {% else %}
-                    <img src="{{ url_for('static', filename='images/profile_image_placeholder.png') }}"
-                        class="responsive-img profile_image" alt="Profile Image" />
-                    {% endif %}
+        <div class="col-12 col-lg-5" >
+            <div class="personal-info-container mb-4">
+                <div class="image-profile-container">
+                    <h2 class="profile-subheading mb-4">
+                        <i class="fas fa-user-cog mr-1"></i>&nbsp;My&nbsp;Settings
+                    </h2>
+                    <div class="d-flex justify-content-center flex-column">
+                        {% if image %}
+                        <img id="user_profile_image"
+                            src="{{ image }}"
+                            class="responsive-img profile_image" alt="Profile Image"/>
+                        {% else %}
+                        <img src="{{ url_for('static', filename='images/profile_image_placeholder.png') }}"
+                            class="responsive-img profile_image" alt="Profile Image" />
+                        {% endif %}
 
-                    <a href="#" class="edit-image-link mt-2">
-                        <i class="fas fa-edit mr-1"></i>&nbsp;Edit an image
+                        <button type="button" data-toggle="modal" 
+                            data-target="#uploadImageModal" class="edit-image-link mt-2">
+                            <i class="fas fa-edit mr-1"></i>&nbsp;Edit an image
+                        </button>
+                    </div>
+                </div>
+                <div class="username-container my-3">
+                    <p>Username:<span class="username mx-2"> {{ username }}</span>
+                        <a href="{{ url_for('change_username', username = session.username) }}"
+                            title="Edit username"><i class="fas fa-edit icon-green icon-small"></i>
+                        </a>
+                    </p>
+                </div>
+                <div class="d-flex justify-content-center flex-column flex-md-row">
+                    <a href="{{ url_for('change_password', username = session.username) }}" 
+                        class="btn btn-change-password mr-md-1 mb-2">
+                    <i class="fas fa-lock"></i> Change&nbsp;password
                     </a>
+                    <button type="button"
+                        class="btn btn-delete-account mb-2"
+                        data-toggle="modal" 
+                        data-target="#deleteModal">
+                    <i class="fas fa-trash-alt"></i> Delete&nbsp;account
+                    </button>
                 </div>
             </div>
-            <div class="username-container my-3">
-                <p>Username:<span class="username mx-2"> {{ username }}</span>
-                    <a href="{{ url_for('change_username', username = session.username) }}"
-                        title="Edit username"><i class="fas fa-edit icon-green icon-small"></i>
-                    </a>
-                </p>
-            </div>
-            <div class="d-flex justify-content-center flex-column flex-md-row">
-                <a href="{{ url_for('change_password', username = session.username) }}" 
-                class="btn btn-change-password mr-md-1 mb-2">
-                <i class="fas fa-lock"></i> Change&nbsp;password
-                </a>
-                <button type="button"
-                class="btn btn-delete-account mb-2"
-                data-toggle="modal" 
-                    data-target="#deleteModal">
-                <i class="fas fa-trash-alt"></i> Delete&nbsp;account
-                </button>
-            </div>
         </div>
-
         <!--My Jokes and My Videos-->
         <div class="col-12 col-lg-7 pl-lg-5 mb-4">
             <ul class="nav nav-tabs profile-tabs text-center d-flex justify-content-center" id="myTab" role="tablist">
@@ -131,71 +133,7 @@
 </div>
 
 
-    <!-- Delete account Modal -->
-    <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" 
-        aria-labelledby="deleteModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-        <div class="modal-header">
-            <h5 class="modal-title text-danger font-weight-bold" id="deleteModalLabel">
-                Delete {{ username }}'s Account
-            </h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-        <div class="modal-body  text-center">
-            <p class="text-red">
-                <i class="fas fa-exclamation-circle text-danger"></i>
-                Are you sure you want to delete your account?
-            </p>
-            <p class="text-muted mt-2 mb-0"><span class="font-weight-bold">Note:</span>
-                Deleting account will remove all your uploaded jokes and videos from the website.
-            </p>
-        </div>
-        <form action="{{ url_for('delete_account', username = session.username) }}"
-            method="POST">
-            <div class="mt-2 px-4">
-                <label for="confirm_password_to_delete">Confirm password</label>
-                <div class="input-group">
-                    <div class="input-group-prepend">
-                            <div class="input-group-text"><i class="fas fa-user"></i></div>
-                    </div>
-                    <input placeholder="Enter password"
-                        id="confirm_password_to_delete"
-                        name="confirm_password_to_delete"
-                        type="password"
-                        class="validate form-control"
-                        required/>
-                </div>
-            </div>
-
-            <!-- Flash messages
-            <div class="row text-center">
-            {% with messages = get_flashed_messages() %} 
-                {% if messages %} 
-                    {% for message in messages %}
-                        <p class="text-red">
-                        {{ message }}
-                        </p>
-                    {% endfor %} 
-                {% endif %} 
-            {% endwith %}
-            </div> -->
-            <div class="modal-footer my-2">
-                <a href="{{ url_for('profile', username = session.username) }}"
-                    class="btn btn-secondary"
-                    name="action" >
-                    Cancel
-                </a>
-                <button type="submit" class="btn btn-danger">
-                Delete Account
-                </button>
-            </div>
-        </form>
-        </div>
-    </div>
-    </div>
-
+ {% include "includes/delete_account.html" %} 
+{% include "includes/upload_image.html" %} 
     
 {% endblock %}
