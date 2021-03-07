@@ -134,7 +134,7 @@ def upload_video(username):
                 "author": username,
                 "date": today.strftime("%d/%m/%Y"),
                 'likes': 0,
-                'dislike': 0
+                'dislikes': 0
             }
 
             # uploads to database
@@ -172,7 +172,7 @@ def upload_jokes(username):
             "date": today.strftime("%d/%m/%Y"),
             "author": username,
             'likes': 0,
-            'dislike': 0,
+            'dislikes': 0,
         }
 
         # adds joke to both databases parameters

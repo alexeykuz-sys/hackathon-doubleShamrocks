@@ -142,13 +142,8 @@ main {
 }
 
 .social-icons {
-<<<<<<< HEAD
-    float: right;   
-=======
     float: right;
     margin-bottom: 10px;
-    
->>>>>>> 29684c8ebaf2b2a84e7fde5148c99271ad254493
 }
 
 .social-icons a img{
