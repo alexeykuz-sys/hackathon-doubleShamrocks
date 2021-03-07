@@ -3,24 +3,27 @@
 
 {% block content %}
 <h1 class="uploads text-center">Double Shamrock Jokes</h1>
-<p class="uploads-text text-center">Just how bad are your jokes? Make someone laugh <em>or cry</em> this St Patricks Day</p>
-
-{% if session.user == username %}
-<h3 class="uploads">Upload New Joke</h3>
-<form class="upload-form" action="{{ url_for('upload_jokes')}}" method="POST">
-    <div class=" mb-3 ">
-        <label for="user_jokes" class="form-label">Add a new Joke</label>
-        <textarea id="user_jokes" class="form-control" type="text" name="user_jokes" min-length="5" maxlength="500"
-            placeholder="Insert joke......."></textarea>
+<p class="uploads-text text-center">Just how bad are your jokes? Make someone laugh <em>or cry</em> this St Patricks Day
+</p>
+<div class="row">
+    <div class="col-sm-12">
+        {% if session.user == username %}
+        <h3 class="uploads">Upload New Joke</h3>
+        <form class="upload-form" action="{{ url_for('upload_jokes')}}" method="POST">
+            <div class=" mb-3 ">
+                <label for="user_jokes" class="form-label">Add a new Joke</label>
+                <textarea id="user_jokes" class="form-control" type="text" name="user_jokes" min-length="5"
+                    maxlength="500" placeholder="Insert joke......."></textarea>
+            </div>
+            <button class="btn btn-lg btn-uploads active" type="submit">Upload</button>
+        </form>
     </div>
-    <button class="btn btn-lg btn-video active" type="submit">Upload</button>
-</form>
-
+</div>
 <hr>
 <div class="upload-content">
     <div class="row">
         {% for user_jokes in user.user_jokes  %}
-        <div class="col-md-3">
+        <div class="col-md-4">
             <div class="card jokes">
                 <p>{{user_jokes}}</p>
                 <p><em>by {{user.username}}</em></p>

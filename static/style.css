@@ -326,10 +326,21 @@ h1.uploads{
     margin: 40px;
 }
 
+textarea.form-control {
+    width: 100%;
+}
+
 .form-label {
     font-family: "Open Sans", Arial, Helvetica, sans-serif;
     font-size: 20px;
     letter-spacing: 1.2px;
+}
+
+.btn-uploads{
+    background-color: var(--main-green);
+    color: var(--main-orange);
+    box-shadow: -2px -2px 10px rgb(255 255 255 / 50%), 5px 5px 10px rgb(48 47 47 / 50%);
+
 }
 /* ---- Jokes Page ---- */
 
@@ -581,10 +592,13 @@ i.rating {
         left: 30%;
     }
     
-.carousel-item{
-   width: 80%;
-    
-    }
+    .carousel-item{
+    width: 80%;
+        
+        }
+    textarea.form-control {
+    width: 85%;
+}
 }
 
 /*Media query for largest devices (desktops, 1900px and up)*/
