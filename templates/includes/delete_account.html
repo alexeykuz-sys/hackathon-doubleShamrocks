@@ -50,11 +50,11 @@
         {% endwith %}
         </div> -->
         <div class="modal-footer my-2">
-            <a href="{{ url_for('profile', username = session.username) }}"
+            <button data-dismiss="modal"
                 class="btn btn-secondary"
                 name="action" >
                 Cancel
-            </a>
+            </button>
             <button type="submit" class="btn btn-danger">
             Delete Account
             </button>

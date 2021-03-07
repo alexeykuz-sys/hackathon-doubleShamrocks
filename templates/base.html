@@ -34,14 +34,18 @@
                         <li class="nav-item"><a href="{{url_for('videos')}}"><i class="fas fa-film mr-1 d-inline d-md-none d-lg-inline"></i>Videos</a></li>
                         {% if session.username %}
                         <li class="nav-item  dropdown">
-                                <a href="{{url_for('profile', username=session['username']) }}"
+                                <a href="#"
                                     class="dropdown-toggle pr-4" role="button"
                                     id="dropdownMenuLink" data-toggle="dropdown"
                                      aria-haspopup="true" aria-expanded="false">
-                                    <i class="fas fa-user mr-1 d-inline d-md-none d-lg-inline"></i>Profile
+                                    <i class="fas fa-user mr-1 d-inline d-md-none d-lg-inline"></i>Account
                                 </a>
 
                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                    <a href="{{url_for('profile', username=session['username']) }}" 
+                                        class="dropdown-item dropdown-item-profile">
+                                         <i class="fas fa-user-cog mr-1 d-inline d-md-none d-lg-inline"></i>My Profile
+                                     </a>
                                     <a href="{{url_for('upload_jokes', username=session['username'])}}" 
                                         class="dropdown-item dropdown-item-profile">
                                          <i class="fas fa-plus mr-1 d-inline d-md-none d-lg-inline"></i>New Joke
@@ -100,7 +104,8 @@
         integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
         crossorigin="anonymous"></script>
     <script src="{{ url_for('static', filename='script.js') }}"></script>
-    
+    {% block extra_js %}
+    {% endblock %}
 </body>
 
 </html>
