@@ -2,18 +2,18 @@
 {% block title %}Upload Jokes{% endblock %}
 
 {% block content %}
-<h1 class="uploads">Double Shamrock Jokes</h1>
-<p>Just how bad are your jokes? Make someone laugh <em>or cry</em> this St Patricks Day</p>
+<h1 class="uploads text-center">Double Shamrock Jokes</h1>
+<p class="uploads-text text-center">Just how bad are your jokes? Make someone laugh <em>or cry</em> this St Patricks Day</p>
 
 {% if session.user == username %}
 <h3 class="uploads">Upload New Joke</h3>
-<form action="{{ url_for('upload_jokes')}}" method="POST">
+<form class="upload-form" action="{{ url_for('upload_jokes')}}" method="POST">
     <div class=" mb-3 ">
         <label for="user_jokes" class="form-label">Add a new Joke</label>
         <textarea id="user_jokes" class="form-control" type="text" name="user_jokes" min-length="5" maxlength="500"
             placeholder="Insert joke......."></textarea>
     </div>
-    <button type="submit">Upload</button>
+    <button class="btn btn-lg btn-video active" type="submit">Upload</button>
 </form>
 
 <hr>

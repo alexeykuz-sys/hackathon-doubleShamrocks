@@ -121,7 +121,8 @@ body{
 
 .buttons{
     margin: 20px;
-     
+    display: flex;
+    flex-direction: row;
 }
 
 .btn-joke,
@@ -293,17 +294,33 @@ video {
 }
 
 h3.uploads {
-    padding: 0;
-    margin: 3%;
-    margin-left: 0;
+    margin: 40px;
+    
+  
 }
 
+.uploads-text{
+     font-family: "Open Sans", Arial, Helvetica, sans-serif;
+    font-size: 20px;
+    letter-spacing: 1.2px;
+}
 h1.uploads{
     color: var(--main-green);
     font-weight: bold;
-    margin-top: 2%;
+    margin: 40px;
+    font-family: 'Uncial Antiqua', Arial, sans-serif;
+    letter-spacing: 1.2px;
 }
 
+.upload-form {
+    margin: 40px;
+}
+
+.form-label {
+    font-family: "Open Sans", Arial, Helvetica, sans-serif;
+    font-size: 20px;
+    letter-spacing: 1.2px;
+}
 /* ---- Jokes Page ---- */
 
 .jokes-header{ 
