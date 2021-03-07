@@ -7,7 +7,7 @@
 </p>
 <div class="row">
     <div class="col-sm-12">
-        {% if session.user == username %}
+       
         <h3 class="uploads">Upload New Joke</h3>
         <form class="upload-form" action="{{ url_for('upload_jokes', username=username)}}" method="POST">
             <div class=" mb-3 ">
@@ -37,8 +37,8 @@
     </div>
 </div>
 
-{% else %}
+
 <p>Leprecorn is not happy! You can't add a video here, go to your own profile!</p>
-<p><a href="{{url_for('profile', username=username)}}">Back to {{username}} Profile</a></p>
-{% endif %}
+<p><a href="{{url_for('profile', username=username )}}">Back to {{username}} Profile</a></p>
+
 {% endblock %}
