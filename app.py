@@ -7,7 +7,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from forms import RegisterForm, LoginForm,\
          ChangeUsernameForm, ChangePasswordForm
 from werkzeug.utils import secure_filename
-# from bson.objectid import ObjectId
+from bson.objectid import ObjectId
 import cloudinary
 import cloudinary.uploader
 import cloudinary.api
