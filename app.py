@@ -44,24 +44,54 @@ def jokes():
     return render_template("jokes.html", jokes=jokes)
 
 
+@app.route('/joke_like/<joke_id>', methods=["GET", "POST"])
 def joke_like(joke_id):
-    print(joke_id)
-    print(joke_like)
-    jokes = mongo.db.jokes.find_one({"_id": ObjectId(joke_id)})
-    jokes.update({'_id': ObjectId(joke_id)}, {'$inc': {'likes': 1}})
+    joke = mongo.db.jokes.update_one(
+        {"_id": ObjectId(joke_id)},
+        {'$inc': {'likes': 1}},
+        upsert=True
+        )
+    jokes = list(mongo.db.jokes.find())
     return render_template("jokes.html", jokes=jokes)
 
 
 @app.route('/joke_dislike/<joke_id>', methods=["GET", "POST"])
 def joke_dislike(joke_id):
-    jokes = mongo.db.jokes.find_one({"_id": ObjectId(joke_id)})
-    jokes.update({'_id': ObjectId(joke_id)}, {'$inc': {'dislikes': 1}})
+    joke = mongo.db.jokes.update_one(
+        {"_id": ObjectId(joke_id)},
+        {'$inc': {'dislikes': 1}},
+        upsert=True
+    )
+    jokes = list(mongo.db.jokes.find())
     return render_template("jokes.html", jokes=jokes)
 
 
 @app.route("/videos", methods=["GET", "POST"])
 def videos():
-    return render_template("videos.html")
+    videos = list(mongo.db.videos.find())
+    return render_template("videos.html", videos=videos)
+
+
+@app.route('/video_like/<video_id>', methods=["GET", "POST"])
+def video_like(video_id):
+    video = mongo.db.videos.update_one(
+        {"_id": ObjectId(video_id)},
+        {'$inc': {'likes': 1}},
+        upsert=True
+        )
+    videos = list(mongo.db.videos.find())
+    return render_template("videos.html", videos=videos)
+
+
+@app.route('/video_dislike/<video_id>', methods=["GET", "POST"])
+def video_dislike(video_id):
+    video = mongo.db.videos.update_one(
+        {"_id": ObjectId(video_id)},
+        {'$inc': {'dislikes': 1}},
+        upsert=True
+    )
+    videos = list(mongo.db.videos.find())
+    return render_template("videos.html", videos=videos)
 
 
 # ADD VIDEO
