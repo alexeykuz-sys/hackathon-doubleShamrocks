@@ -8,43 +8,39 @@
 <h1 class="uploads">Double Shamrock Videos</h1>
 <p>Add a video to show us how you are spending St Patricks Day, you could be dancing about in finest clothes or cooking
     in the kitchen in your pjs! Anything goes!! </p>
-
-{% if user.username == username.username %}
-<p>{{username.username}}</p>
-
+    
+{% if user == username %}
 
 <h3 class="uploads">Upload New Video</h3>
 <form action="{{ url_for('upload_video', username=username) }}" method="POST" enctype="multipart/form-data">
     <div class="mb-3">
         <label for="video_title" class="form-label"> Add a Title </label>
-        <input type="text" name="video_title" id="video_title" class="form-control" />
+        <input type="text" name="video_title" id="video_title" class="form-control" requireed />
     </div>
     <div class=" mb-3">
         <label for="video_description" class="form-label"> Description </label>
-        <input type="text" name="video_description" id="video_description" class="form-control">
+        <input type="text" name="video_description" id="video_description" class="form-control" required >
     </div>
     <label for="user_videos" class="form-label"> Add a New Prance</label>
     <div class="mb-3">
-        <input type="file" name="user_videos" class="form-control" />
+        <input type="file" name="user_videos" class="form-control" required />
     </div>
+    <h5>The maximum image size is 100MB</h5>
     <button type="submit">Upload</button>
 </form>
 <hr>
 <div class="upload-content">
     <div class="row">
-        {% for user_video in username.user_videos  %}
+        {% for video in my_video %}
         <div class="col-md-3">
             <div class="card ">
                 <video controls>
-                    <source src="{{user_video.video_url}}" type="video/mp4">
+                    <source src="{{video.video_url}}" type="video/mp4">
                 </video>
                 <div class="card-body">
-                    <h5 class="card-title">{{user_video.video_title}}</h5>
-                    <p class="card-text">{{user_video.video_description}}</p>
-                </div>
-                <div class="card-body">
-                    <a href="#" class="card-link">LIKE</a>
-                    <a href="#" class="card-link">Comment?</a>
+                    <h5 class="card-title">{{video.video_title}}</h5>
+                    <p class="card-text">{{video.video_description}}</p>
+                    <p>{{video.date}}</p>
                 </div>
             </div>
         </div>

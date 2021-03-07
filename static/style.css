@@ -412,8 +412,11 @@ textarea.form-control {
 }
 /* ---- Jokes Page ---- */
 
-.jokes-header{ 
+.jokes-header,
+.videos-header{ 
     margin: 20px;
+    font-family: 'Uncial Antiqua', Arial, sans-serif;
+    color: var(--main-green);
 }
 div.card {
     width: 100%;
