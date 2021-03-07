@@ -307,6 +307,14 @@ h1.uploads{
     width: 100%;
 }
 
+.likes-wrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    margin: 20px;
+}
+
 .score {
         padding-left: 15px;
         font-size: 30px;
