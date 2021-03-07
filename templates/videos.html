@@ -13,7 +13,16 @@
                 <video controls>
                     <source src="{{ video.video_url }}" type="video/mp4">
                 </video>
+                <div class="cardbody">  
+                    <div class="card-header">          
+                        <h6 class="card-title">{{video.video_title}}</h6>
+                    </div>    
+                <p class="card-text">{{video.video_description}}</p>
+                <p class="card-text">{{video.date}}</p>
+                <p class="card-text"><em>by <a href="{{url_for('profile', username= video.author )}}">{{video.author}}</a></em></p>
+                </div>   
                 <div class="likes-wrapper cardbody">
+                    
                     <a href="{{ url_for('video_like', video_id=video._id) }}" class="like-score">
                         <i class="rating fas fa-thumbs-up"></i><span class="score-likes">
                             {{ video.likes }}</span></a>

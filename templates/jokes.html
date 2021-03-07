@@ -12,6 +12,9 @@
             <div class="card">
                 <div class="card-body">
                     <p>{{ joke.joke }}</p>
+                <p class="card-text">{{joke.date}}</p>
+                <p class="card-text"><em>by <a href="{{url_for('profile', username= joke.author )}}" >{{joke.author}}</a></em></p>
+                </div>   
                 </div>
             </div>
         </div>
