@@ -3,13 +3,18 @@
 
 {% block content %}
 
+
+
 <h1 class="uploads">Double Shamrock Videos</h1>
 <p>Add a video to show us how you are spending St Patricks Day, you could be dancing about in finest clothes or cooking
     in the kitchen in your pjs! Anything goes!! </p>
-{% if session.user == username %}
+
+{% if user.username == username.username %}
+<p>{{username.username}}</p>
+
 
 <h3 class="uploads">Upload New Video</h3>
-<form action="{{ url_for('upload_video') }}" method="POST" enctype="multipart/form-data">
+<form action="{{ url_for('upload_video', username=username) }}" method="POST" enctype="multipart/form-data">
     <div class="mb-3">
         <label for="video_title" class="form-label"> Add a Title </label>
         <input type="text" name="video_title" id="video_title" class="form-control" />
@@ -27,7 +32,7 @@
 <hr>
 <div class="upload-content">
     <div class="row">
-        {% for user_video in user.user_videos  %}
+        {% for user_video in username.user_videos  %}
         <div class="col-md-3">
             <div class="card ">
                 <video controls>

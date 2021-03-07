@@ -34,7 +34,7 @@
                 {% if session.username %}
                 <li class="nav-item"><a href="{{url_for('profile', username=session['username']) }}">Profile</a></li>
                 <li class="nav-item"><a href="{{url_for('upload_jokes', username=session['username'])}}">New Joke</a></li>
-                 <li class="nav-item"><a href="{{url_for('upload_video')}}">New Video</a></li>
+                 <li class="nav-item"><a href="{{url_for('upload_video', username=session['username'])}}">New Video</a></li>
                 <li class="nav-item"><a href="{{ url_for('logout') }}">Log Out</a></li>
                 {% else %}
                 <li class="nav-item"><a href="{{url_for('login')}}">Log In</a></li>
