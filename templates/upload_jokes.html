@@ -9,7 +9,7 @@
     <div class="col-sm-12">
         {% if session.user == username %}
         <h3 class="uploads">Upload New Joke</h3>
-        <form class="upload-form" action="{{ url_for('upload_jokes')}}" method="POST">
+        <form class="upload-form" action="{{ url_for('upload_jokes', username=username)}}" method="POST">
             <div class=" mb-3 ">
                 <label for="user_jokes" class="form-label">Add a new Joke</label>
                 <textarea id="user_jokes" class="form-control" type="text" name="user_jokes" min-length="5"
