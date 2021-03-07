@@ -142,13 +142,8 @@ main {
 }
 
 .social-icons {
-<<<<<<< HEAD
     float: right;   
-=======
-    float: right;
-    margin-bottom: 10px;
-    
->>>>>>> 29684c8ebaf2b2a84e7fde5148c99271ad254493
+    margin-bottom: 10px;   
 }
 
 .social-icons a img{
@@ -400,13 +395,31 @@ div.card {
     margin: 20px;
 }
 
-.likes-wrapper {
+.col-md-4 img {
+    width: 80%;
+    padding-left: 20%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    margin: 20px;
+}
+/*.col-xs-2 img {
+    width: 100%;
+    padding-left: 20%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    margin: 5px;
+}*/
+/*.likes-wrapper {
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-around;
     margin: 20px;
-}
+}*/
 
 .score {
         padding-left: 15px;
@@ -417,7 +430,11 @@ div.card {
 i.rating {
     color: var(--main-green);
     font-size: 24px;
-    margin: 5%;
+    margin: 20%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+   
 }
 
 /* ---- Profile Page ---- */
