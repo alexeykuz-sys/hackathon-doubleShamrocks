@@ -7,25 +7,24 @@
     --main-orange: #ffa500;
 
 }
-
 * {
   padding: 0;
   border: 0;
+}
+
+html {
   box-sizing: border-box;
+width: auto;
+height: auto;
 }
 
-html,
-body{
-    margin: 0;
-    padding: 0;
+
+
+body{ 
+    min-height: 100vh;
+  min-width: 100vw;
     background-color: #FCFCFC;
-}
-
-body {
-  overflow-x: hidden;
-  font-family: "Open Sans", Arial, Helvetica, sans-serif;
-  height: 100vh;
-  width: 100vw;
+    font-family: "Open Sans", Arial, Helvetica, sans-serif;
  
 }
 
@@ -140,25 +139,38 @@ body {
     text-transform: uppercase;
     color: var(--main-orange);
 }
-/* carousel */
+/* carousel */ 
+ .carousel-wrapper{
+   
+    max-width: 600px;
 
+}
 .carousel {
-    height:200px;
-    width: 300px;
-    background-color: lightgrey;
+    
+    line-height: 2rem;
+    letter-spacing: 2px;
+    font-size: 16px;
+    font-weight: 600;
+    background-color: var(--main-green);
+    color:var(--main-orange) ;
     display: flex;
     flex-direction: row;
+    margin-bottom: 10px;
 }
 
 .carousel-item{
-    display: block;
-    width: 100%;
-    height: 100px;
+   width: 100%;
+    height: 100%;
+    margin: 5px auto;
+}
+
+.joke-slide {
+    margin: 40px;
 }
 
 /*---- log in and register form ----*/
 .login-reg-container {
-    position: relative;
+    /* position: relative; */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -167,6 +179,7 @@ body {
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
+    
 }
 
 .log-reg-section {
@@ -302,8 +315,21 @@ h1.uploads{
 }
 
 /* ---- Jokes Page ---- */
-.card {
+
+.jokes-header{ 
+    margin: 20px;
+}
+div.card {
     width: 100%;
+    margin: 20px;
+}
+
+.likes-wrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    margin: 20px;
 }
 
 .score {
@@ -510,6 +536,7 @@ i.rating {
         padding: 1.5rem 2rem;
         width: 50%;
         left: 25%;
+        margin: 0;
     }
 
     .leprachaun-login-reg {
@@ -536,7 +563,11 @@ i.rating {
         width: 40%;
         left: 30%;
     }
-
+    
+.carousel-item{
+   width: 80%;
+    
+    }
 }
 
 /*Media query for largest devices (desktops, 1900px and up)*/
