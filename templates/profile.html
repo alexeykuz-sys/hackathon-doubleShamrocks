@@ -21,22 +21,32 @@
                         <img id="user_profile_image"
                             src="{{ image }}"
                             class="responsive-img profile_image" alt="Profile Image"/>
-                        <button type="button" data-toggle="modal" 
-                            data-target="#uploadImageModal" class="edit-image-link mt-2">
-                            <i class="fas fa-edit mr-1"></i>&nbsp;Edit an image
-                        </button>
+                            <!-- adding if statement only if signed in as user -->
+                            {% if user == username %} 
+                            <button type="button" data-toggle="modal" 
+                                data-target="#uploadImageModal" class="edit-image-link mt-2">
+                                <i class="fas fa-edit mr-1"></i>&nbsp;Edit an image
+                            </button>
+                            {% endif%}
+                            <!-- end if  -->
                         {% else %}
                         <img src="{{ url_for('static', filename='images/profile_image_placeholder.png') }}"
                             class="responsive-img profile_image" alt="Profile Image" />
-                        <button type="button" data-toggle="modal" 
-                            data-target="#uploadImageModal" class="edit-image-link mt-2">
-                            <i class="fas fa-edit mr-1"></i>&nbsp;Upload an image
-                        </button>
+                            <!-- adding if statement only if signed in as user -->
+                            {% if user == username %} 
+                                <button type="button" data-toggle="modal" 
+                                data-target="#uploadImageModal" class="edit-image-link mt-2">
+                                <i class="fas fa-edit mr-1"></i>&nbsp;Upload an image
+                            </button>
+                            {% endif %}
+                            <!-- endif -->
                         {% endif %}
                     </div>
                 </div>
                 <div class="username-container my-3">
                     <p>Username:<span class="username mx-2"> {{ username }}</span>
+                        <!-- adding if statement only if signed in as user -->
+                    {% if user == username %} 
                         <a href="{{ url_for('change_username', username = session.username) }}"
                             title="Edit username"><i class="fas fa-edit icon-green icon-small"></i>
                         </a>
@@ -53,6 +63,8 @@
                         data-target="#deleteModal">
                     <i class="fas fa-trash-alt"></i> Delete&nbsp;account
                     </button>
+                    {% endif %}
+                    <!-- endif -->
                 </div>
             </div>
         </div>
@@ -86,6 +98,14 @@
                                 <a href="{{ url_for('edit_joke', joke_id=joke._id) }}" title="Edit a joke" class="mr-2"> 
                                     <i class="fas fa-edit text-info"></i>
                                 </a> 
+                                <!--Delete joke button-->
+                                
+                                <a href="{{ url_for('delete_joke', joke_id=joke._id) }}"
+                                    class="delete-resource-button"
+                                     title="Delete a joke">
+                                        <i class="fas fa-trash-alt text-danger"></i>
+                                </a>
+                            </div>
                             {% endif %}
                     </div>
                         <!--Likes and dislikes-->
@@ -101,11 +121,21 @@
                             <hr class="w-25">
                         </div>
                     {% else %}
-                    <h5 class="mt-3 text-center">
-                        Looks like you haven't added any jokes yet. <br/>
-                        Click on the button below to get started!
-                        <i class="far fa-laugh-wink "></i>
-                    </h5>
+                    <!-- Added the if statements -->
+                        {% if user == username %}
+                            <h5 class="mt-3 text-center">
+                                Looks like you haven't added any jokes yet. <br/>
+                                Click on the button below to get started!
+                                <i class="far fa-laugh-wink "></i>
+                            </h5>
+                        {% else %}
+                        <h5 class="mt-3 text-center">
+                            Looks like {{username}} hasn't added any jokes yet. <br/>
+                            Click on the button below to get started!
+                            <i class="far fa-laugh-wink "></i>
+                        </h5>
+                        {% endif %}
+                        <!-- ending if  -->
                     {% endfor %}
                 </div>
                 <div class="tab-pane fade" id="videos" role="tabpanel" aria-labelledby="videos-tab">
@@ -138,14 +168,27 @@
                             <hr class="w-25">
                         </div>
                     {% else %}
-                    <h5 class="mt-3 text-center">
-                        Looks like you haven't uploaded any videos yet. <br/>
-                        Click on the button below to get started!
-                        <i class="far fa-laugh-wink "></i>
-                    </h5>
+                      <!--Adding if   -->
+                        {% if user == username %}
+                            <h5 class="mt-3 text-center">
+                                Looks like you haven't uploaded any videos yet. <br/>
+                                Click on the button below to get started!
+                                <i class="far fa-laugh-wink "></i>
+                            </h5>
+                        {% else %}
+                            <h5 class="mt-3 text-center">
+                                Looks like {{username}} hasn't added any videos yet. <br/>
+                                Click on the button below to get started!
+                                <i class="far fa-laugh-wink "></i>
+                            </h5>
+                        {% endif %}
+                    <!-- ending if -->
+            
                      {% endfor %}
                 </div>
             </div>
+            <!-- Adding if statement -->
+            {% if user == username %}
             <div class="d-flex justify-content-center flex-column flex-md-row my-4">
                 <a href="{{url_for('upload_jokes', username = session.username)}}" 
                     class="btn add-joke mr-md-1 mb-2">
@@ -156,6 +199,8 @@
                 <i class="fas fa-file-video"></i> Add&nbsp;new&nbsp;video
             </a>
             </div>
+            {% endif %}
+            <!-- End if  -->
         </div>
     </div>
 </div>

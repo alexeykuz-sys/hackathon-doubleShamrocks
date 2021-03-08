@@ -13,20 +13,20 @@
 *::after{
     margin: 0;
     padding: 0;
-    box-sizing: inherit;
+    /* box-sizing: inherit; - Becca */
 }
 
-body, html {
+/* body, html {
     min-height: 100vh;
     width:100vw;
     box-sizing: border-box;
-    overflow-x: hidden;
-}
+    overflow-x: hidden; this is causing a styling bug for the rest of the website - Becca
+} */
 
 body{ 
     background-color: #FCFCFC;
     font-family: "Open Sans", Arial, Helvetica, sans-serif;
-    display: flex;
+    /* display: flex;  this was causing a bug - Becca*/
     flex-direction: column;
 }
 
@@ -119,9 +119,7 @@ main {
 
 /* FOOTER */
 .page-footer{
-    background-color: var(--main-green);
-    width: 100vw;
-    
+    background-color: var(--main-green); 
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -145,9 +143,13 @@ main {
     margin-bottom: 10px;
 }
 
-.social-icons a img {
-    width: 40px;
+.social-icons a {
     margin-right: 25px;
+}
+
+.social-icons a img{
+    width: 40px;
+
 }
 
 /*-----Home PAge -------------*/
@@ -343,14 +345,29 @@ textarea.form-control {
     display: block;
 }
 
-div.card{
+.card{
     margin: 1%;
-    border: var(--main-orange) solid 0.5px;
+    background-color: #cbe9070f;
     border-radius: 3%;
-    padding: 0.5%;
+    height: min-content;
+    box-shadow: 0 10px 10px 0 rgba(0,0,0,0.4);
+    overflow:hidden;
 }
 
-div.card.jokes{
+.card_header {
+    margin-top: 5%;
+}
+
+.cardbody{
+    padding: 8%;
+}
+
+.col-md-4 {
+    margin-top: 5%;
+}
+
+
+.card.jokes{
     padding: 4%;
 }
 
@@ -365,31 +382,43 @@ img {
 
 video {
     width: 100%;
-    border-radius: 3%
-}
-
-.upload-content {
-    padding: 1%;
-    margin: 2%;
-}
-
-h3.uploads {
-    margin: 40px;
+    height:60vh;
     
-  
+    box-shadow: inset 0px 0px 36px 36px rgba(0,0,0,0.75)
+}
+
+.upload_content {
+    margin-bottom:5%
+}
+
+.upload_page {
+    margin: 5%;
 }
 
 .uploads-text{
-     font-family: "Open Sans", Arial, Helvetica, sans-serif;
+    font-family: "Open Sans", Arial, Helvetica, sans-serif;
     font-size: 20px;
     letter-spacing: 1.2px;
 }
-h1.uploads{
+
+.upload_heading{
+    font-family: 'Uncial Antiqua', Arial, sans-serif;
+}
+
+.upload_head{
+    margin-bottom: 2%;
+}
+
+.upload-btn{
+    margin:0;
+}
+
+.uploads{
     color: var(--main-green);
     font-weight: bold;
-    margin: 40px;
-    font-family: 'Uncial Antiqua', Arial, sans-serif;
     letter-spacing: 1.2px;
+    padding-top: 1%;
+    padding-bottom: 3%;
 }
 
 .upload-form {
@@ -416,13 +445,10 @@ textarea.form-control {
 
 .jokes-header,
 .videos-header{ 
-    margin: 20px;
+    margin: 3%;
+    padding: 3%;
     font-family: 'Uncial Antiqua', Arial, sans-serif;
     color: var(--main-green);
-}
-div.card {
-    width: 100%;
-    margin: 20px;
 }
 
 .likes-wrapper {

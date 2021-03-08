@@ -2,10 +2,13 @@
 {% block title %}Upload Jokes{% endblock %}
 
 {% block content %}
-<h1 class="uploads text-center">Double Shamrock Jokes</h1>
-{% if user == username %}
-<p class="uploads-text text-center">Just how bad are your jokes? Make someone laugh <em>or cry</em> this St Patricks Day
-</p>
+<div class="upload_page">
+    <div class="upload_head">
+        <h1 class="uploads">Double Shamrock Jokes</h1>
+        {% if user == username %}
+        <p class="uploads-text ">Just how bad are your jokes? Make someone laugh <em>or cry</em> this St Patricks Day
+        </p>
+    </div>
 <div class="row">
     <div class="col-sm-12">       
         <h3 class="uploads">Upload New Joke</h3>
@@ -15,7 +18,7 @@
                 <textarea id="user_jokes" class="form-control" type="text" name="user_jokes" min-length="5"
                     maxlength="500" placeholder="Insert joke......." required></textarea>
             </div>
-            <button class="btn btn-lg btn-uploads active" type="submit">Upload</button>
+            <button class="btn-video btn btn-large upload-btn" type="submit">Upload</button>
         </form>
     </div>
 </div>
@@ -42,4 +45,5 @@
 <p>Leprecorn is not happy! You can't add a video here, go to your own profile!</p>
 <p><a href="{{url_for('profile', username=username )}}">Back to {{username}} Profile</a></p>
 {% endif %}
+</div>
 {% endblock %}
