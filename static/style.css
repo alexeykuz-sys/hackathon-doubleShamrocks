@@ -432,6 +432,13 @@ video {
 
 .upload-btn{
     margin:0;
+    background-color: var(--main-green);
+    color: var(--main-orange);
+}
+
+.upload-btn:hover{
+    background-color: var(--main-green-dark);
+    color: var(--main-orange);
 }
 
 .uploads{
