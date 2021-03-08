@@ -116,6 +116,13 @@ main {
     color: var(--main-orange);
 }
 
+.hero-text {
+    color: var(--main-orange);
+    font-size: 2.2rem;
+    font-family: 'Uncial Antiqua', Arial, sans-serif;
+    letter-spacing: 1px;
+    margin-top: 50px;
+}
 
 /* FOOTER */
 .page-footer{
@@ -180,33 +187,11 @@ main {
     text-transform: uppercase;
     color: var(--main-orange);
 }
-/* carousel */ 
- .carousel-wrapper{
-   
-    max-width: 600px;
-
-}
-.carousel {
-    
-    line-height: 2rem;
-    letter-spacing: 2px;
-    font-size: 16px;
-    font-weight: 600;
-    background-color: var(--main-green);
-    color:var(--main-orange) ;
-    display: flex;
-    flex-direction: row;
-    margin-bottom: 10px;
-}
-
-.carousel-item{
-   width: 100%;
-    height: 100%;
-    margin: 5px auto;
-}
-
-.joke-slide {
-    margin: 40px;
+/* video */ 
+ 
+.video-wrapper {
+    width: 400px;
+    height: 300px;
 }
 
 /*---- log in and register form ----*/
@@ -350,7 +335,7 @@ textarea.form-control {
     background-color: #cbe9070f;
     border-radius: 3%;
     height: min-content;
-    box-shadow: 0 10px 10px 0 rgba(0,0,0,0.4);
+    box-shadow: 0 10px 10px 0 rgba(4,129,25,0.5);
     overflow:hidden;
 }
 
@@ -421,7 +406,31 @@ video {
 }
 
 .upload-form {
-    margin: 40px;
+    box-shadow: 1px 3px 5px rgba(0, 0, 0, 0.8);
+}
+
+#overlay {
+  position: fixed; /* Sit on top of the page content */
+  display: none; /* Hidden by default */
+  width: 100%; /* Full width (cover the whole page) */
+  height: 100%; /* Full height (cover the whole page) */
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0,0,0,0.5); /* Black background with opacity */
+  z-index: 2; /* Specify a stack order in case you're using a different order for other elements */
+  cursor: pointer; /* Add a pointer on hover */
+}
+
+#text {
+    position: absolute;
+  top: 50%;
+  left: 50%;
+  font-size: 50px;
+  color: white;
+  transform: translate(-50%,-50%);
+  -ms-transform: translate(-50%,-50%);
 }
 
 textarea.form-control {
@@ -449,25 +458,37 @@ textarea.form-control {
     font-family: 'Uncial Antiqua', Arial, sans-serif;
     color: var(--main-green);
 }
-
-.likes-wrapper {
+.joke-leprechaun {
+    margin-top: 0;
+}
+.col-md-4 img {
+    width: 80%;
+    padding-left: 20%;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     align-items: center;
     justify-content: space-around;
     margin: 20px;
 }
+.score-card {
+    vertical-align: middle;
+}
 
 .score {
-        padding-left: 15px;
-        font-size: 30px;
-        color: #000;
+    padding-top: 5%;
+    display: inline-block;
+    vertical-align: middle;
+    align-items: center;
+    font-size: 20px;
 }
 
 i.rating {
     color: var(--main-green);
     font-size: 24px;
-    margin: 5%;
+    margin: 10%; 
+    display: inline-block;
+    align-items: center;
+   
 }
 
 /* ---- Profile Page ---- */
@@ -806,7 +827,12 @@ i.rating {
         left: 38rem;
         width: 20rem;
     }
-
+}
+@media (max-width: 576px) {
+    .right-leprechaun,
+    .left-leprechaun {
+        display: none;
+    }
     .joke-form-section {
         width: 35%;
     }
