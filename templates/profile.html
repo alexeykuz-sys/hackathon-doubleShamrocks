@@ -107,6 +107,8 @@
                                 </a>
                             {% endif %}
                     </div>
+                            {% endif %}
+                </div>
                         <!--Likes and dislikes-->
                         <div class="d-flex justify-content-end">
                             <p class="mr-3"><i class="far fa-thumbs-up"></i> {{ joke.likes }} likes</p>
@@ -150,7 +152,7 @@
                                     </a> 
                             {% endif %}
                         </div>
-                       <video controls>
+                        <video controls>
                             <source src="{{video.video_url}}" type="video/mp4">
                         </video>
                         
@@ -202,7 +204,6 @@
             <!-- End if  -->
         </div>
     </div>
-</div>
 
 
 {% include "includes/delete_account.html" %} 
