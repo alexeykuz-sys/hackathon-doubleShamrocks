@@ -22,13 +22,13 @@
             <label for="video_description" class="form-label"> Description </label>
             <input type="text" name="video_description" id="video_description" class="form-control" required >
         </div>
-        <label for="user_videos" class="form-label"> Add a New Prance</label>
+        <label for="user_videos" class="form-label"> Add a New Video</label>
         <div class="mb-3">
             <input type="file" name="user_videos" class="form-control" required />
         </div>
 
         <h5 class="uploads">The maximum image size is 100MB</h5>
-        <button type="submit">Upload</button>
+        <button type="submit" class="btn-video btn btn-large upload-btn">Upload</button>
     </form>
 </div>    
 <hr>
@@ -41,10 +41,8 @@
                 <video controls>
                     <source src="{{video.video_url}}" type="video/mp4">
                 </video>
-                <div class="cardbody">  
-                    <div class="card-header">          
-                        <h6 class="card-title">{{video.video_title}}</h6>
-                    </div>    
+                <div class="cardbody">                            
+                    <h6 class="card-title">{{video.video_title}}</h6>  
                 <p class="card-text">{{video.video_description}}</p>
                 <p class="card-text">{{video.date}}</p>
                 <p class="card-text"><em>by {{video.author}}</em></p>

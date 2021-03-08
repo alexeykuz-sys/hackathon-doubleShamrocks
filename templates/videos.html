@@ -4,8 +4,10 @@
 {% block content %}
 
 <div class="container">
-    <h3 class="videos-header text-center">Videos</h3>
-
+    <div class="videos-header">
+    <h3 class="text-center">Videos</h3>
+    <h4 class ="text-center">St Patricks Day Videos</h4>
+</div>
     <div class="row  upload_content">
         {% for video in videos %}
         <div class="col-md-4">
@@ -14,7 +16,7 @@
                     <source src="{{ video.video_url }}" type="video/mp4">
                 </video>
                 <div class="cardbody">  
-                    <div class="card-header">          
+                    <div class="card_header">          
                         <h6 class="card-title">{{video.video_title}}</h6>
                     </div>    
                 <p class="card-text">{{video.video_description}}</p>

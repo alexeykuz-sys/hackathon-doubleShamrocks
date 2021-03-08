@@ -3,30 +3,33 @@
 
 {% block content %}
 
-<div class="container-fluid">
+<div class="container">
     <h3 class="jokes-header text-center">Jokes</h3>
-
-    <div class="row justify-content-center">
-        {% for joke in jokes %}
-        <div class="col-md-6 col-sm-12">
-            <div class="card">
-                <div class="card-body">
-                    <p>{{ joke.joke }}</p>
+<div class="row">
+    {% for joke in jokes %}
+    <div class="col-md-4">
+        <div class="card">
+            <div class="cardbody">
+                <p class="card-text">{{joke.joke}}</p>
                 <p class="card-text">{{joke.date}}</p>
-                <p class="card-text"><em>by <a href="{{url_for('profile', username= joke.author )}}" >{{joke.author}}</a></em></p>
-                </div>   
+
+                <div class="card-header">
+                    <p class="card-text"><em>by <a
+                                href="{{url_for('profile', username= joke.author )}}">{{joke.author}}</a></em></p>
                 </div>
             </div>
+            <div class="col-xs-6 col-sm-3 col-md-4 likes-wrapper">
+                <a href="{{ url_for('joke_like', joke_id=joke._id) }}" class="like-score"><i
+                        class="rating fas fa-thumbs-up"></i><span class="score-likes">{{ joke.likes }}</span></a>
+                <a href="{{ url_for('joke_dislike', joke_id=joke._id) }}" class="dislike-score"><i
+                        class="rating fas fa-thumbs-down"></i><span
+                        class="score-dislikes">{{ joke.dislikes }}</span></a>
+            </div>
         </div>
-        <div class="col-xs-6 col-sm-3 col-md-4 likes-wrapper">
-            <a href="{{ url_for('joke_like', joke_id=joke._id) }}" class="like-score"><i
-                    class="rating fas fa-thumbs-up"></i><span class="score-likes">{{ joke.likes }}</span></a>
-            <a href="{{ url_for('joke_dislike', joke_id=joke._id) }}" class="dislike-score"><i
-                    class="rating fas fa-thumbs-down"></i><span class="score-dislikes">{{ joke.dislikes }}</span></a>
-        </div>
+    </div>        
 
-        {% endfor %}
-    </div>
+    {% endfor %}
+        
 </div>
 
 {% endblock %}

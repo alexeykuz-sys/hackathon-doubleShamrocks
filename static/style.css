@@ -143,8 +143,14 @@ main {
     margin-bottom: 10px;
 }
 
-.social-icons a img {
+.social-icons a {
+    margin-right: 25px;
+}
+
+.social-icons a img{
     width: 40px;
+
+}
 
 /*-----Home PAge -------------*/
 .text-wrapper{
@@ -339,11 +345,25 @@ textarea.form-control {
 
 .card{
     margin: 1%;
-    border: var(--main-orange) solid 0.5px;
+    background-color: #cbe9070f;
     border-radius: 3%;
-    padding: 0.5%;
     height: min-content;
+    box-shadow: 0 10px 10px 0 rgba(0,0,0,0.4);
+    overflow:hidden;
 }
+
+.card_header {
+    margin-top: 5%;
+}
+
+.cardbody{
+    padding: 8%;
+}
+
+.col-md-4 {
+    margin-top: 5%;
+}
+
 
 .card.jokes{
     padding: 4%;
@@ -361,12 +381,12 @@ img {
 video {
     width: 100%;
     height:60vh;
-    border-radius: 3%;
+    
+    box-shadow: inset 0px 0px 36px 36px rgba(0,0,0,0.75)
 }
 
-.upload-content {
-    padding: 1%;
-    margin: 2%;
+.upload_content {
+    margin-bottom:5%
 }
 
 .upload_page {
@@ -385,6 +405,10 @@ video {
 
 .upload_head{
     margin-bottom: 2%;
+}
+
+.upload-btn{
+    margin:0;
 }
 
 .uploads{
@@ -419,7 +443,8 @@ textarea.form-control {
 
 .jokes-header,
 .videos-header{ 
-    margin: 20px;
+    margin: 3%;
+    padding: 3%;
     font-family: 'Uncial Antiqua', Arial, sans-serif;
     color: var(--main-green);
 }
