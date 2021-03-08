@@ -3,7 +3,9 @@
 
 {% block content %}
 
-
+<div id="overlay">
+    <h3 id="text">Video Uploading</h3>
+</div>
 <div class="upload_page">
     <div class="upload_head">
         <h1 class = "uploads upload_heading">Double Shamrock Videos</h1>
@@ -37,7 +39,7 @@
         </div>
 
         <h5 class="uploads">The maximum image size is 100MB</h5>
-        <button type="submit" class="btn-video btn btn-large upload-btn">Upload</button>
+        <button type="submit" class="btn-video btn btn-large upload-btn" id="#upload_btn" onclick="uploading()">Upload</button>
     </form>
 </div>    
 <hr>
