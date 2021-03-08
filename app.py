@@ -184,17 +184,16 @@ def upload_jokes(username):
 
         mongo.db.users.update_one(
             {"username": username},
-            {"$addToSet": {"joke": joke_id}})
+            {"$addToSet": {"jokes": joke_id}})
 
         return redirect(url_for('upload_jokes', username=username))
     return render_template(
         "upload_jokes.html", user=user, username=username, my_jokes=my_jokes)
 
 
-@app.route("/upload_image", methods=["GET", "POST"])
-def upload_image():
+@app.route("/<username>/upload_image", methods=["GET", "POST"])
+def upload_image(username):
 
-    username = "testing"
     user = mongo.db.users.find_one({"username": username})
 
     if request.method == 'POST':
@@ -211,14 +210,10 @@ def upload_image():
 
             mongo.db.users.update(
                 {"username": username},
-                {"$addToSet": {"user_image": {
-                    "image_url": image_url,
-                    "image_title": request.form.get('image_title'),
-                    "image_description": request.form.get('image_description')
-                }}})
+                {"$set": {"profile_image": image_url}})
 
-        return redirect(url_for('upload_image'))
-    return render_template("upload_image.html", user=user)
+        return redirect(url_for('profile', username=session['username']))
+    return render_template("profile.html", username=session['username'])
 
 
 # Delete Joke
@@ -239,7 +234,7 @@ def delete_joke(joke_id):
     selected_joke = mongo.db.jokes.find_one({"_id": ObjectId(joke_id)})
     # allows only author of the joke to delete it;
     # protects againts brute-forcing
-    if selected_joke['author'] == user_in_session['_id']:
+    if selected_joke['user'] == user_in_session['_id']:
         mongo.db.jokes.remove({"_id": ObjectId(joke_id)})
         # find the author of the  joke
         author = mongo.db.users.find_one(
@@ -353,13 +348,14 @@ def profile(username):
     # prevents guest users from viewing the page
     if 'username' not in session:
         flash('You must be logged in to view that page!')
-    username = user = mongo.db.users.find_one({'username':
-                                        username })['username']    
+    username = mongo.db.users.find_one({'username':
+                                        username })['username']
     user = mongo.db.users.find_one({'username':
                                         session['username']})['username']
     image = mongo.db.users.find_one({'username':
-                                     session['username']})['profile_image']
-    user_id = mongo.db.users.find_one({'username': session['username']})['_id']
+                                     username})['profile_image']
+    user_id = mongo.db.users.find_one({'username': username})['_id']
+    print(user_id)
     my_jokes = mongo.db.jokes.find({'user': user_id})
     return render_template('profile.html',
                            image=image,
