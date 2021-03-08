@@ -4,15 +4,15 @@
 {% block content %}
 <div class="upload_page">
     <div class="upload_head">
-        <h1 class="uploads">Double Shamrock Jokes</h1>
+        <h1 class="uploads upload_heading">Double Shamrock Jokes</h1>
         {% if user == username %}
         <p class="uploads-text ">Just how bad are your jokes? Make someone laugh <em>or cry</em> this St Patricks Day
         </p>
     </div>
 <div class="row">
-    <div class="col-sm-12">       
+    <div class="col-12">       
         <h3 class="uploads">Upload New Joke</h3>
-        <form class="upload-form" action="{{ url_for('upload_jokes', username=username)}}" method="POST">
+        <form class="upload_form" action="{{ url_for('upload_jokes', username=username)}}" method="POST" >
             <div class=" mb-3 ">
                 <label for="user_jokes" class="form-label">Add a new Joke</label>
                 <textarea id="user_jokes" class="form-control" type="text" name="user_jokes" min-length="5"
