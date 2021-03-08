@@ -9,6 +9,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css"
         integrity="sha512-xA6Hp6oezhjd6LiLZynuukm80f8BoZ3OpcEYaqKoCV3HKQDrYjDE1Gu8ocxgxoXmwmSzM4iqPvCsOkQNiu41GA=="
         crossorigin="anonymous" type="text/css">
+    <!--AOS-->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link rel="stylesheet" href="/static/style.css">
     <link rel="shortcut icon" href="{{ url_for('static', filename='images/clover.png') }}" type="image/x-icon" />
     <title>{% block title %}{% endblock %}</title>
@@ -72,10 +74,8 @@
     <!--Toast notifications - messages -->
     {% include 'includes/messages.html' %} 
     <main>
-        <div class="main-container">
         {% block content %}
         {% endblock %}
-        </div>
     </main>
   
     <footer>
@@ -102,7 +102,13 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF" crossorigin="anonymous"></script>
-    <script src="{{ url_for('static', filename='script.js') }}"></script>
+<!--AOS JS-->
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<!--Initialization  AOS-->
+<script>
+    AOS.init();
+</script>
+<script src="{{ url_for('static', filename='script.js') }}"></script>
 </body>
 
 </html>
