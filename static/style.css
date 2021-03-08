@@ -285,7 +285,7 @@ main {
 .register-form {
     padding-top: 5px;
     margin:0 auto;
-    max-width: 100%; 
+    width: 100%; 
 }
 
 .login-btn,
@@ -582,6 +582,7 @@ i.rating {
 .add-video,
 .btn-upload {
    background-color: var(--main-green-dark); 
+   color: #fff; 
 }
 
 .btn-change-password:hover,
@@ -589,6 +590,7 @@ i.rating {
 .add-video:hover,
 .btn-upload:hover {
     background-color:  var(--main-green); 
+    color: #fff; 
 }
 
 .btn-delete-account,
@@ -600,7 +602,8 @@ i.rating {
 }
 
 .btn-delete-account:hover {
-    background-color:  #d80808; 
+    background-color:  #d80808;
+    color: #fff; 
 }
 
 .btn-delete-icon {
@@ -624,6 +627,28 @@ i.rating {
 
 .profile-tabs {
     border-bottom: none;
+}
+
+.video-heading {
+    text-transform: uppercase;
+    text-align: center;
+}
+
+/*Toasts - messages*/
+.container-messages {
+    position: fixed;
+    top: 4.56rem;
+    right: 0.1rem;
+    z-index: 99999;
+    background-color: #ffffff;
+}
+
+.toast-header {
+    font-size:1rem;
+}
+
+.toast-info {
+    border-left: 0.5rem solid #17a2b8;
 }
 
 @media (min-width: 426px) { 
@@ -743,6 +768,11 @@ i.rating {
         }
     textarea.form-control {
     width: 85%;
+}
+
+.login-form,
+.register-form {
+    width: 80%; 
 }
 }
 
