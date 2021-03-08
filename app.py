@@ -336,24 +336,9 @@ def update_video(video_id):
 
     if request.method == "POST":
         today = date.today()
-        filename = secure_filename(selected_video.filename)
-        filename, file_extension = os.path.splitext(filename)
-        public_id_video = ("vidoes/" + username + "/" + filename)
-        # uploads video to cloudinary
-        cloudinary.uploader.unsigned_upload(
-            selected_video, "puppy_image",
-            cloud_name='puppyplaymates',
-            folder='/doubleshamrocks/', public_id=public_id_video,
-            resource_type="video")
-
-        # creates a url for the database
-        video_url = (
-            "https://res.cloudinary.com/puppyplaymates/video/upload/doubleshamrocks/"
-            + public_id_video + file_extension)
-
         # updates the selected video with data from the form
         mongo.db.videos.update({"_id": ObjectId(video_id)}, {
-            "video_url": video_url,
+            "video_url": selected_video['video_url'],
             "video_title": request.form.get("video_title"),
             "video_description": request.form.get("video_description"),
             "user": user_id,

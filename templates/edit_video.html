@@ -33,13 +33,9 @@
                     <input type="text" name="video_description" 
                         value="{{ selected_video.video_description }}"  id="video_description" class="form-control" required >
                 </div>
-                <label for="user_videos" class="form-label">Current Video</label>
                 <div class="mb-3">
-                    <video controls class="w-50">
-                        <source src="{{selected_video.video_url}}" type="video/mp4">
-                    </video>
-                    <input type="file" name="user_videos" value="{{ selected_video.video_url }}" class="form-control"/>
-                    <small>The maximum video size is 100MB</small>
+                    <small class="text-muted"><strong >Note:</strong> You can only edit a title and a description here. <br>
+                        If you want to update the video itself, you can delete this one by clicking the red button above and upload a new one.</small>
                 </div>
     
                     <div class="d-flex justify-content-center">

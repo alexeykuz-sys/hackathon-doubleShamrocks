@@ -13,20 +13,20 @@
 *::after{
     margin: 0;
     padding: 0;
-    /* box-sizing: inherit; - Becca */
+    box-sizing: inherit; 
 }
 
-/* body, html {
+body, html {
     min-height: 100vh;
     width:100vw;
     box-sizing: border-box;
-    overflow-x: hidden; this is causing a styling bug for the rest of the website - Becca
-} */
+    overflow-x: hidden; 
+}
 
 body{ 
     background-color: #FCFCFC;
     font-family: "Open Sans", Arial, Helvetica, sans-serif;
-    /* display: flex;  this was causing a bug - Becca*/
+    display: flex;  
     flex-direction: column;
 }
 
@@ -383,7 +383,6 @@ img {
 video {
     width: 100%;
     height:60vh;
-    
     box-shadow: inset 0px 0px 36px 36px rgba(0,0,0,0.75)
 }
 
