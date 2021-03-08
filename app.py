@@ -191,15 +191,8 @@ def upload_jokes(username):
         "upload_jokes.html", user=user, username=username, my_jokes=my_jokes)
 
 
-<<<<<<< HEAD
-# ADD PROFILE IMAGE
-@app.route("/upload_image", methods=["GET", "POST"])
-def upload_image():
-=======
 @app.route("/<username>/upload_image", methods=["GET", "POST"])
 def upload_image(username):
->>>>>>> e51cf35f56580bd90a2a36736cf595790f67003f
-
     user = mongo.db.users.find_one({"username": username})
 
     if request.method == 'POST':
@@ -511,7 +504,6 @@ def profile(username):
     image = mongo.db.users.find_one({'username':
                                      username})['profile_image']
     user_id = mongo.db.users.find_one({'username': username})['_id']
-    print(user_id)
     my_jokes = mongo.db.jokes.find({'user': user_id})
     my_videos = mongo.db.videos.find({'user': user_id})
     return render_template('profile.html',
