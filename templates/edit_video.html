@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+{% block title %}Edit Video {% endblock %}
+
+{% block content %}
+<div class="joke-form-container">
+    <div class="joke-form-section">
+        <div class="mt-5 d-flex justify-content-center align-items-center flex-column">
+            <h1 class="profile-main-heading pb-1">Edit a video</h1>
+            <hr class="w-25">
+        </div>
+
+        <div class="d-flex justify-content-end">
+                <!-- Delete video button -->
+                <button type="button"
+                    class="btn btn-danger btn-delete-icon btn-sm"
+                    data-toggle="modal" 
+                    data-target="#deletevideoModal"
+                    title="Delete the video"
+                    >
+                        <i class="fas fa-trash-alt text-white"></i>
+                </button>
+        </div>
+        <form class="edit-form"  autocomplete="off" method="POST" 
+              action="{{ url_for('update_video', video_id=selected_video._id) }}">
+                <div class="mb-3 d-flex justify-content-center flex-column">
+                <div class="mb-3">
+                    <label for="video_title" class="form-label"> Title </label>
+                    <input type="text" name="video_title" 
+                        value="{{ selected_video.video_title }}" id="video_title" class="form-control" requireed />
+                </div>
+                <div class=" mb-3">
+                    <label for="video_description" class="form-label"> Description </label>
+                    <input type="text" name="video_description" 
+                        value="{{ selected_video.video_description }}"  id="video_description" class="form-control" required >
+                </div>
+                <label for="user_videos" class="form-label">Current Video</label>
+                <div class="mb-3">
+                    <video controls class="w-50">
+                        <source src="{{selected_video.video_url}}" type="video/mp4">
+                    </video>
+                    <input type="file" name="user_videos" value="{{ selected_video.video_url }}" class="form-control"/>
+                    <small>The maximum video size is 100MB</small>
+                </div>
+    
+                    <div class="d-flex justify-content-center">
+                        <a href="{{ url_for('profile', username = session.username) }}"
+                            class="btn btn-secondary mr-2"
+                            name="action" >
+                            Cancel
+                        </a>
+                        <button class="btn btn-uploads active" type="submit"><i class="fas fa-edit mr-1"></i>Edit</button>
+                    </div>
+                </div>
+        </form>
+
+    </div>
+ </div>
+
+
+ {% include "includes/delete_video.html" %} 
+{% endblock %}

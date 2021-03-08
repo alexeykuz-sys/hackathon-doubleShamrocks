@@ -26,7 +26,8 @@
         </div>
         <form class="edit-form"  autocomplete="off" method="POST" action="{{ url_for('update_joke', joke_id=selected_joke._id) }}">
                 <div class="mb-3 d-flex justify-content-center flex-column">
-                    <textarea id="joke" class="form-control joke-field" type="text" name="joke" rows="6" min-length="5" maxlength="500">{{selected_joke.joke}}</textarea>
+                    <textarea id="joke" class="form-control joke-field" type="text"
+                     name="joke" rows="6" min-length="5" maxlength="500">{{selected_joke.joke}}</textarea>
                     <div class="d-flex justify-content-center">
                         <a href="{{ url_for('profile', username = session.username) }}"
                             class="btn btn-secondary mr-2"
