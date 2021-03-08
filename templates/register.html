@@ -35,13 +35,24 @@
                     <!-- confirm password -->
                     <div class="input-group mb-3">
                         <span class="input-group-text register-icon"><i class="fas fa-user-lock"></i></span>
-                        {{ form.confirm_password(placeholder="Confirm password", class="form-control") }}
+                       {{ form.confirm_password(placeholder="Confirm password", class="form-control") }}
+                    </div>
                         {% for error in form.confirm_password.errors %}
-                        <small class="text-red">{{ error }}</small>
+                            <small class="text-red">{{ error }}</small>
                         {% endfor %}
+                        <div class="text-center mt-2">
+                            {% with messages = get_flashed_messages() %} 
+                                {% if messages %} 
+                                    {% for message in messages %}
+                                        <small class="text-red">
+                                        {{ message }}
+                                        </small>
+                                    {% endfor %} 
+                                {% endif %} 
+                            {% endwith %}
+                            </div>
                         <!-- register button-->
                         {{ form.submit(class="col-12 mt-4 btn register-btn") }}
-                    </div>
                     <div class="text-center mt-2">
                         <small>Already a user?
                             <a href="{{url_for('login')}}" class="log-reg-small-link">Login here!</a>

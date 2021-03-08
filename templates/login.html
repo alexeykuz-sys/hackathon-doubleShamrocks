@@ -27,13 +27,24 @@
                 <div class="input-group mb-3">
                     <span class="input-group-text login-icon"><i class="fas fa-user-lock"></i></span>
                     {{ form.password (class="form-control", placeholder="Password") }} 
+                </div>
                     {% for error in form.password.errors %}
                     <small class="text-red">{{ error }}</small>
                     {% endfor %}
-                    
+                    <div class="text-center mt-2">
+                        {% with messages = get_flashed_messages() %} 
+                            {% if messages %} 
+                                {% for message in messages %}
+                                    <small class="text-red">
+                                    {{ message }}
+                                    </small>
+                                {% endfor %} 
+                            {% endif %} 
+                        {% endwith %}
+                    </div>
                     <!-- Login button -->
                     {{ form.submit(class="col-12 mt-4 btn login-btn") }}
-                </div>
+                
                 <div class="text-center mt-2">
                     <small>Don't have an acoount?
                         <a href="{{url_for('register')}}" class="log-reg-small-link">Create one!</a>

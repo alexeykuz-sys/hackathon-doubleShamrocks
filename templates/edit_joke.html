@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block title %}Edit joke {% endblock %}
+
+{% block content %}
+<div class="joke-form-container">
+    <img src="../static/images/leprachaun-login-reg.png" 
+        alt="leprachaun" 
+        class="leprachaun-login-reg">
+
+    <div class="joke-form-section">
+        <div class="mt-5 d-flex justify-content-center align-items-center flex-column">
+            <h1 class="profile-main-heading pb-1">Edit a joke</h1>
+            <hr class="w-25">
+        </div>
+
+        <div class="d-flex justify-content-end">
+                <!-- Delete joke button -->
+                <button type="button"
+                    class="btn btn-danger btn-delete-icon btn-sm"
+                    data-toggle="modal" 
+                    data-target="#deleteJokeModal"
+                    title="Delete the joke"
+                    >
+                        <i class="fas fa-trash-alt text-white"></i>
+                </button>
+        </div>
+        <form class="edit-form"  autocomplete="off" method="POST" action="{{ url_for('update_joke', joke_id=selected_joke._id) }}">
+                <div class="mb-3 d-flex justify-content-center flex-column">
+                    <textarea id="joke" class="form-control joke-field" type="text" name="joke" rows="6" min-length="5" maxlength="500">{{selected_joke.joke}}</textarea>
+                    <div class="d-flex justify-content-center">
+                        <a href="{{ url_for('profile', username = session.username) }}"
+                            class="btn btn-secondary mr-2"
+                            name="action" >
+                            Cancel
+                        </a>
+                        <button class="btn btn-uploads active" type="submit"><i class="fas fa-edit mr-1"></i>Edit</button>
+                    </div>
+                </div>
+        </form>
+
+    </div>
+ </div>
+
+
+ {% include "includes/delete_joke.html" %} 
+{% endblock %}
