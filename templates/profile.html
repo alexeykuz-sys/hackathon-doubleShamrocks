@@ -105,6 +105,10 @@
                                      title="Delete a joke">
                                         <i class="fas fa-trash-alt text-danger"></i>
                                 </a>
+<<<<<<< HEAD
+=======
+                            {% endif %}
+>>>>>>> upstream/master
                     </div>
                             {% endif %}
                 </div>
@@ -120,7 +124,7 @@
                         <div class="d-flex justify-content-center">
                             <hr class="w-25">
                         </div>
-                    {% else %}
+                        {% else %}
                     <!-- Added the if statements -->
                         {% if user == username %}
                             <h5 class="mt-3 text-center">
@@ -143,9 +147,9 @@
                     <h3 class="video-heading my-3">{{ video.video_title}}</h3>
                         <div class="d-flex justify-content-between mt-2">
                             <p> {{ video.video_description}}</p>
-                            {% if session.username == username %}
+                            {% if user == username %}
                                 <!--Edit video button-->
-                                    <a href="#" 
+                                    <a href="{{ url_for('edit_video', video_id=video._id) }}" 
                                     title="Edit a video" class="mr-2"> 
                                         <i class="fas fa-edit text-info"></i>
                                     </a> 
