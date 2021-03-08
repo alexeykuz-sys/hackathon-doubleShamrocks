@@ -98,13 +98,7 @@
                                 <a href="{{ url_for('edit_joke', joke_id=joke._id) }}" title="Edit a joke" class="mr-2"> 
                                     <i class="fas fa-edit text-info"></i>
                                 </a> 
-                                <!--Delete joke button-->
-                                
-                                <a href="{{ url_for('delete_joke', joke_id=joke._id) }}"
-                                    class="delete-resource-button"
-                                     title="Delete a joke">
-                                        <i class="fas fa-trash-alt text-danger"></i>
-                                </a>
+
                             {% endif %}
                     </div>
                             {% endif %}
@@ -142,7 +136,7 @@
                 <div class="tab-pane fade" id="videos" role="tabpanel" aria-labelledby="videos-tab">
                     {% for video in my_videos %} 
                     <h3 class="video-heading my-3">{{ video.video_title}}</h3>
-                        <div class="d-flex justify-content-between mt-2">
+                        <div class="d-flex justify-content-between my-3">
                             <p> {{ video.video_description}}</p>
                             {% if user == username %}
                                 <!--Edit video button-->
@@ -152,12 +146,12 @@
                                     </a> 
                             {% endif %}
                         </div>
-                        <video controls>
+                       <video controls class="rounded-lg">
                             <source src="{{video.video_url}}" type="video/mp4">
                         </video>
                         
                         <!--Likes and dislikes-->
-                        <div class="d-flex justify-content-end">
+                        <div class="d-flex justify-content-end mt-3">
                             <p class="mr-3"><i class="far fa-thumbs-up"></i> {{ video.likes }} likes</p>
                             <p><i class="far fa-thumbs-down"></i> {{ video.dislikes }} dislikes </p>
                         </div>
