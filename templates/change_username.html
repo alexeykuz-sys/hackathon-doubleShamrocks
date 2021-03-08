@@ -31,10 +31,22 @@
                         <div class="input-group-prepend">
                             <div class="input-group-text"><i class="fas fa-user-edit"></i></div>
                         </div>
-                        {{ form.new_username (placeholder="Enter new username", id="new_username", class="form-control") }} 
+                        {{ form.new_username (placeholder="Enter new username", id="new_username", class="form-control") }}
+                    </div>
                         {% for error in form.new_username.errors %}
-                        <small class="text-red">{{ error }}</small>
+                            <small class="text-red">{{ error }}</small>
                         {% endfor %}
+
+                        <div class="text-center mt-2">
+                        {% with messages = get_flashed_messages() %} 
+                            {% if messages %} 
+                                {% for message in messages %}
+                                    <small class="text-red">
+                                    {{ message }}
+                                    </small>
+                                {% endfor %} 
+                            {% endif %} 
+                        {% endwith %}
                     </div>
                 </div>
                     <div class="row d-flex justify-content-around mt-3">
