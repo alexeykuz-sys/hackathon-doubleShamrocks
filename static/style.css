@@ -464,6 +464,7 @@ textarea.form-control {
 }
 .score-card {
     vertical-align: middle;
+    padding-top: 5%;
 }
 
 .score {
@@ -821,8 +822,7 @@ i.rating {
     }
 }
 @media (max-width: 576px) {
-    .right-leprechaun,
-    .left-leprechaun {
+    .joke-leprechaun {
         display: none;
     }
     .joke-form-section {
