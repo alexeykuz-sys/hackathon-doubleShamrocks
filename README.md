@@ -155,12 +155,43 @@
 ## Deployment
 ### Local Deployment
 
+The site was developed in GitPod and pushed to the following remote GitHub repository - here
+The following GIT commands were used throughout deployment:
+git status ------ used to check the status of files and any changes made / untracked.
+git add -A ------ to stage files ready to commit.
+git commit -m " " ------ to commit the files.
+git push ------ to push the files to the master branch of the GitHub repo.
 
 ### Heroku Deployment
+This site is hosted using Heroku, deployed directly from the master branch via GitHub. - LIVE SITE
 
-<div align="right">
-    <b><a href="#table-of-contents">↥ Back To Top</a></b>
-</div>
+The following steps were taken to complete the hosting process.
+Set debug=False in the app.py file.
+Created a requirements.txt file from the terminal, using pip3 freeze --local > requirements.txt, to allow Heroku to detect this project as a python app and any required package dependencies.
+Created a Procfile using echo web: python app.py > Procfile from the Gitpod terminal so Heroku would be informed on which file runs the app and how to run this project.
+Created a new Heroku app, my-recipe-m3 and set its region to Europe.
+Automatic deployment was set up on Heroku - On the app dashboard, in the deploy menu. Connect to GitHub section. The GitHub repository was searched for and connected to the app.
+In the settings tab on the app dashboard, 'Reveal Config Vars' was used to tell Heroku which variableS are required to run the app. The following config vars were added:
+IP
+PORT
+SECRET_KEY
+MONGO_URI
+In GitPod, a check was completed to ensure the master branch was up to date and all commits had been pushed to GitHub, ready for Heroku to deploy.
+Clicked the Enable Automatic Deploys button located in the Deploy section of Heroku to allow for automatic deploys.
+Clicked the Deploy Branch button located in the Deploy section of Heroku to finally deploy this project.
+Clicked the View button to launch this project's app.
+The deployed site on Heroku will update automatically upon new commits to the master branch in the GitHub Repo : REPO
+Cloning
+
+To run this code locally, you can clone this repository directly into the editor of your choice by following the steps below:
+
+Open Terminal.
+Change the current working directory to the location when you want the cloned directory.
+Type the following into your Terminal:
+git clone insert link
+Press Enter to create a local clone.
+To cut ties with this GitHub repository, type git remote rm origin into the terminal.
+For more information regarding cloning of a repository click here.
 
 ---
 
