@@ -210,6 +210,22 @@ main {
     max-width: max-content;
  }
 
+ .video-page-heading {
+   font-family: 'Uncial Antiqua', Arial, sans-serif;
+    letter-spacing: 1px;
+ }
+
+ .link:link,
+ .link:visited{
+    color: #000 !important;
+    transition: all .2s;
+ }
+
+ .link:hover{
+    color: var(--main-green-dark);
+    text-decoration: none !important;
+ }
+
 /*---- log in and register form ----*/
 .login-reg-container {
     position: relative;
@@ -313,13 +329,13 @@ main {
 
 .log-reg-small-link:link,
 .log-reg-small-link:visited {
-    color: rgb(41, 41, 41);
+    color: var(--main-green);
     transition: all .2s;
 }
 
 .log-reg-small-link:hover {
     text-decoration: none;
-    color: var(--main-green);
+    color: var(--main-green-dark);
 }
 
 .login-icon,
@@ -496,6 +512,7 @@ textarea.form-control {
     vertical-align: middle;
     align-items: center;
     font-size: 20px;
+    color: #000;
 }
 
 i.rating {
@@ -684,16 +701,6 @@ i.rating {
     border-left: 0.5rem solid #17a2b8;
 }
 
-@media (min-width: 426px) { 
-    
-.page-footer{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    }
-}
-
 /*  Change username page */
 
 .change-username-container {
@@ -843,11 +850,9 @@ i.rating {
         width: 20rem;
     }
 }
+
 @media (max-width: 576px) {
     .joke-leprechaun {
         display: none;
-    }
-    .joke-form-section {
-        width: 35%;
     }
 }

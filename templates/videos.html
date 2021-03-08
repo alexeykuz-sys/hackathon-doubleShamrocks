@@ -14,18 +14,19 @@
                 </video>
                 <div class="cardbody">  
                     <div class="card_header">          
-                        <h6 class="card-title">{{video.video_title}}</h6>
+                        <h3 class="card-title video-page-heading">{{video.video_title}}</h3>
                     </div>    
                 <p class="card-text">{{video.video_description}}</p>
-                <p class="card-text">{{video.date}}</p>
-                <p class="card-text"><em>by <a href="{{url_for('profile', username= video.author )}}">{{video.author}}</a></em></p>
+                    <small class="text-muted text-right">{{video.date}}</small>
+                    {% if video.author %}
+                     <p class="card-text"><em>by <a href="{{url_for('profile', username= video.author )}}" class="link">{{video.author}}</a></em></p>
+                     {% endif%}
                 </div>   
                 <div class="likes-wrapper cardbody">
-                    
-                    <a href="{{ url_for('video_like', video_id=video._id) }}" class="like-score">
+                    <a href="{{ url_for('video_like', video_id=video._id) }}" class="like-score link">
                         <i class="rating fas fa-thumbs-up"></i><span class="score-likes">
                             {{ video.likes }}</span></a>
-                    <a href="{{ url_for('video_dislike', video_id=video._id) }}" class="dislike-score">
+                    <a href="{{ url_for('video_dislike', video_id=video._id) }}" class="dislike-score link">
                         <i class="rating fas fa-thumbs-down"></i><span class="score-dislikes">
                             {{ video.dislikes }}</span></a>
                 </div>

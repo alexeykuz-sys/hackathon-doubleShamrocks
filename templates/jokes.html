@@ -60,10 +60,10 @@
                     <div class="col-md-2 score-card">
                         <a href="{{ url_for('joke_like', joke_id=joke._id) }}">
                             <i class="rating fas fa-thumbs-up"></i>
-                            <span class="score">{{ joke.likes }}</span></a>
+                            <span class="score link">{{ joke.likes }}</span></a>
                         <a href="{{ url_for('joke_dislike', joke_id=joke._id) }}">
                             <i class="rating fas fa-thumbs-down"></i>
-                            <span class="score">{{ joke.dislikes }}</span></a>
+                            <span class="score link">{{ joke.dislikes }}</span></a>
                     </div>
                     <div class="col-md-4 joke-leprechaun">
                         <img src="{{ url_for('static', filename='images/leprachaun_floating.png') }}" 
