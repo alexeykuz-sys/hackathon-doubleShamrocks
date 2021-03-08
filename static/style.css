@@ -234,6 +234,7 @@ main {
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
+    z-index: 11;
 }
 
 .joke-field {
@@ -252,10 +253,11 @@ main {
 
 .joke-form-section {
     padding: 1.5rem 2rem;
+    padding: .8rem 1.5rem;
     background-color: rgba(255, 253, 253, 0.904);
     border-radius: .5rem;
     border: 1px solid var(--main-orange);
-    width: 95%;
+    width: 100%;
     box-shadow: .1rem .3rem .5rem rgba(44, 44, 44, 0.356);
     margin: 0 auto; 
 }
@@ -721,6 +723,7 @@ i.rating {
     .log-reg-section {
         position: absolute;
     }
+    
 }
 
 /*Media query for large devices (desktops, 992px and up)*/

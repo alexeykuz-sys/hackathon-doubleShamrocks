@@ -115,7 +115,7 @@
                             <p> {{ video.video_description}}</p>
                             {% if session.username == username %}
                                 <!--Edit video button-->
-                                    <a href="#" 
+                                    <a href="{{ url_for('edit_video', video_id=video._id) }}" 
                                     title="Edit a video" class="mr-2"> 
                                         <i class="fas fa-edit text-info"></i>
                                     </a> 

@@ -111,7 +111,7 @@ def upload_video(username):
             filename = secure_filename(user_video.filename)
             filename, file_extension = os.path.splitext(filename)
             public_id_video = ("vidoes/" + username + "/" + filename)
-            
+ 
             # uploads video to cloudinary
             cloudinary.uploader.unsigned_upload(
                 user_video, "puppy_image",
@@ -191,6 +191,7 @@ def upload_jokes(username):
         "upload_jokes.html", user=user, username=username, my_jokes=my_jokes)
 
 
+# ADD PROFILE IMAGE
 @app.route("/upload_image", methods=["GET", "POST"])
 def upload_image():
 
@@ -221,6 +222,7 @@ def upload_image():
     return render_template("upload_image.html", user=user)
 
 
+# EDIT JOKE
 @app.route('/edit_joke/<joke_id>')
 def edit_joke(joke_id):
 
@@ -242,7 +244,7 @@ def edit_joke(joke_id):
         return redirect(url_for('homepage'))
 
 
-# Updatejoke in the Database
+# Update joke in the Database
 @app.route("/update_joke/<joke_id>", methods=["POST"])
 def update_joke(joke_id):
     '''
@@ -300,6 +302,106 @@ def delete_joke(joke_id):
         return redirect(url_for("homepage"))
     else:
         flash("You can only delete your own jokes!")
+        return redirect(url_for('homepage'))
+
+
+# EDIT VIDEO
+@app.route('/edit_video/<video_id>')
+def edit_video(video_id):
+
+    # prevents guest users from viewing the form
+    if 'username' not in session:
+        flash('You must be logged in to edit a video!')
+        return redirect(url_for('homepage'))
+    user_in_session = mongo.db.users.find_one({'username': session['username']})
+    # find the selected video in DB by its id
+    selected_video = mongo.db.videos.find_one({"_id": ObjectId(video_id)})
+
+    # allows only author of the video to edit it;
+    # protects againts brute-forcing
+    if selected_video['user'] == user_in_session['_id']:
+        return render_template('edit_video.html',
+                               selected_video=selected_video)
+    else:
+        flash("You can only edit your own videos!")
+        return redirect(url_for('homepage'))
+
+
+# Update video in the Database
+@app.route("/update_video/<video_id>", methods=["POST"])
+def update_video(video_id):
+    '''
+    UPDATE.
+    Updates the selected video in the database after submission the form.
+    '''
+    selected_video = mongo.db.videos.find_one({"_id": ObjectId(video_id)})
+    # identifies the user in session to assign an author for edited video
+    username = session['username']
+    user_id = mongo.db.users.find_one({'username': session['username']})['_id']
+    likes = selected_video['likes']
+    dislikes = selected_video['dislikes']
+
+    if request.method == "POST":
+        today = date.today()
+        filename = secure_filename(selected_video.filename)
+        filename, file_extension = os.path.splitext(filename)
+        public_id_video = ("vidoes/" + username + "/" + filename)
+        # uploads video to cloudinary
+        cloudinary.uploader.unsigned_upload(
+            selected_video, "puppy_image",
+            cloud_name='puppyplaymates',
+            folder='/doubleshamrocks/', public_id=public_id_video,
+            resource_type="video")
+
+        # creates a url for the database
+        video_url = (
+            "https://res.cloudinary.com/puppyplaymates/video/upload/doubleshamrocks/"
+            + public_id_video + file_extension)
+
+        # updates the selected video with data from the form
+        mongo.db.videos.update({"_id": ObjectId(video_id)}, {
+            "video_url": video_url,
+            "video_title": request.form.get("video_title"),
+            "video_description": request.form.get("video_description"),
+            "user": user_id,
+            "date": today.strftime("%d/%m/%Y"),
+            "author": username,
+            "likes": likes,
+            "dislikes": dislikes
+        })
+        return redirect(url_for("profile", username=session["username"]))
+
+
+# Delete video
+@app.route("/delete_video/<video_id>")
+def delete_video(video_id):
+    '''
+    DELETE.
+    Removes a video from the database.
+    Only the author of the video can delete the video.
+    '''
+    # prevents guest users from viewing the modal
+    if 'username' not in session:
+        flash('You must be logged in to delete a video!')
+        return redirect(url_for('homepage'))
+    user_in_session = mongo.db.users.find_one(
+        {'username': session['username']})
+    # get the selected video for filling the fields
+    selected_video = mongo.db.videos.find_one({"_id": ObjectId(video_id)})
+    # allows only author of the video to delete it;
+    # protects againts brute-forcing
+    if selected_video['user'] == user_in_session['_id']:
+        mongo.db.videos.remove({"_id": ObjectId(video_id)})
+        # find the author of the  video
+        author = mongo.db.users.find_one(
+            {'username': session['username']})['_id']
+
+        mongo.db.users.update_one({"_id": ObjectId(author)},
+                                  {"$pull": {"user_videos": ObjectId(video_id)}})
+        flash('Your video has been deleted.')
+        return redirect(url_for("homepage"))
+    else:
+        flash("You can only delete your own videos!")
         return redirect(url_for('homepage'))
 
 
