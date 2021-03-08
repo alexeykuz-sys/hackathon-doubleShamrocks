@@ -4,44 +4,49 @@
 {% block content %}
 
 
-
-<h1 class="uploads">Double Shamrock Videos</h1>
-<p>Add a video to show us how you are spending St Patricks Day, you could be dancing about in finest clothes or cooking
-    in the kitchen in your pjs! Anything goes!! </p>
-    
+<div class="upload_page">
+    <div class="upload_head">
+        <h1 class = "uploads upload_heading">Double Shamrock Videos</h1>
+        <p>Add a video to show us how you are spending St Patricks Day, you could be dancing about in finest clothes or cooking
+            in the kitchen in your pjs! Anything goes!! </p>
+    </div>
 {% if user == username %}
 
 <h3 class="uploads">Upload New Video</h3>
-<form action="{{ url_for('upload_video', username=username) }}" method="POST" enctype="multipart/form-data">
-    <div class="mb-3">
-        <label for="video_title" class="form-label"> Add a Title </label>
-        <input type="text" name="video_title" id="video_title" class="form-control" requireed />
-    </div>
-    <div class=" mb-3">
-        <label for="video_description" class="form-label"> Description </label>
-        <input type="text" name="video_description" id="video_description" class="form-control" required >
-    </div>
-    <label for="user_videos" class="form-label"> Add a New Prance</label>
-    <div class="mb-3">
-        <input type="file" name="user_videos" class="form-control" required />
-    </div>
-    <h5>The maximum image size is 100MB</h5>
-    <button type="submit">Upload</button>
-</form>
+    <form action="{{ url_for('upload_video', username=username) }}" method="POST" enctype="multipart/form-data">
+        <div class="mb-3">
+            <label for="video_title" class="form-label"> Add a Title </label>
+            <input type="text" name="video_title" id="video_title" class="form-control" requireed />
+        </div>
+        <div class=" mb-3">
+            <label for="video_description" class="form-label"> Description </label>
+            <input type="text" name="video_description" id="video_description" class="form-control" required >
+        </div>
+        <label for="user_videos" class="form-label"> Add a New Video</label>
+        <div class="mb-3">
+            <input type="file" name="user_videos" class="form-control" required />
+        </div>
+
+        <h5 class="uploads">The maximum image size is 100MB</h5>
+        <button type="submit" class="btn-video btn btn-large upload-btn">Upload</button>
+    </form>
+</div>    
 <hr>
 <div class="upload-content">
+    <h3 class="uploads text-center">Your Videos</h3>
     <div class="row">
         {% for video in my_video %}
-        <div class="col-md-3">
+        <div class="col-md-4">
             <div class="card ">
                 <video controls>
                     <source src="{{video.video_url}}" type="video/mp4">
                 </video>
-                <div class="card-body">
-                    <h5 class="card-title">{{video.video_title}}</h5>
-                    <p class="card-text">{{video.video_description}}</p>
-                    <p>{{video.date}}</p>
-                </div>
+                <div class="cardbody">                            
+                    <h6 class="card-title">{{video.video_title}}</h6>  
+                <p class="card-text">{{video.video_description}}</p>
+                <p class="card-text">{{video.date}}</p>
+                <p class="card-text"><em>by {{video.author}}</em></p>
+                </div>                  
             </div>
         </div>
         {% endfor %}
@@ -52,4 +57,5 @@
 <p>Leprecorn is not happy! You can't add a video here, go to your own profile!</p>
 <p><a href="{{url_for('profile', username=username)}}">Back to {{username}} Profile</a></p>
 {% endif %}
+</div>
 {% endblock %}
