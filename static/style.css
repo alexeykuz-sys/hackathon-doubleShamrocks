@@ -189,7 +189,10 @@ main {
 }
 /* video */ 
  
-
+.video-wrapper {
+    width: 400px;
+    height: 300px;
+}
 
 /*---- log in and register form ----*/
 .login-reg-container {
