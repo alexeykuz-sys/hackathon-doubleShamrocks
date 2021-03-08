@@ -3,7 +3,7 @@
 
 {% block content %}
 
-<div class="container-fluid">
+<div class="container-fluid .jokes-videos-container">
     <h3 class="jokes-header text-center">Jokes</h3>
 
     <div class="row justify-content-center">
@@ -22,15 +22,17 @@
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="col-xs-6 col-sm-3 col-md-2 likes-wrapper">
-                        <a href="{{ url_for('joke_like', joke_id=joke._id) }}" class="like-score"><i
-                                class="rating fas fa-thumbs-up"></i>
-                                <span class="score-likes">{{ joke.likes }}</span></a>
-                        <a href="{{ url_for('joke_dislike', joke_id=joke._id) }}" class="dislike-score"><i
-                                class="rating fas fa-thumbs-down"></i>
-                                <span class="score-dislikes">{{ joke.dislikes }}</span></a>
+
+                    <div class="col-sm-6 col-md-2 ">
+                        <a href="{{ url_for('joke_like', joke_id=joke._id) }}"><i class="rating fas fa-thumbs-up"></i>
+                            <span class="score">{{ joke.likes }}</span></a>
+                        <!-- <div class="row"> -->
+                            <div class="col-sm-6 col-md-2">
+                                <a href="{{ url_for('joke_dislike', joke_id=joke._id) }}"><i
+                                        class="rating fas fa-thumbs-down"></i>
+                                    <span class="score">{{ joke.dislikes }}</span></a>
+                            </div>
+                        <!-- </div> -->
                     </div>
                 </div>
             {% else %}
@@ -42,20 +44,24 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-4 ">
-                        <img src="{{ url_for('static', filename='images/leprachaun_floating.png') }}" alt="" class="image-responsive">
+                    <div class="col-sm-6 col-md-2 ">
+                        <a href="{{ url_for('joke_like', joke_id=joke._id) }}"><i class="rating fas fa-thumbs-up"></i>
+
+                            <span class="score">{{ joke.likes }}</span></a>
+                        <div class="row">
+                            <div class="col-sm-6 col-md-2">
+                                <a href="{{ url_for('joke_dislike', joke_id=joke._id) }}"><i
+                                        class="rating fas fa-thumbs-down"></i>
+                                    <span class="score">{{ joke.dislikes }}</span></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 right_leprechaun">
+                        <img src="{{ url_for('static', filename='images/leprachaun_floating.png') }}" alt=""
+                            class="image-responsive">
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-xs-6 col-sm-3 col-md-2 likes-wrapper">
-                        <a href="{{ url_for('joke_like', joke_id=joke._id) }}" class="like-score"><i
-                                class="rating fas fa-thumbs-up"></i>
-                                <span class="score-likes">{{ joke.likes }}</span></a>
-                        <a href="{{ url_for('joke_dislike', joke_id=joke._id) }}" class="dislike-score"><i
-                                class="rating fas fa-thumbs-down"></i>
-                                <span class="score-dislikes">{{ joke.dislikes }}</span></a>
-                    </div>
-                </div>
+
             {% endif %}
         {% endfor %}
     </div>
