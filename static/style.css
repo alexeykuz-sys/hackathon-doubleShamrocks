@@ -35,6 +35,10 @@ main {
     margin-top:  3.4rem;
 }
 
+.main-container {
+    margin-top: 7rem;
+}
+
 /* NAVBAR */
 
 .navbar {
@@ -447,13 +451,12 @@ textarea.form-control {
 }
 /* ---- Jokes Page ---- */
 
-.jokes-header,
-.videos-header{ 
-    margin: 3%;
-    padding: 3%;
+.main-pages-heading { 
     font-family: 'Uncial Antiqua', Arial, sans-serif;
     color: var(--main-green);
+    text-transform: uppercase;
 }
+
 .joke-leprechaun {
     margin-top: 0;
 }
@@ -513,11 +516,6 @@ i.rating {
 .link-tab-profile {
     border: 1px solid var(--main-orange) !important;
     border-bottom: none !important;
-}
-
-.profile-main-heading {
-    text-transform: uppercase;
-    font-family: 'Uncial Antiqua', sans-serif;
 }
 
 .icon-large {
