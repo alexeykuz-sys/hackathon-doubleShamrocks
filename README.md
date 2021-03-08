@@ -1,5 +1,5 @@
 # Double Shamrock   
-
+<img src="https://i.ibb.co/XbCFQzh/mockup.png" alt="mockup" target="_blank" rel="noopener" width="850">
 Double Shamrock is a social website of St Patrick's Day jokes and videos. The users can create, read, edit and delete jokes on website. The site is designed to be easy to navigate and use, promoting a simple layout with minimal but effective and purposeful features.
 
 Project Requirements:
