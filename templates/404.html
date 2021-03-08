@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block title %}Page not Found{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="card mr404_container">        
+            <h1 class="text-center ">What are you doing here?</h1>
+            <p>This is a 404 page, skedaddle you!</p>
+            <p class="text-center"><a href="{{ url_for('homepage') }}">Back to Homepage </a></p>
+            <img src="{{ url_for('static', filename='images/mr404.gif') }}" alt="gif of Leprecorn" class="mr404">
+        </div>    
+    </div>
+	            
+{% endblock %}  
+  
+ 

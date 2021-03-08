@@ -411,6 +411,11 @@ video {
     margin: 5%;
 }
 
+.upload_gif{
+    height: 60vh;
+    width: 100%;
+}
+
 .uploads-text{
     font-family: "Open Sans", Arial, Helvetica, sans-serif;
     font-size: 20px;
@@ -431,6 +436,14 @@ video {
 
 .uploads{
     color: var(--main-green);
+    font-weight: bold;
+    letter-spacing: 1.2px;
+    padding-top: 1%;
+    padding-bottom: 3%;
+}
+
+.uploads-loading{
+    color: var(--main-orange);
     font-weight: bold;
     letter-spacing: 1.2px;
     padding-top: 1%;
@@ -699,6 +712,27 @@ i.rating {
 
 .toast-info {
     border-left: 0.5rem solid #17a2b8;
+}
+
+.mr404 {
+    height: 30%;
+    width:30%;
+}
+
+.mr404_container{
+    align-items: center;
+    padding: 1.5%;
+    padding-bottom: 5%;
+}
+
+@media (min-width: 426px) { 
+    
+.page-footer{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    }
 }
 
 /*  Change username page */
