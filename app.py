@@ -617,8 +617,7 @@ def change_password(username):
 
 @app.errorhandler(413)
 def fileLarge(e):
-    flash("Your file is too big"), 413
-    return redirect(url_for('uploads_video'))
+    return "Your file is too big", 413
 
 
 if __name__ == "__main__":
