@@ -28,12 +28,11 @@ body{
     font-family: "Open Sans", Arial, Helvetica, sans-serif;
     /* display: flex;  this was causing a bug - Becca*/
     flex-direction: column;
-     /* height: calc(100vh - 58px); */
 }
 
 main {
     flex: 1 0 auto;
-    margin-top: 5.7rem;
+    margin-top:  3.4rem;
 }
 
 /* NAVBAR */
@@ -144,14 +143,8 @@ main {
     margin-bottom: 10px;
 }
 
-.social-icons a {
-    margin-right: 25px;
-}
-
-.social-icons a img{
+.social-icons a img {
     width: 40px;
-
-}
 
 /*-----Home PAge -------------*/
 .text-wrapper{
@@ -212,7 +205,7 @@ main {
 
 /*---- log in and register form ----*/
 .login-reg-container {
-    /* position: relative; */
+    position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -221,7 +214,26 @@ main {
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
-    
+}
+
+.joke-form-container {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 90vh;
+    background-image: linear-gradient(
+        to right bottom,
+            rgba(255, 255, 255, 0.4),
+            rgba(190, 190, 190, 0.4)), 
+            url(../static/images/joke-form-bg.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+.joke-field {
+    width: 95% !important;
 }
 
 .log-reg-section {
@@ -232,6 +244,16 @@ main {
     width: 90%;
     box-shadow: .1rem .3rem .5rem rgba(44, 44, 44, 0.356);
     margin: 0 auto;
+}
+
+.joke-form-section {
+    padding: 1.5rem 2rem;
+    background-color: rgba(255, 253, 253, 0.904);
+    border-radius: .5rem;
+    border: 1px solid var(--main-orange);
+    width: 95%;
+    box-shadow: .1rem .3rem .5rem rgba(44, 44, 44, 0.356);
+    margin: 0 auto; 
 }
 
 .log-reg-leprechaun-with-beer-mobile {
@@ -516,7 +538,8 @@ i.rating {
 .add-joke:focus,
 .add-video:link,
 .add-video:visited,
-.add-video:focus{
+.add-video:focus,
+.btn-upload{
     color: #fff;
     text-shadow: 0 1px 1px rgba(34, 34, 34, 0.521);
     transition: all .2s;
@@ -531,13 +554,15 @@ i.rating {
 
 .btn-change-password,
 .btn-form,
-.add-video {
+.add-video,
+.btn-upload {
    background-color: var(--main-green-dark); 
 }
 
 .btn-change-password:hover,
 .btn-form:hover,
-.add-video:hover {
+.add-video:hover,
+.btn-upload:hover {
     background-color:  var(--main-green); 
 }
 
@@ -551,6 +576,10 @@ i.rating {
 
 .btn-delete-account:hover {
     background-color:  #d80808; 
+}
+
+.btn-delete-icon {
+    margin-top: -2rem;
 }
 
 .add-joke {
@@ -641,10 +670,16 @@ i.rating {
     }
 
     .log-reg-section {
+        position: absolute;
         padding: 1.5rem 2rem;
         width: 50%;
         left: 25%;
         margin: 0;
+    }
+
+    .joke-form-section {
+        width: 70%;
+        margin: 0; 
     }
 
     .leprachaun-login-reg {
@@ -671,6 +706,11 @@ i.rating {
         width: 40%;
         left: 30%;
     }
+
+    .joke-form-section {
+        width: 50%;
+    }
+
     
     .carousel-item{
     width: 80%;
@@ -708,5 +748,9 @@ i.rating {
         top: 4.7rem;
         left: 38rem;
         width: 20rem;
+    }
+
+    .joke-form-section {
+        width: 35%;
     }
 }

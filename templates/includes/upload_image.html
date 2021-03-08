@@ -9,12 +9,11 @@
         </div>
         <form action="{{ url_for('upload_image', username=username) }}" method="POST" enctype="multipart/form-data">
             <div class="modal-body mb-3">
-                    <label for="user_image" class="form-label"> Add an image</label>
                     <input type="file" name="user_image" class="form-control" />
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-primary">Upload</button>
+                <button type="submit" class="btn btn-upload">Upload</button>
             </div>
         </form>
         </div>

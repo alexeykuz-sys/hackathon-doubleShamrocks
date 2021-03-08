@@ -216,6 +216,55 @@ def upload_image(username):
     return render_template("profile.html", username=session['username'])
 
 
+@app.route('/edit_joke/<joke_id>')
+def edit_joke(joke_id):
+
+    # prevents guest users from viewing the form
+    if 'username' not in session:
+        flash('You must be logged in to edit a joke!')
+        return redirect(url_for('homepage'))
+    user_in_session = mongo.db.users.find_one({'username': session['username']})
+    # find the selected joke in DB by its id
+    selected_joke = mongo.db.jokes.find_one({"_id": ObjectId(joke_id)})
+
+    # allows only author of the joke to edit it;
+    # protects againts brute-forcing
+    if selected_joke['user'] == user_in_session['_id']:
+        return render_template('edit_joke.html',
+                               selected_joke=selected_joke)
+    else:
+        flash("You can only edit your own jokes!")
+        return redirect(url_for('homepage'))
+
+
+# Updatejoke in the Database
+@app.route("/update_joke/<joke_id>", methods=["POST"])
+def update_joke(joke_id):
+    '''
+    UPDATE.
+    Updates the selected joke in the database after submission the form.
+    '''
+    selected_joke = mongo.db.jokes.find_one({"_id": ObjectId(joke_id)})
+    # identifies the user in session to assign an author for edited joke
+    username = session['username']
+    user_id = mongo.db.users.find_one({'username': session['username']})['_id']
+    likes = selected_joke['likes']
+    dislikes = selected_joke['dislikes']
+
+    if request.method == "POST":
+        today = date.today()
+        # updates the selected joke with data from the form
+        mongo.db.jokes.update({"_id": ObjectId(joke_id)}, {
+            "joke": request.form.get("joke"),
+            "user": user_id,
+            "date": today.strftime("%d/%m/%Y"),
+            "author": username,
+            "likes": likes,
+            "dislikes": dislikes
+        })
+        return redirect(url_for("profile", username=session["username"]))
+
+
 # Delete Joke
 @app.route("/delete_joke/<joke_id>")
 def delete_joke(joke_id):
