@@ -3,7 +3,7 @@
 
 {% block content %}
 
-<div class="container jokes-videos-container">
+<div class="container jokes-videos-container main-container">
    <h1 class="my-5 text-center main-pages-heading">Jokes</h1>
     <div class="row justify-content-center">
         <div class="row">
@@ -13,7 +13,7 @@
 
                     <div class="col-md-4 joke-leprechaun">
                         <img src="{{ url_for('static', filename='images/leprechaun_popping_out.jpg') }}" 
-                            alt="" class="image-responsive">
+                            alt="" class="image-responsive" data-aos="fade-right" data-aos-duration="1300">
                     </div>
                     <div class="col-sm-12 col-md-6 ">
                         <div class="card">
@@ -67,7 +67,7 @@
                     </div>
                     <div class="col-md-4 joke-leprechaun">
                         <img src="{{ url_for('static', filename='images/leprachaun_floating.png') }}" 
-                            alt="" class="image-responsive">
+                            alt="" class="image-responsive" data-aos="fade-left" data-aos-duration="1300">
                     </div>
 
                 {% endif %}
