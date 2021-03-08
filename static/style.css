@@ -681,6 +681,17 @@ i.rating {
     border-left: 0.5rem solid #17a2b8;
 }
 
+.mr404 {
+    height: 30%;
+    width:30%;
+}
+
+.mr404_container{
+    align-items: center;
+    padding: 1.5%;
+    padding-bottom: 5%;
+}
+
 @media (min-width: 426px) { 
     
 .page-footer{

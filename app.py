@@ -618,6 +618,12 @@ def change_password(username):
 @app.errorhandler(413)
 def fileLarge(e):
     return "Your file is too big", 413
+    
+
+@app.errorhandler(404)
+def page_not_found(e):
+    # note that we set the 404 status explicitly
+    return render_template('404.html'), 404
 
 
 if __name__ == "__main__":
