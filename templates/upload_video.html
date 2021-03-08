@@ -4,7 +4,10 @@
 {% block content %}
 
 <div id="overlay">
-    <h3 id="text">Video Uploading</h3>
+    <div id="text">
+        <img src="{{ url_for('static', filename='images/leprechaun.gif') }}" class="upload_gif text-center" alt="gif of Leprecorn">
+        <h5 class="text-center upload_heading uploads-loading upload_head">Uploading</h5>
+    </div>
 </div>
 <div class="upload_page">
     <div class="upload_head">
@@ -13,13 +16,6 @@
             in the kitchen in your pjs! Anything goes!! </p>
     </div>
 
-<div id="progress_wrapper" class="d-none">
-          <label id="progress_status"></label>
-          <div class="progress mb-3">
-            <div id="progress" class="progress-bar" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-          </div>
-        </div>
-<div id="status"></div>
   
 {% if user == username %}
 
@@ -38,7 +34,7 @@
             <input type="file" name="user_videos" class="form-control" required />
         </div>
 
-        <h5 class="uploads">The maximum image size is 100MB</h5>
+        <h5 class="uploads">The maximum video size is 100MB</h5>
         <button type="submit" class="btn-video btn btn-large upload-btn" id="#upload_btn" onclick="uploading()">Upload</button>
     </form>
 </div>    
