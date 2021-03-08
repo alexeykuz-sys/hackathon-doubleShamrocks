@@ -30,11 +30,7 @@
             <div class="card jokes">
                 <p>{{joke.joke}}</p>
                 <p><em>by {{joke.author}}</em></p>
-                <p>{{joke.date}}</p>
-                <div class="card-body">
-                    <a href="#" class="card-link">LIKE</a>
-                    <a href="#" class="card-link">Comment?</a>
-                </div>
+                <small class="text-muted">{{joke.date}}</small>
             </div>
         </div>
         {% endfor %}
