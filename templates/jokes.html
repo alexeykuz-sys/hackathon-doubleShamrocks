@@ -3,67 +3,79 @@
 
 {% block content %}
 
-<div class="container-fluid .jokes-videos-container">
-    <h3 class="jokes-header text-center">Jokes</h3>
+
+<div class="container jokes-videos-container">
 
     <div class="row justify-content-center">
-        {% for joke in jokes %}
+        <div class="row">
 
-            {% if loop.index % 2 != 0 %}
-                <div class="row">
-                    <div class="col-md-4 ">
+            {% for joke in jokes %}
+
+                {% if loop.index % 2 != 0 %}
+
+                    <div class="col-md-4 joke-leprechaun">
                         <img src="{{ url_for('static', filename='images/leprechaun_popping_out.jpg') }}" alt=""
                             class="image-responsive">
                     </div>
                     <div class="col-sm-12 col-md-6 ">
                         <div class="card">
                             <div class="card-body">
-                                <p>{{ joke.joke }}</p>
+                                <p class="card-text">{{joke.joke}}</p>
+                                <p class="card-text">{{joke.date}}</p>
+                                <div class="card-header">
+                                    <p class="card-text"><em>by <a
+                                                href="{{url_for('profile', username= joke.author )}}">{{joke.author}}</a></em>
+                                    </p>
+                                </div>
                             </div>
                         </div>
                     </div>
-
-                    <div class="col-sm-6 col-md-2 ">
+                    <div class="col-md-2 score-card">
                         <a href="{{ url_for('joke_like', joke_id=joke._id) }}"><i class="rating fas fa-thumbs-up"></i>
                             <span class="score">{{ joke.likes }}</span></a>
-                        <!-- <div class="row"> -->
-                            <div class="col-sm-6 col-md-2">
-                                <a href="{{ url_for('joke_dislike', joke_id=joke._id) }}"><i
-                                        class="rating fas fa-thumbs-down"></i>
-                                    <span class="score">{{ joke.dislikes }}</span></a>
-                            </div>
+                        <!-- <div class="col-md-2"> -->
+                            <a href="{{ url_for('joke_dislike', joke_id=joke._id) }}"><i class="rating fas fa-thumbs-down"></i>
+                                <span class="score">&nbsp{{ joke.dislikes }}</span></a>
                         <!-- </div> -->
                     </div>
                 </div>
+
             {% else %}
+
                 <div class="row">
                     <div class="col-sm-12 col-md-6 ">
                         <div class="card">
                             <div class="card-body">
-                                <p>{{ joke.joke }}</p>
+                                <p class="card-text">{{joke.joke}}</p>
+                                <p class="card-text">{{joke.date}}</p>
+                                <div class="card-header">
+                                    <p class="card-text"><em>by <a
+                                                href="{{url_for('profile', username= joke.author )}}">{{joke.author}}</a></em>
+                                    </p>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-sm-6 col-md-2 ">
+                    <div class="col-md-2 ">
                         <a href="{{ url_for('joke_like', joke_id=joke._id) }}"><i class="rating fas fa-thumbs-up"></i>
 
                             <span class="score">{{ joke.likes }}</span></a>
-                        <div class="row">
-                            <div class="col-sm-6 col-md-2">
+                            <!-- <div class="col-md-2"> -->
                                 <a href="{{ url_for('joke_dislike', joke_id=joke._id) }}"><i
                                         class="rating fas fa-thumbs-down"></i>
                                     <span class="score">{{ joke.dislikes }}</span></a>
-                            </div>
-                        </div>
+                        <!-- </div> -->
                     </div>
-                    <div class="col-md-4 right_leprechaun">
+                    <div class="col-md-4 joke-leprechaun">
                         <img src="{{ url_for('static', filename='images/leprachaun_floating.png') }}" alt=""
                             class="image-responsive">
                     </div>
-                </div>
 
-            {% endif %}
-        {% endfor %}
+                {% endif %}
+
+            {% endfor %}
+
+        </div>
     </div>
 </div>
 

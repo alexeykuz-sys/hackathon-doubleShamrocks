@@ -4,8 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" 
+    integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css"
         integrity="sha512-xA6Hp6oezhjd6LiLZynuukm80f8BoZ3OpcEYaqKoCV3HKQDrYjDE1Gu8ocxgxoXmwmSzM4iqPvCsOkQNiu41GA=="
         crossorigin="anonymous" type="text/css">
@@ -34,14 +34,18 @@
                         <li class="nav-item"><a href="{{url_for('videos')}}"><i class="fas fa-film mr-1 d-inline d-md-none d-lg-inline"></i>Videos</a></li>
                         {% if session.username %}
                         <li class="nav-item  dropdown">
-                                <a href="{{url_for('profile', username=session['username']) }}"
+                                <a href="#"
                                     class="dropdown-toggle pr-4" role="button"
                                     id="dropdownMenuLink" data-toggle="dropdown"
                                      aria-haspopup="true" aria-expanded="false">
-                                    <i class="fas fa-user mr-1 d-inline d-md-none d-lg-inline"></i>Profile
+                                    <i class="fas fa-user mr-1 d-inline d-md-none d-lg-inline"></i>Account
                                 </a>
 
                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                    <a href="{{url_for('profile', username=session['username']) }}" 
+                                        class="dropdown-item dropdown-item-profile">
+                                         <i class="fas fa-user-cog mr-1 d-inline d-md-none d-lg-inline"></i>My Profile
+                                     </a>
                                     <a href="{{url_for('upload_jokes', username=session['username'])}}" 
                                         class="dropdown-item dropdown-item-profile">
                                          <i class="fas fa-plus mr-1 d-inline d-md-none d-lg-inline"></i>New Joke
@@ -65,42 +69,38 @@
             </nav>
         </div>
     </header>
-    
+    <!--Toast notifications - messages -->
+    {% include 'includes/messages.html' %} 
     <main>
         {% block content %}
         {% endblock %}
     </main>
   
     <footer>
-        <div class="row">
-            <div class="col-12 page-footer">
-                <div class="footer-text">
-                    <h5 class="text">The Double Shamrock</h5>
-                    <p class=""></p>
-                </div>
-                <div class="social-icons">
-                    <a href="https://www.facebook.com" target="_blank"><img src="/static/images/facebook.png"
-                            alt="facebook icon"></a>
-                    <a href="https://www.instagram.com" target="_blank"><img src="/static/images/instagram.png"
-                            alt="instagram icon"></a>
-                    <a href="https://twitter.com/?lang=en-gb" target="_blank"><img src="/static/images/twitter.png"
-                            alt="twitter icon"></a>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12 page-footer">
+                    <div class="footer-text">
+                        <h5 class="text">The Double Shamrock</h5>
+                        <p class=""></p>
+                    </div>
+                    <div class="social-icons">
+                        <a href="https://www.facebook.com" target="_blank"><img src="/static/images/facebook.png"
+                                alt="facebook icon"></a>
+                        <a href="https://www.instagram.com" target="_blank"><img src="/static/images/instagram.png"
+                                alt="instagram icon"></a>
+                        <a href="https://twitter.com/?lang=en-gb" target="_blank"><img src="/static/images/twitter.png"
+                                alt="twitter icon"></a>
+                    </div>
                 </div>
             </div>
         </div>
     </footer>
 
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-        crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-        crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-        crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF" crossorigin="anonymous"></script>
     <script src="{{ url_for('static', filename='script.js') }}"></script>
-    
 </body>
 
 </html>

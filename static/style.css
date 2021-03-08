@@ -13,27 +13,26 @@
 *::after{
     margin: 0;
     padding: 0;
-    box-sizing: inherit;
+    /* box-sizing: inherit; - Becca */
 }
 
-body, html {
+/* body, html {
     min-height: 100vh;
     width:100vw;
     box-sizing: border-box;
-    overflow-x: hidden;
-}
+    overflow-x: hidden; this is causing a styling bug for the rest of the website - Becca
+} */
 
 body{ 
     background-color: #FCFCFC;
     font-family: "Open Sans", Arial, Helvetica, sans-serif;
-    display: flex;
+    /* display: flex;  this was causing a bug - Becca*/
     flex-direction: column;
-     /* height: calc(100vh - 58px); */
 }
 
 main {
     flex: 1 0 auto;
-    margin-top: 5.7rem;
+    margin-top:  3.4rem;
 }
 
 /* NAVBAR */
@@ -120,9 +119,7 @@ main {
 
 /* FOOTER */
 .page-footer{
-    background-color: var(--main-green);
-    width: 100vw;
-    
+    background-color: var(--main-green); 
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -142,13 +139,17 @@ main {
 }
 
 .social-icons {
-    float: right;   
-    margin-bottom: 10px;   
+    float: right;
+    margin-bottom: 10px;
+}
+
+.social-icons a {
+    margin-right: 25px;
 }
 
 .social-icons a img{
     width: 40px;
-    margin-right: 25px;
+
 }
 
 /*-----Home PAge -------------*/
@@ -210,7 +211,7 @@ main {
 
 /*---- log in and register form ----*/
 .login-reg-container {
-    /* position: relative; */
+    position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -219,7 +220,27 @@ main {
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
-    
+}
+
+.joke-form-container {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 90vh;
+    background-image: linear-gradient(
+        to right bottom,
+            rgba(255, 255, 255, 0.4),
+            rgba(190, 190, 190, 0.4)), 
+            url(../static/images/joke-form-bg.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    z-index: 11;
+}
+
+.joke-field {
+    width: 95% !important;
 }
 
 .log-reg-section {
@@ -230,6 +251,17 @@ main {
     width: 90%;
     box-shadow: .1rem .3rem .5rem rgba(44, 44, 44, 0.356);
     margin: 0 auto;
+}
+
+.joke-form-section {
+    padding: 1.5rem 2rem;
+    padding: .8rem 1.5rem;
+    background-color: rgba(255, 253, 253, 0.904);
+    border-radius: .5rem;
+    border: 1px solid var(--main-orange);
+    width: 100%;
+    box-shadow: .1rem .3rem .5rem rgba(44, 44, 44, 0.356);
+    margin: 0 auto; 
 }
 
 .log-reg-leprechaun-with-beer-mobile {
@@ -255,7 +287,7 @@ main {
 .register-form {
     padding-top: 5px;
     margin:0 auto;
-    max-width: 100%; 
+    width: 100%; 
 }
 
 .login-btn,
@@ -313,14 +345,29 @@ textarea.form-control {
     display: block;
 }
 
-div.card{
+.card{
     margin: 1%;
-    border: var(--main-orange) solid 0.5px;
+    background-color: #cbe9070f;
     border-radius: 3%;
-    padding: 0.5%;
+    height: min-content;
+    box-shadow: 0 10px 10px 0 rgba(4,129,25,0.5);
+    overflow:hidden;
 }
 
-div.card.jokes{
+.card_header {
+    margin-top: 5%;
+}
+
+.cardbody{
+    padding: 8%;
+}
+
+.col-md-4 {
+    margin-top: 5%;
+}
+
+
+.card.jokes{
     padding: 4%;
 }
 
@@ -335,31 +382,43 @@ img {
 
 video {
     width: 100%;
-    border-radius: 3%
-}
-
-.upload-content {
-    padding: 1%;
-    margin: 2%;
-}
-
-h3.uploads {
-    margin: 40px;
+    height:60vh;
     
-  
+    box-shadow: inset 0px 0px 36px 36px rgba(0,0,0,0.75)
+}
+
+.upload_content {
+    margin-bottom:5%
+}
+
+.upload_page {
+    margin: 5%;
 }
 
 .uploads-text{
-     font-family: "Open Sans", Arial, Helvetica, sans-serif;
+    font-family: "Open Sans", Arial, Helvetica, sans-serif;
     font-size: 20px;
     letter-spacing: 1.2px;
 }
-h1.uploads{
+
+.upload_heading{
+    font-family: 'Uncial Antiqua', Arial, sans-serif;
+}
+
+.upload_head{
+    margin-bottom: 2%;
+}
+
+.upload-btn{
+    margin:0;
+}
+
+.uploads{
     color: var(--main-green);
     font-weight: bold;
-    margin: 40px;
-    font-family: 'Uncial Antiqua', Arial, sans-serif;
     letter-spacing: 1.2px;
+    padding-top: 1%;
+    padding-bottom: 3%;
 }
 
 .upload-form {
@@ -386,15 +445,14 @@ textarea.form-control {
 
 .jokes-header,
 .videos-header{ 
-    margin: 20px;
+    margin: 3%;
+    padding: 3%;
     font-family: 'Uncial Antiqua', Arial, sans-serif;
     color: var(--main-green);
 }
-div.card {
-    width: 100%;
-    margin: 20px;
+.joke-leprechaun {
+    margin-top: 0;
 }
-
 .col-md-4 img {
     width: 80%;
     padding-left: 20%;
@@ -404,11 +462,14 @@ div.card {
     justify-content: space-around;
     margin: 20px;
 }
-
+.score-card {
+    vertical-align: middle;
+}
 
 .score {
     padding-top: 5%;
     display: inline-block;
+    vertical-align: middle;
     align-items: center;
     font-size: 20px;
 }
@@ -416,7 +477,7 @@ div.card {
 i.rating {
     color: var(--main-green);
     font-size: 24px;
-    margin: 10%;
+    margin: 10%; 
     display: inline-block;
     align-items: center;
    
@@ -516,7 +577,8 @@ i.rating {
 .add-joke:focus,
 .add-video:link,
 .add-video:visited,
-.add-video:focus{
+.add-video:focus,
+.btn-upload{
     color: #fff;
     text-shadow: 0 1px 1px rgba(34, 34, 34, 0.521);
     transition: all .2s;
@@ -531,14 +593,18 @@ i.rating {
 
 .btn-change-password,
 .btn-form,
-.add-video {
+.add-video,
+.btn-upload {
    background-color: var(--main-green-dark); 
+   color: #fff; 
 }
 
 .btn-change-password:hover,
 .btn-form:hover,
-.add-video:hover {
+.add-video:hover,
+.btn-upload:hover {
     background-color:  var(--main-green); 
+    color: #fff; 
 }
 
 .btn-delete-account,
@@ -550,7 +616,12 @@ i.rating {
 }
 
 .btn-delete-account:hover {
-    background-color:  #d80808; 
+    background-color:  #d80808;
+    color: #fff; 
+}
+
+.btn-delete-icon {
+    margin-top: -2rem;
 }
 
 .add-joke {
@@ -570,6 +641,28 @@ i.rating {
 
 .profile-tabs {
     border-bottom: none;
+}
+
+.video-heading {
+    text-transform: uppercase;
+    text-align: center;
+}
+
+/*Toasts - messages*/
+.container-messages {
+    position: fixed;
+    top: 4.56rem;
+    right: 0.1rem;
+    z-index: 99999;
+    background-color: #ffffff;
+}
+
+.toast-header {
+    font-size:1rem;
+}
+
+.toast-info {
+    border-left: 0.5rem solid #17a2b8;
 }
 
 @media (min-width: 426px) { 
@@ -641,10 +734,16 @@ i.rating {
     }
 
     .log-reg-section {
+        position: absolute;
         padding: 1.5rem 2rem;
         width: 50%;
         left: 25%;
         margin: 0;
+    }
+
+    .joke-form-section {
+        width: 70%;
+        margin: 0; 
     }
 
     .leprachaun-login-reg {
@@ -662,6 +761,7 @@ i.rating {
     .log-reg-section {
         position: absolute;
     }
+    
 }
 
 /*Media query for large devices (desktops, 992px and up)*/
@@ -671,6 +771,11 @@ i.rating {
         width: 40%;
         left: 30%;
     }
+
+    .joke-form-section {
+        width: 50%;
+    }
+
     
     .carousel-item{
     width: 80%;
@@ -678,6 +783,11 @@ i.rating {
         }
     textarea.form-control {
     width: 85%;
+}
+
+.login-form,
+.register-form {
+    width: 80%; 
 }
 }
 
@@ -711,10 +821,11 @@ i.rating {
     }
 }
 @media (max-width: 576px) {
-    .left_leprechaun {
-        
-    }
-    .right_leprechaun {
+    .right-leprechaun,
+    .left-leprechaun {
         display: none;
+    }
+    .joke-form-section {
+        width: 35%;
     }
 }
